@@ -8,9 +8,10 @@ const StyledNavbar = styled.div`
   box-shadow: ${getTheme("shadows.regular")};
 
   .nav-link {
-    font-size: 14px;
+    font-size: 15px;
     margin-right: 32px;
     cursor: pointer;
+    font-weight: 500;
     :hover {
       color: ${getTheme("colors.primary.main")};
     }

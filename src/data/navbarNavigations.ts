@@ -1,6 +1,6 @@
 const navbarNavigations = [
   {
-    title: "Home",
+    title: "หน้าแรก",
     child: [
       { title: "Market 1", url: "/market-1" },
       { title: "Market 2", url: "/market-2" },
