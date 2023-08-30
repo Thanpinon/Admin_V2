@@ -34,13 +34,13 @@ const App = ({ Component, pageProps }: MyAppProps) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta property="og:url" content="https://bonik-react.vercel.app" />
+        <meta property="og:url" content="https://ihavecpu.com" />
         {/* thumbnail And title for social media */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="React Next JS Ecommerce Template" />
+        <meta property="og:title" content="ถ้าคุณชอบคอม เราคือเพื่อนกัน" />
         <meta
           property="og:description"
-          content="Minimal, clean and Fast Next js ecommerce template. Build Super store, Grocery delivery app, Multivendor store and niche market"
+          content="iHAVECPU ร้านขายและจำหน่ายอุปกรณ์คอมพิวเตอร์แบบครบวงจร รับประกันทุกชิ้น รับจัดสเปกคอมพิวเตอร์ตามสั่ง"
         />
         <meta property="og:image" content="/assets/images/landing/preview.png" />
 

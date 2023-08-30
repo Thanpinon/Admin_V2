@@ -13,7 +13,7 @@ type Props = { title?: string; showNavbar?: boolean; children: ReactNode };
 const GroceryLayout: FC<Props> = ({
   children,
   showNavbar = true,
-  title = "React Next.js Ecommerce Template",
+  title = "ถ้าคุณขอบคอมพิวเตอร์ เราคือเืพื่อนกัน",
 }) => (
   <StyledAppLayout>
     <Head>

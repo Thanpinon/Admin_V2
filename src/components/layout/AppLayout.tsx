@@ -11,7 +11,7 @@ import StyledAppLayout from "./AppLayoutStyle";
 type Props = { title?: string; navbar?: ReactElement; children: ReactNode };
 // ===============================================================================
 
-const AppLayout: FC<Props> = ({ navbar, children, title = "React Next.js Ecommerce Template" }) => (
+const AppLayout: FC<Props> = ({ navbar, children, title = "ถ้าคุณชอบคอมพิวเตอร์ เราคือเพื่อนกัน" }) => (
   <StyledAppLayout>
     <Head>
       <title>{title}</title>

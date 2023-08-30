@@ -36,7 +36,7 @@ const Section2: FC<Props> = ({ products }) => {
                 off={item.discount}
                 images={item.images}
                 imgUrl={item.thumbnail}
-                rating={item.rating || 4}
+                rating={item.rating || 3}
               />
             </Box>
           ))}
