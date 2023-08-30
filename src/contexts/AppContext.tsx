@@ -29,7 +29,7 @@ const INITIAL_CART = [
   },
   {
     qty: 1,
-    price: 110,
+    price: 190,
     slug: "yellow-casual-sweater",
     name: "Yellow Casual Sweater",
     id: "76d14d65-21d0-4b41-8ee1-eef4c2232793",
