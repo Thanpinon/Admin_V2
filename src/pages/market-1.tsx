@@ -51,7 +51,6 @@ const Market1 = (props: Props) => {
       
       {/* HERO CAROUSEL AREA */}
       <Section1 carouselData={props.mainCarouselData} />
-
       
       {/* FLASH DEAL PRODUCTS AREA */}
       <Section2 products={props.flashDealsData} />
