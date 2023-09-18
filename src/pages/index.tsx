@@ -1,113 +1,93 @@
 import { Fragment } from "react";
 import { GetStaticProps } from "next";
 import Box from "@component/Box";
+import Container from "@component/Container";
 import Navbar from "@component/navbar/Navbar";
 import AppLayout from "@component/layout/AppLayout";
-import Section1 from "@sections/market-2/Section1";
-import Section2 from "@sections/market-2/Section2";
-import Section3 from "@sections/market-2/Section3";
-import Section4 from "@sections/market-2/Section4";
-import Section5 from "@sections/market-2/Section5";
-import Section6 from "@sections/market-2/Section6";
-import Section7 from "@sections/market-2/Section7";
-import Section8 from "@sections/market-2/Section8";
-import Section9 from "@sections/market-2/Section9";
-import Section10 from "@sections/market-2/Section10";
-// api utils
-import api from "@utils/__api__/market-2";
-// data models
-import Brand from "@models/Brand.model";
+import Section1 from "@sections/fashion-1/Section1";
+import Section2 from "@sections/fashion-1/Section2";
+import Section3 from "@sections/fashion-1/Section3";
+import Section4 from "@sections/fashion-1/Section4";
+import Section5 from "@sections/fashion-1/Section5";
+import Section6 from "@sections/fashion-1/Section6";
+import Section7 from "@sections/fashion-1/Section7";
+import Section8 from "@sections/fashion-1/Section8";
+import Section9 from "@sections/fashion-1/Section9";
+import api from "@utils/__api__/fashion-1";
 import Service from "@models/service.model";
 import Product from "@models/product.model";
-import Category from "@models/category.model";
-import { CategoryBasedProducts, MainCarouselItem } from "@models/market-2.model";
 
 // =======================================================
-type Props = {
-  brands: Brand[];
-  products: Product[];
-  categories: Category[];
+type FashionShop1Props = {
+  hotDealList: any[];
+  dealOfTheWeek: any[];
   serviceList: Service[];
-  mainCarouselData: MainCarouselItem[];
-  menFashionProducts: CategoryBasedProducts;
-  electronicsProducts: CategoryBasedProducts;
-  womenFashionProducts: CategoryBasedProducts;
+  trendingItems: Product[];
+  flashDealsData: Product[];
+  newArrivalsData: Product[];
 };
 // =======================================================
 
-const MarketTwo = (props: Props) => {
+const FashionOne = (props: FashionShop1Props) => {
   return (
     <Fragment>
       {/* NAVBAR AREA */}
       <Navbar />
 
-      <Box bg="#F6F6F6">
-        {/* HERO CAROUSEL AREA */}
-        <Section1 carouselData={props.mainCarouselData} />
+      <Container my="2rem">
+        {/* DISCOUNT BANNER AREA */}
+        <Section1 />
 
-        {/* SERVICE LIST AREA */}
-        <Section2 serviceList={props.serviceList} />
+        {/* SERVICES AND SPECIAL OFFER AREA */}
+        <Box mb="3.75rem">
+          <Section2 />
+        </Box>
 
-        {/* TOP CATEGORIES AREA */}
-        <Section3 categories={props.categories} />
+        {/* FLASH DEAL PRODUCTS AREA */}
+        <Section3 products={props.flashDealsData} />
 
-        {/* DEAL OF THE DAY PRODUCTS AREA */}
-        <Section4 products={props.products} />
+        {/* NEW ARRIVAL PRODUCTS AREA */}
+        <Section4 products={props.newArrivalsData} />
 
-        {/* NEW ARRIVALS AND BEST SELLER OFFER BANNER AREA */}
-        <Section5 />
+        {/* DEALS OF WEEK PRODUCTS AREA */}
+        <Section5 list={props.dealOfTheWeek} />
 
-        {/* ELETRONICS CATEGORY BASED PRODUCTS AREA */}
-        <Section6 data={props.electronicsProducts} />
+        {/* DEAL OF THE DAY CAROUSEL AREA */}
+        <Section6 list={props.hotDealList} />
 
-        {/* SALES OFFER BANNERS AREA */}
-        <Section7 />
+        {/* TRENDING PRODUCTS AREA */}
+        <Section7 products={props.trendingItems} />
 
-        {/* MEN'S CATEGORY BASED PRODUCTS AREA */}
-        <Section6 data={props.menFashionProducts} />
+        {/* SERVICES AREA */}
+        <Section8 serviceList={props.serviceList} />
 
-        {/* DISCOUNT OFFER BANNER AREA */}
-        <Section8 />
-
-        {/* WOMEN'S CATEGORY BASED PRODUCTS AREA */}
-        <Section6 data={props.womenFashionProducts} />
-
-        {/* FEATURES BRAND LIST AREA */}
-        <Section9 brands={props.brands} />
-
-        {/* SELECTED PRODUCTS AREA */}
-        <Section10 />
-      </Box>
+        {/* NEWSLETTER AREA */}
+        <Section9 />
+      </Container>
     </Fragment>
   );
 };
 
-MarketTwo.layout = AppLayout;
-
-// ==============================================================
+FashionOne.layout = AppLayout;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const brands = await api.getBrands();
-  const products = await api.getProducts();
-  const serviceList = await api.getServices();
-  const categories = await api.getCategories();
-  const mainCarouselData = await api.getMainCarouselData();
-  const menFashionProducts = await api.getMenFashionProducts();
-  const electronicsProducts = await api.getElectronicsProducts();
-  const womenFashionProducts = await api.getWomenFashionProducts();
+  const hotDealList = await api.getHotDealList();
+  const serviceList = await api.getServiceList();
+  const flashDealsData = await api.getFlashDeals();
+  const trendingItems = await api.getTrendingItems();
+  const newArrivalsData = await api.getNewArrivals();
+  const dealOfTheWeek = await api.getDealOfTheWeekList();
 
   return {
     props: {
-      brands,
-      products,
-      categories,
+      hotDealList,
       serviceList,
-      mainCarouselData,
-      menFashionProducts,
-      electronicsProducts,
-      womenFashionProducts,
+      dealOfTheWeek,
+      trendingItems,
+      flashDealsData,
+      newArrivalsData,
     },
   };
 };
 
-export default MarketTwo;
+export default FashionOne;
