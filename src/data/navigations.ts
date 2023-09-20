@@ -1,7 +1,13 @@
 const navigations = [
   {
-    icon: "dress",
-    title: "Fashion",
+    icon: "_pc-display",
+    title: "จัดสเป็กคอม",
+    href: "/product/search/music",
+    menuComponent: "MegaMenu1",
+  },
+  {
+    icon: "_cpu",
+    title: "ซีพียู",
     href: "/fashion",
     menuComponent: "MegaMenu1",
     menuData: {
@@ -222,8 +228,8 @@ const navigations = [
     },
   },
   {
-    icon: "laptop",
-    title: "Electronics",
+    icon: "_motherboard",
+    title: "เมนบอร์ด",
     href: "/product/search/electronics",
     menuComponent: "MegaMenu1",
     menuData: {
@@ -444,14 +450,14 @@ const navigations = [
     },
   },
   {
-    icon: "motorbike",
-    title: "Bikes",
+    icon: "_gpu-card",
+    title: "การ์ดจอ",
     href: "/product/search/bikes",
     menuComponent: "MegaMenu2",
     menuData: [
       {
-        icon: "man",
-        title: "Man",
+        icon: "_gpu-card",
+        title: "AMD",
         href: "/product/search/fashion",
         megaMenu: "MegaMenu1",
         menuData: {
@@ -564,28 +570,28 @@ const navigations = [
         },
       },
       {
-        icon: "woman",
-        title: "Woman",
+        icon: "_gpu-card",
+        title: "NVidia",
         href: "/product/search/electronics",
         megaMenu: 2,
       },
       {
-        icon: "baby-boy",
-        title: "Baby Boy",
+        icon: "_gpu-card",
+        title: "Intel",
         href: "/product/search/home&garden",
         megaMenu: 3,
       },
-      {
-        icon: "baby-girl",
-        title: "Baby Girl",
-        href: "/product/search/bikes",
-        megaMenu: "MegaMenu1",
-      },
+      // {
+      //   icon: "baby-girl",
+      //   title: "Baby Girl",
+      //   href: "/product/search/bikes",
+      //   megaMenu: "MegaMenu1",
+      // },
     ],
   },
   {
-    icon: "plant-pot",
-    title: "Home & Garden",
+    icon: "_memory",
+    title: "แรม",
     href: "/product/search/home&garden",
     menuComponent: "MegaMenu1",
     menuData: {
@@ -802,8 +808,8 @@ const navigations = [
     },
   },
   {
-    icon: "gift-1",
-    title: "Gifts",
+    icon: "_device-hdd",
+    title: "ฮาร์ดดิสก์ และ เอสเอสดี",
     href: "/product/search/gifts",
     menuComponent: "MegaMenu2",
     menuData: [
@@ -865,38 +871,44 @@ const navigations = [
     ],
   },
   {
-    icon: "voice-recorder",
-    title: "Music",
+    icon: "_safe2",
+    title: "พาวเวอร์ซัพพลาย",
     href: "/product/search/music",
     menuComponent: "MegaMenu1",
   },
   {
-    icon: "make-up",
-    title: "Health & Beauty",
+    icon: "_fan",
+    title: "ชุดระบายความร้อน",
+    href: "/product/search/automotive",
+    menuComponent: "MegaMenu1",
+  },
+  {
+    icon: "_laptop",
+    title: "โน๊ตบุ๊ก",
     href: "/product/search/health&beauty",
     menuComponent: "MegaMenu1",
   },
   {
-    icon: "track",
-    title: "Pets",
+    icon: "_mouse2",
+    title: "เมาส์",
     href: "/product/search/pets",
     menuComponent: "MegaMenu1",
   },
   {
-    icon: "teddy-bear",
-    title: "Baby Toys",
+    icon: "_keyboard",
+    title: "คีย์บอร์ด",
     href: "/product/search/baby-toys",
     menuComponent: "MegaMenu1",
   },
   {
-    icon: "food",
-    title: "Groceries",
+    icon: "_display",
+    title: "จอ คอมพิวเตอร์",
     href: "/product/search/groceries",
     menuComponent: "MegaMenu1",
   },
   {
-    icon: "car",
-    title: "Automotive",
+    icon: "_controller",
+    title: "อุปกรณ์เสริม",
     href: "/product/search/automotive",
     menuComponent: "MegaMenu1",
   },

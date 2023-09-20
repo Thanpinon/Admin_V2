@@ -14,6 +14,7 @@ import { ProductCard7 } from "@component/product-cards";
 import CheckoutNavLayout from "@component/layout/CheckoutNavLayout";
 import { useAppContext } from "@context/AppContext";
 import countryList from "@data/countryList";
+import branchList from "@data/branchList";
 import { currency } from "@utils/utils";
 
 const Cart = () => {
@@ -44,7 +45,7 @@ const Cart = () => {
         <Grid item lg={4} md={4} xs={12}>
           <Card1>
             <FlexBox justifyContent="space-between" alignItems="center" mb="1rem">
-              <Typography color="gray.600">Total:</Typography>
+              <Typography color="gray.600">รวม :</Typography>
 
               <Typography fontSize="18px" fontWeight="600" lineHeight="1">
                 {currency(getTotalPrice())}
@@ -55,58 +56,66 @@ const Cart = () => {
 
             <FlexBox alignItems="center" mb="1rem">
               <Typography fontWeight="600" mr="10px">
-                Additional Comments
+                รายละเอียดเพิ่มเติม
               </Typography>
 
               <Box p="3px 10px" bg="primary.light" borderRadius="3px">
                 <Typography fontSize="12px" color="primary.main">
-                  Note
+                  หมายเหตุ
                 </Typography>
               </Box>
             </FlexBox>
 
             <TextArea rows={6} fullwidth mb="1rem" />
 
-            <Divider mb="1rem" />
+            {/* <Divider mb="1rem" />
 
-            <TextField placeholder="Voucher" fullwidth />
+            <TextField placeholder="โค๊ตส่วนลด" fullwidth />
 
             <Button variant="outlined" color="primary" mt="1rem" mb="30px" fullwidth>
-              Apply Voucher
-            </Button>
+              ใช้คูปองส่วนลด
+            </Button> */}
 
             <Divider mb="1.5rem" />
 
             <Typography fontWeight="600" mb="1rem">
-              Shipping Estimates
+              ข้อมูลเพิ่มเติม
             </Typography>
+
+            {/* <Select
+              mb="1rem"
+              label="ต้องการให้ iHAVECPU ประกอบให้หรือไม่"
+              options={countryList}
+              placeholder="เลือกสั่งประกอบ"
+              onChange={(e) => console.log(e)}
+            /> */}
 
             <Select
               mb="1rem"
-              label="Country"
-              options={countryList}
-              placeholder="Select Country"
+              label="ต้องการให้ iHAVECPU ประกอบให้หรือไม่"
+              options={optionList}
+              placeholder="เลือกสั่งประกอบ"
               onChange={(e) => console.log(e)}
             />
 
             <Select
-              label="State"
-              options={stateList}
-              placeholder="Select State"
+              label="การจัดส่ง"
+              options={branchList}
+              placeholder="เลือกการจัดส่ง"
               onChange={(e) => console.log(e)}
             />
 
-            <Box mt="1rem">
+            {/* <Box mt="1rem">
               <TextField label="Zip Code" placeholder="3100" fullwidth />
-            </Box>
+            </Box> */}
 
             <Button variant="outlined" color="primary" my="1rem" fullwidth>
-              Calculate Shipping
+              ยกเลิก
             </Button>
 
             <Link href="/checkout">
               <Button variant="contained" color="primary" fullwidth>
-                Checkout Now
+                ดำเนินการต่อ
               </Button>
             </Link>
           </Card1>
@@ -121,6 +130,10 @@ const stateList = [
   { value: "Chicago", label: "Chicago" },
 ];
 
+const optionList = [
+  { value: "สั่งประกอบ", label: "สั่งประกอบ" },
+  { value: "ไม่ต้องประกอบ", label: "ไม่ต้องประกอบ" },
+];
 Cart.layout = CheckoutNavLayout;
 
 export default Cart;

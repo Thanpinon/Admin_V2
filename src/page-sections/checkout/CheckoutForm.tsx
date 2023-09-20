@@ -39,7 +39,7 @@ const CheckoutForm: FC = () => {
         <form onSubmit={handleSubmit}>
           <Card1 mb="2rem">
             <Typography fontWeight="600" mb="1rem">
-              Shipping Address
+              ที่อยู่ในการจัดส่ง
             </Typography>
 
             <Grid container spacing={7}>
@@ -47,7 +47,7 @@ const CheckoutForm: FC = () => {
                 <TextField
                   fullwidth
                   mb="1rem"
-                  label="Full Name"
+                  label="ชื่อ-นามสกุล"
                   name="shipping_name"
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -58,7 +58,7 @@ const CheckoutForm: FC = () => {
                 <TextField
                   fullwidth
                   mb="1rem"
-                  label="Phone Number"
+                  label="หมายเลขโทรศัพท์"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   name="shipping_contact"
@@ -70,7 +70,7 @@ const CheckoutForm: FC = () => {
                   fullwidth
                   mb="1rem"
                   type="number"
-                  label="Zip Code"
+                  label="รหัสไปรษณีย์"
                   onBlur={handleBlur}
                   name="shipping_zip"
                   onChange={handleChange}
@@ -80,7 +80,7 @@ const CheckoutForm: FC = () => {
 
                 <TextField
                   fullwidth
-                  label="Address 1"
+                  label="ที่อยู่"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   name="shipping_address1"
@@ -95,7 +95,7 @@ const CheckoutForm: FC = () => {
                   mb="1rem"
                   type="email"
                   onBlur={handleBlur}
-                  label="Email Address"
+                  label="อีเมล"
                   name="shipping_email"
                   onChange={handleChange}
                   value={values.shipping_email}
@@ -105,7 +105,7 @@ const CheckoutForm: FC = () => {
                 <TextField
                   fullwidth
                   mb="1rem"
-                  label="Company"
+                  label="บริษัท"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   name="shipping_company"
@@ -115,7 +115,7 @@ const CheckoutForm: FC = () => {
 
                 <Select
                   mb="1rem"
-                  label="Country"
+                  label="จังหวัด"
                   options={countryList}
                   value={values.shipping_country || "US"}
                   errorText={touched.shipping_country && errors.shipping_country}
@@ -124,7 +124,7 @@ const CheckoutForm: FC = () => {
 
                 <TextField
                   fullwidth
-                  label="Address 2"
+                  label="ที่อยู่ 2"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   name="shipping_address2"
@@ -137,12 +137,12 @@ const CheckoutForm: FC = () => {
 
           <Card1 mb="2rem">
             <Typography fontWeight="600" mb="1rem">
-              Billing Address
+              ที่อยู่ออกใบกำกับภาษี
             </Typography>
 
             <CheckBox
               color="secondary"
-              label="Same as shipping address"
+              label="ใช้ที่อยู่เดียวกันกับจัดส่ง"
               mb={sameAsShipping ? "" : "1rem"}
               onChange={handleCheckboxChange(values, setFieldValue)}
             />
@@ -153,7 +153,7 @@ const CheckoutForm: FC = () => {
                   <TextField
                     fullwidth
                     mb="1rem"
-                    label="Full Name"
+                    label="ชื่อ-นามสกุล"
                     name="billing_name"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -165,7 +165,7 @@ const CheckoutForm: FC = () => {
                     fullwidth
                     mb="1rem"
                     onBlur={handleBlur}
-                    label="Phone Number"
+                    label="เบอร์โทรศัพท์"
                     name="billing_contact"
                     onChange={handleChange}
                     value={values.billing_contact}
@@ -176,7 +176,7 @@ const CheckoutForm: FC = () => {
                     fullwidth
                     mb="1rem"
                     type="number"
-                    label="Zip Code"
+                    label="รหัสไปรษณีย์"
                     name="billing_zip"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -186,7 +186,7 @@ const CheckoutForm: FC = () => {
 
                   <TextField
                     fullwidth
-                    label="Address 1"
+                    label="ที่อยู่ 1"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     name="billing_address1"
@@ -202,7 +202,7 @@ const CheckoutForm: FC = () => {
                     type="email"
                     onBlur={handleBlur}
                     name="billing_email"
-                    label="Email Address"
+                    label="อีเมล"
                     onChange={handleChange}
                     value={values.billing_email}
                     errorText={touched.billing_email && errors.billing_email}
@@ -211,7 +211,7 @@ const CheckoutForm: FC = () => {
                   <TextField
                     fullwidth
                     mb="1rem"
-                    label="Company"
+                    label="บริษัท"
                     onBlur={handleBlur}
                     name="billing_company"
                     onChange={handleChange}
@@ -221,14 +221,14 @@ const CheckoutForm: FC = () => {
 
                   <Select
                     mb="1rem"
-                    label="Country"
+                    label="จังหวัด"
                     options={countryList}
                     errorText={touched.billing_country && errors.billing_country}
                   />
 
                   <TextField
                     fullwidth
-                    label="Address 2"
+                    label="ที่อยู่ 2"
                     onBlur={handleBlur}
                     name="billing_address2"
                     onChange={handleChange}
@@ -244,14 +244,14 @@ const CheckoutForm: FC = () => {
             <Grid item sm={6} xs={12}>
               <Link href="/cart">
                 <Button variant="outlined" color="primary" type="button" fullwidth>
-                  Back to Cart
+                  กลับไปที่หน้ารถเข็น
                 </Button>
               </Link>
             </Grid>
 
             <Grid item sm={6} xs={12}>
               <Button variant="contained" color="primary" type="submit" fullwidth>
-                Proceed to Payment
+                ดำเนินการชำระเงิน
               </Button>
             </Grid>
           </Grid>

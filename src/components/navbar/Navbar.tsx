@@ -128,11 +128,10 @@ const Navbar: FC<NavbarProps> = ({ navListOpen }) => {
       <Container height="100%" display="flex" alignItems="center" justifyContent="space-between">
         <Categories open={navListOpen}>
           <Button width="278px" height="40px" bg="body.default" variant="text">
-            <Icon>categories</Icon>
+            <Icon>_grid-fill</Icon>
             <Typography ml="10px" flex="1 1 0" fontWeight="600" textAlign="left" color="text.muted">
-              Categories
+              หมวดหมู่สินค้า
             </Typography>
-
             <Icon className="dropdown-icon" variant="small">
               chevron-right
             </Icon>

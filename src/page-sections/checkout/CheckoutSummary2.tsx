@@ -8,7 +8,7 @@ const CheckoutSummary2: FC = () => {
   return (
     <Box>
       <Typography color="secondary.900" fontWeight="700" mb="1.5rem">
-        Your order
+        คำสั่งซื้อของคุณ
       </Typography>
 
       {cartList.map((item) => (
@@ -26,30 +26,30 @@ const CheckoutSummary2: FC = () => {
       <Divider bg="gray.300" mb="1.5rem" />
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Subtotal:</Typography>
-        <Typography fontWeight="700">${(2610).toFixed(2)}</Typography>
+        <Typography color="text.hint">ราคารวม:</Typography>
+        <Typography fontWeight="700">฿{(2610).toFixed(2)}</Typography>
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Shipping:</Typography>
+        <Typography color="text.hint">ค่าจัดส่ง:</Typography>
         <Typography fontWeight="700">-</Typography>
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Tax:</Typography>
-        <Typography fontWeight="700">${(40).toFixed(2)}</Typography>
+        <Typography color="text.hint">ภาษี:</Typography>
+        <Typography fontWeight="700">฿{(40).toFixed(2)}</Typography>
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
-        <Typography color="text.hint">Discount:</Typography>
+        <Typography color="text.hint">ส่วนลด:</Typography>
         <Typography fontWeight="700">-</Typography>
       </FlexBox>
 
       <Divider bg="gray.300" mb="0.5rem" />
 
       <FlexBox fontWeight="700" justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography>Total:</Typography>
-        <Typography fontWeight="700">${(2610).toFixed(2)}</Typography>
+        <Typography>ราคารวมทั้งหมด:</Typography>
+        <Typography fontWeight="700">฿{(2610).toFixed(2)}</Typography>
       </FlexBox>
     </Box>
   );

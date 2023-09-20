@@ -73,10 +73,10 @@ const CheckoutNavLayout: FC<Props> = ({ children }) => {
 };
 
 const stepperList = [
-  { title: "Cart", disabled: false },
-  { title: "Details", disabled: false },
-  { title: "Payment", disabled: false },
-  { title: "Review", disabled: true },
+  { title: "รถเข็น", disabled: false },
+  { title: "รายละเอียด", disabled: false },
+  { title: "ชำระเงิน", disabled: false },
+  { title: "ตรวจสอบรายละเอียด", disabled: true },
 ];
 
 export default CheckoutNavLayout;

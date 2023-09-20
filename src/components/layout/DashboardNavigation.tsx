@@ -80,24 +80,24 @@ const DashboardNavigation = () => {
 
 const linkList = [
   {
-    title: "DASHBOARD",
+    title: "รายการ",
     list: [
-      { href: "/orders", title: "Orders", iconName: "bag", count: 5 },
-      { href: "/wish-list", title: "Wishlist", iconName: "heart", count: 19 },
+      { href: "/orders", title: "คำสั่งซื้อ", iconName: "bag", count: 5 },
+      { href: "/wish-list", title: "สินค้าที่ถูกใจ", iconName: "heart", count: 19 },
       {
         href: "/support-tickets",
-        title: "Support Tickets",
+        title: "ช่วยเหลือ",
         iconName: "customer-service",
         count: 1,
       },
     ],
   },
   {
-    title: "ACCOUNT SETTINGS",
+    title: "บัญชี",
     list: [
-      { href: "/profile", title: "Profile Info", iconName: "user", count: 3 },
-      { href: "/address", title: "Addresses", iconName: "pin", count: 16 },
-      { href: "/payment-methods", title: "Payment Methods", iconName: "credit-card", count: 4 },
+      { href: "/profile", title: "ข้อมูลส่วนตัว", iconName: "user", count: 3 },
+      { href: "/address", title: "ที่อยู่", iconName: "pin", count: 16 },
+      { href: "/payment-methods", title: "ช่องทางชำระเงิน", iconName: "credit-card", count: 4 },
     ],
   },
 ];

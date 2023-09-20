@@ -10,11 +10,11 @@ const CheckoutSummary: FC = () => {
   return (
     <Card1>
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Subtotal:</Typography>
+        <Typography color="text.hint">ราคา:</Typography>
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-            $2610.
+          ฿2610.
           </Typography>
 
           <Typography fontWeight="600" fontSize="14px" lineHeight="1">
@@ -24,7 +24,7 @@ const CheckoutSummary: FC = () => {
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Shipping:</Typography>
+        <Typography color="text.hint">ค่าจัดส่ง:</Typography>
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
@@ -34,11 +34,11 @@ const CheckoutSummary: FC = () => {
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
-        <Typography color="text.hint">Tax:</Typography>
+        <Typography color="text.hint">ภาษี:</Typography>
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-            $40.
+          ฿40.
           </Typography>
 
           <Typography fontWeight="600" fontSize="14px" lineHeight="1">
@@ -48,7 +48,7 @@ const CheckoutSummary: FC = () => {
       </FlexBox>
 
       <FlexBox justifyContent="space-between" alignItems="center" mb="1rem">
-        <Typography color="text.hint">Discount:</Typography>
+        <Typography color="text.hint">ส่วนลด:</Typography>
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
@@ -60,13 +60,13 @@ const CheckoutSummary: FC = () => {
       <Divider mb="1rem" />
 
       <Typography fontSize="25px" fontWeight="600" lineHeight="1" textAlign="right" mb="1.5rem">
-        $2610.00
+      ฿2610.00
       </Typography>
 
-      <TextField placeholder="Voucher" fullwidth />
+      <TextField placeholder="โค๊ดส่วนลด" fullwidth />
 
       <Button variant="outlined" color="primary" mt="1rem" mb="30px" fullwidth>
-        Apply Voucher
+        ใช้คูปองส่วนลด
       </Button>
     </Card1>
   );

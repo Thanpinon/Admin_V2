@@ -43,12 +43,12 @@ const Topbar: FC = () => {
 
         <FlexBox className="topbar-right" alignItems="center">
           <NavLink className="link" href="/">
-            Theme FAQ"s
+            ร้านค้าใกล้คุณ
           </NavLink>
 
-          <NavLink className="link" href="/">
+          {/* <NavLink className="link" href="/">
             Need Help?
-          </NavLink>
+          </NavLink> */}
 
           <Menu
             direction="right"
@@ -93,15 +93,15 @@ const Topbar: FC = () => {
 
 const languageList = [
   { title: "EN", imgUrl: "/assets/images/flags/usa.png" },
-  { title: "BN", imgUrl: "/assets/images/flags/bd.png" },
-  { title: "HN", imgUrl: "/assets/images/flags/in.png" },
+  { title: "TH", imgUrl: "/assets/images/flags/bd.png" },
+  // { title: "HN", imgUrl: "/assets/images/flags/in.png" },
 ];
 
 const currencyList = [
   { title: "USD", imgUrl: "/assets/images/flags/usa.png" },
-  { title: "EUR", imgUrl: "/assets/images/flags/uk.png" },
-  { title: "BDT", imgUrl: "/assets/images/flags/bd.png" },
-  { title: "INR", imgUrl: "/assets/images/flags/in.png" },
+  { title: "BHT", imgUrl: "/assets/images/flags/uk.png" },
+  // { title: "BDT", imgUrl: "/assets/images/flags/bd.png" },
+  // { title: "INR", imgUrl: "/assets/images/flags/in.png" },
 ];
 
 export default Topbar;

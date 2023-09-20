@@ -79,10 +79,10 @@ const MobileNavigationBar: FC = () => {
 };
 
 const list = [
-  { title: "Home", icon: "home", href: "/" },
-  { title: "Category", icon: "category", href: "/mobile-category-nav" },
-  { title: "Cart", icon: "bag", href: "/cart" },
-  { title: "Account", icon: "user-2", href: "/profile" },
+  { title: "หน้าแรก", icon: "home", href: "/" },
+  { title: "หมวดหมู่", icon: "category", href: "/mobile-category-nav" },
+  { title: "ตระกร้า", icon: "bag", href: "/cart" },
+  { title: "บัญชี", icon: "user-2", href: "/profile" },
 ];
 
 export default MobileNavigationBar;

@@ -38,7 +38,7 @@ const OrderDetails = ({ order }: Props) => {
 
   const HEADER_LINK = (
     <Button color="primary" bg="primary.light" px="2rem" onClick={handleGoBack}>
-      Order List
+      รายการคำสั่งซื้อ
     </Button>
   );
 
@@ -98,7 +98,7 @@ const OrderDetails = ({ order }: Props) => {
             borderRadius="300px"
             color="primary.main"
           >
-            Estimated Delivery Date <b>4th October</b>
+            วิธีการจัดส่ง <b>รับที่ สาขา รังสิต</b>
           </Typography>
         </FlexBox>
       </Card>
@@ -107,7 +107,7 @@ const OrderDetails = ({ order }: Props) => {
         <TableRow bg="gray.200" p="12px" boxShadow="none" borderRadius={0}>
           <FlexBox className="pre" m="6px" alignItems="center">
             <Typography fontSize="14px" color="text.muted" mr="4px">
-              Order ID:
+              หมายเลขคำสั่งซื้อ:
             </Typography>
 
             <Typography fontSize="14px">#{order.id.substring(0, 8)}</Typography>
@@ -115,7 +115,7 @@ const OrderDetails = ({ order }: Props) => {
 
           <FlexBox className="pre" m="6px" alignItems="center">
             <Typography fontSize="14px" color="text.muted" mr="4px">
-              Placed on:
+              วันที่ทำรายการ:
             </Typography>
 
             <Typography fontSize="14px">
@@ -170,7 +170,7 @@ const OrderDetails = ({ order }: Props) => {
         <Grid item lg={6} md={6} xs={12}>
           <Card p="20px 30px">
             <H5 mt="0px" mb="14px">
-              Shipping Address
+              ที่อยู่ในการจัดส่ง
             </H5>
 
             <Paragraph fontSize="14px" my="0px">
@@ -182,12 +182,12 @@ const OrderDetails = ({ order }: Props) => {
         <Grid item lg={6} md={6} xs={12}>
           <Card p="20px 30px">
             <H5 mt="0px" mb="14px">
-              Total Summary
+              ราคารวมทั้งหมด
             </H5>
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Subtotal:
+                ราคารวม :
               </Typography>
 
               <H6 my="0px">{currency(order.totalPrice)}</H6>
@@ -195,7 +195,7 @@ const OrderDetails = ({ order }: Props) => {
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Shipping fee:
+                ฟรีค่าจัดส่ง:
               </Typography>
 
               <H6 my="0px">$10</H6>
@@ -203,7 +203,7 @@ const OrderDetails = ({ order }: Props) => {
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Discount:
+                ส่วนลด:
               </Typography>
 
               <H6 my="0px">-${order.discount}</H6>
@@ -216,7 +216,7 @@ const OrderDetails = ({ order }: Props) => {
               <H6 my="0px">{currency(order.totalPrice)}</H6>
             </FlexBox>
 
-            <Typography fontSize="14px">Paid by Credit/Debit Card</Typography>
+            <Typography fontSize="14px">ชำระด้วย บัตรเครดิต/เดบิต</Typography>
           </Card>
         </Grid>
       </Grid>

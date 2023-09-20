@@ -30,7 +30,7 @@ const OrderDetails = () => {
         button={
           <Link href="/vendor/orders">
             <Button color="primary" bg="primary.light" px="2rem">
-              Back to Order List
+              รายละเอียดคำสั่งซื้อ
             </Button>
           </Link>
         }
@@ -40,7 +40,7 @@ const OrderDetails = () => {
         <TableRow bg="gray.200" p="12px" boxShadow="none" borderRadius={0}>
           <FlexBox className="pre" flex="0 0 0 !important" m="6px" alignItems="center">
             <Typography fontSize="14px" color="text.muted" mr="4px">
-              Order ID:
+              เลขที่คำสั่งซื้อ:
             </Typography>
 
             <Typography fontSize="14px">{id}</Typography>
@@ -48,7 +48,7 @@ const OrderDetails = () => {
 
           <FlexBox className="pre" m="6px" alignItems="center">
             <Typography fontSize="14px" color="text.muted" mr="4px">
-              Placed on:
+              วันที่ทำรายการ:
             </Typography>
             <Typography fontSize="14px">{format(new Date(), "dd MMM, yyyy")}</Typography>
           </FlexBox>
@@ -102,7 +102,7 @@ const OrderDetails = () => {
         <Grid item lg={6} md={6} xs={12}>
           <Card p="20px 30px" mb="1.5rem">
             <H5 mt="0px" mb="14px">
-              Shipping Address
+              ที่อยู่ในการจัดส่ง
             </H5>
 
             <TextArea
@@ -115,7 +115,7 @@ const OrderDetails = () => {
 
           <Card p="20px 30px">
             <H5 mt="0px" mb="14px">
-              Customer's Note
+              หมายเหตุจากลูกค้า
             </H5>
             <TextArea defaultValue="Please deliver ASAP." rows={5} borderRadius={10} fullwidth />
           </Card>
@@ -124,19 +124,19 @@ const OrderDetails = () => {
         <Grid item lg={6} md={6} xs={12}>
           <Card p="20px 30px" mb="1.5rem">
             <H5 mt="0px" mb="14px">
-              Total Summary
+              ราคารวมทั้งหมด
             </H5>
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Subtotal:
+                ราคารวม:
               </Typography>
               <H6 my="0px">$335</H6>
             </FlexBox>
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Shipping fee:
+                ฟรีค่าจัดส่ง:
               </Typography>
 
               <FlexBox alignItems="center" maxWidth="100px" ml="8px" mt="0.25rem">
@@ -147,7 +147,7 @@ const OrderDetails = () => {
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
               <Typography fontSize="14px" color="text.hint">
-                Discount:
+                ส่วนลด:
               </Typography>
 
               <FlexBox alignItems="center" maxWidth="100px" ml="8px" mt="0.25rem">
@@ -159,15 +159,15 @@ const OrderDetails = () => {
             <Divider mb="0.5rem" />
 
             <FlexBox justifyContent="space-between" alignItems="center" mb="1rem">
-              <H6 my="0px">Total</H6>
+              <H6 my="0px">ราคา</H6>
               <H6 my="0px">$315</H6>
             </FlexBox>
 
-            <Typography fontSize="14px">Paid by Credit/Debit Card</Typography>
+            <Typography fontSize="14px">ชำระด้วย บัตรเครดิต/เดบิต</Typography>
           </Card>
 
           <Button variant="contained" color="primary" ml="auto">
-            Save Changes
+            ยืนยันการแก้ไข
           </Button>
         </Grid>
       </Grid>
@@ -176,10 +176,10 @@ const OrderDetails = () => {
 };
 
 const orderStatusList = [
-  { label: "Processing", value: "Processing" },
-  { label: "Pending", value: "Pending" },
-  { label: "Delivered", value: "Delivered" },
-  { label: "Cancelled", value: "Cancelled" },
+  { label: "รอยืนยันคำสั่งซื้อ", value: "Processing" },
+  { label: "รอดำเนินการ", value: "Pending" },
+  { label: "เตรียมการจัดส่ง", value: "Delivered" },
+  { label: "ยกเลิก", value: "Cancelled" },
 ];
 
 OrderDetails.layout = VendorDashboardLayout;
