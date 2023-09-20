@@ -59,14 +59,14 @@ const CheckoutForm2: FC = () => {
               <Avatar bg="primary.main" size={32} color="primary.text" mr="0.875rem">
                 1
               </Avatar>
-              <Typography fontSize="20px">Delivery Details</Typography>
+              <Typography fontSize="20px">รายละเอียดจัดส่ง</Typography>
             </FlexBox>
 
             <Box mb="1.75rem">
               <Grid container spacing={6}>
                 <Grid item sm={6} xs={12}>
                   <Select
-                    label="Delivery Date"
+                    label="วันที่ต้องการรับสินค้า"
                     options={dateList}
                     value={values.date || ""}
                     onChange={(date) => {
@@ -77,7 +77,7 @@ const CheckoutForm2: FC = () => {
                 </Grid>
                 <Grid item sm={6} xs={12}>
                   <Select
-                    label="Delivery Time"
+                    label="เวลาที่สะดวกรับ"
                     options={timeList}
                     value={values.time || ""}
                     onChange={(time) => {
@@ -89,7 +89,7 @@ const CheckoutForm2: FC = () => {
               </Grid>
             </Box>
 
-            <Typography mb="0.75rem">Delivery Address</Typography>
+            <Typography mb="0.75rem">ที่อยู่ในการจัดส่ง</Typography>
             <Grid container spacing={6}>
               {addressList.map((item, ind) => (
                 <Grid item md={4} sm={6} xs={12} key={ind}>
@@ -115,10 +115,10 @@ const CheckoutForm2: FC = () => {
               <Avatar bg="primary.main" size={32} color="primary.text" mr="0.875rem">
                 3
               </Avatar>
-              <Typography fontSize="20px">Personal Details</Typography>
+              <Typography fontSize="20px">ข้อมูลส่วนตัว</Typography>
             </FlexBox>
 
-            <Typography mb="0.75rem">Contact Information</Typography>
+            <Typography mb="0.75rem">ข้อมูลในการติดต่อ</Typography>
 
             <Grid container spacing={6}>
               {contactList.map((item) => (
@@ -145,10 +145,10 @@ const CheckoutForm2: FC = () => {
               <Avatar bg="primary.main" size={32} color="primary.text" mr="0.875rem">
                 3
               </Avatar>
-              <Typography fontSize="20px">Payment Details</Typography>
+              <Typography fontSize="20px">รายละเอียดในการชำระเงิน</Typography>
             </FlexBox>
 
-            <Typography mb="0.75rem">Saved Payment Methods</Typography>
+            <Typography mb="0.75rem">วิธีการชำระเงินที่บันทึกไว้</Typography>
             <Grid container spacing={6}>
               {paymentMethodList.map((item) => (
                 <Grid item md={4} sm={6} xs={12} key={item.last4Digits}>
@@ -183,26 +183,26 @@ const CheckoutForm2: FC = () => {
               lineHeight="1"
               onClick={toggleHasVoucher}
             >
-              I have a voucher.
+              ใช้คูปองส่วนลด
             </Paragraph>
 
             {hasVoucher && (
               <FlexBox mt="1.5rem" maxWidth="400px">
                 <TextField
                   name="voucher"
-                  placeholder="Enter voucher code here"
+                  placeholder="โค๊ดส่วนลด"
                   fullwidth
                   value={values.voucher || ""}
                   onChange={handleChange}
                 />
                 <Button variant="contained" color="primary" type="button" ml="1rem">
-                  Apply
+                  ยืนยัน
                 </Button>
               </FlexBox>
             )}
 
             <Button variant="contained" color="primary" mt="1.5rem" type="submit" fullwidth>
-              Place Order
+              สถานะคำสั่งซื้อ
             </Button>
           </Card1>
         </form>

@@ -81,15 +81,15 @@ const Footer1: FC = () => {
                 </Typography>
 
                 <Typography py="0.3rem" color="gray.500">
-                  70 Washington Square South, New York, NY 10012, United States
+                เลขที่ 228 ตำบล หนองแสง อำเภอปากพลี นครนายก 26130
                 </Typography>
 
                 <Typography py="0.3rem" color="gray.500">
-                  Email: uilib.help@gmail.com
+                  อีเมล: info@ihavecpu.com
                 </Typography>
 
                 <Typography py="0.3rem" mb="1rem" color="gray.500">
-                  Phone: +1 1123 456 780
+                  โทร: 086 838 5200
                 </Typography>
 
                 <FlexBox className="flex" mx="-5px">
