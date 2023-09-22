@@ -8,8 +8,29 @@ import CheckBox from "@component/CheckBox";
 import TextField from "@component/text-field";
 import { Accordion, AccordionHeader } from "@component/accordion";
 import { H5, H6, Paragraph, SemiSpan } from "@component/Typography";
-
-const ProductFilterCard: FC = () => {
+import { useState } from "react";
+import "next-range-slider/dist/main.css";
+import { RangeSlider } from "next-range-slider";
+type ProductFilterCardProps = {
+  selectedBrands: string[];
+  onBrandCheckboxChange: (brand: string) => void;
+  selectedSocketType: string[];
+  onSocketTypeCheckboxChange: (brand: string) => void;
+  minPrice: string | null;
+  onMinPriceChange: (value: string) => void;
+  maxPrice: string | null;
+  onMaxPriceChange: (value: string) => void;
+};
+const ProductFilterCard: FC<ProductFilterCardProps> = ({
+  selectedBrands,
+  onBrandCheckboxChange,
+  selectedSocketType,
+  onSocketTypeCheckboxChange,
+  minPrice,
+  onMinPriceChange,
+  maxPrice,
+  onMaxPriceChange,
+}) => {
   const render = (items: string[]) =>
     items.map((name) => (
       <Paragraph
@@ -24,52 +45,75 @@ const ProductFilterCard: FC = () => {
       </Paragraph>
     ));
 
+  const [low, setLow] = useState(minPrice);
+  const [high, setHigh] = useState(maxPrice);
+
   return (
     <Card p="18px 27px" elevation={5}>
-      <H6 mb="10px">Categories</H6>
-
-      {categroyList.map((item) =>
-        item.child ? (
-          <Accordion key={item.title} expanded>
-            <AccordionHeader px="0px" py="6px" color="text.muted">
-              <SemiSpan className="cursor-pointer" mr="9px">
-                {item.title}
-              </SemiSpan>
-            </AccordionHeader>
-
-            {render(item.child)}
-          </Accordion>
-        ) : (
-          <Paragraph
-            py="6px"
-            fontSize="14px"
-            key={item.title}
-            color="text.muted"
-            className="cursor-pointer"
-          >
-            {item.title}
-          </Paragraph>
-        )
-      )}
+      {/* PRICE RANGE FILTER */}
+      <H5 mb="16px">การค้นหา</H5>
 
       <Divider mt="18px" mb="24px" />
 
       {/* PRICE RANGE FILTER */}
-      <H6 mb="16px">Price Range</H6>
+      <H6 mb="16px">ช่วงราคา</H6>
       <FlexBox justifyContent="space-between" alignItems="center">
-        <TextField placeholder="0" type="number" fullwidth />
+        <TextField
+          placeholder="0"
+          type="number"
+          fullwidth
+          value={low}
+          onChange={(e) => {
+            const value = e.target.value;
+            setLow(String(e.target.value));
+            onMinPriceChange(value);
+          }}
+        />
 
         <H5 color="text.muted" px="0.5rem">
           -
         </H5>
 
-        <TextField placeholder="250" type="number" fullwidth />
+        <TextField
+          placeholder="250"
+          type="number"
+          fullwidth
+          value={high}
+          onChange={(e) => {
+            const value = e.target.value;
+            setHigh(String(e.target.value));
+            onMaxPriceChange(value);
+          }}
+        />
       </FlexBox>
+      <RangeSlider
+        min={0}
+        max={3000}
+        step={50}
+        options={{
+          leftInputProps: {
+            value: low,
+            onChange: (e) => {
+              const value = String(e.target.value);
+              setLow(value); // Update the low state
+              onMinPriceChange(value); // Call onMinPriceChange with the new value
+            },
+          },
+          rightInputProps: {
+            value: high,
+            onChange: (e) => {
+              const value = String(e.target.value);
+              setHigh(value); // Update the low state
+              onMaxPriceChange(value); // Call onMinPriceChange with the new value
+            },
+          },
+        }}
+      />
 
       <Divider my="24px" />
 
       {/* BRANDS FILTER */}
-      <H6 mb="16px">Brands</H6>
+      <H6 mb="16px">CPU Brands</H6>
       {brandList.map((item) => (
         <CheckBox
           my="10px"
@@ -78,13 +122,15 @@ const ProductFilterCard: FC = () => {
           value={item}
           color="secondary"
           label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          onChange={(e) => console.log(e.target.value, e.target.checked)}
+          onChange={() => onBrandCheckboxChange(item)}
+          checked={selectedBrands.includes(item)}
         />
       ))}
 
       <Divider my="24px" />
 
       {/* STOCK AND SALES FILTERS */}
+      <H6 mb="16px">CPU SOCKET TYPE</H6>
       {otherOptions.map((item) => (
         <CheckBox
           my="10px"
@@ -93,47 +139,49 @@ const ProductFilterCard: FC = () => {
           value={item}
           color="secondary"
           label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          onChange={(e) => console.log(e.target.value, e.target.checked)}
+          onChange={() => onSocketTypeCheckboxChange(item)}
+          checked={selectedSocketType.includes(item)}
         />
       ))}
 
       <Divider my="24px" />
 
       {/* RATING FILTER */}
-      <H6 mb="16px">Ratings</H6>
-      {[5, 4, 3, 2, 1].map((item) => (
+      {/* STOCK AND SALES FILTERS */}
+      <H6 mb="16px">PROCESSOR</H6>
+      {processorList.map((item) => (
         <CheckBox
           my="10px"
           key={item}
+          name={item}
           value={item}
           color="secondary"
-          label={<Rating value={item} outof={5} color="warn" />}
-          onChange={(e) => console.log(e.target.value, e.target.checked)}
+          label={<SemiSpan color="inherit">{item}</SemiSpan>}
+          onChange={() => onSocketTypeCheckboxChange(item)}
+          checked={selectedSocketType.includes(item)}
         />
       ))}
-
-      <Divider my="24px" />
-
-      {/* COLORS FILTER */}
-      <H6 mb="16px">Colors</H6>
-      <FlexBox mb="1rem">
-        {colorList.map((item, ind) => (
-          <Avatar key={ind} bg={item} size={25} mr="10px" style={{ cursor: "pointer" }} />
-        ))}
-      </FlexBox>
     </Card>
   );
 };
 
 const categroyList = [
-  { title: "Bath Preparations", child: ["Bubble Bath", "Bath Capsules", "Others"] },
+  {
+    title: "Bath Preparations",
+    child: ["Bubble Bath", "Bath Capsules", "Others"],
+  },
   { title: "Eye Makeup Preparations" },
   { title: "Fragrance" },
   { title: "Hair Preparations" },
 ];
 
-const otherOptions = ["On Sale", "In Stock", "Featured"];
-const brandList = ["Maccs", "Karts", "Baars", "Bukks", "Luasis"];
-const colorList = ["#1C1C1C", "#FF7A7A", "#FFC672", "#84FFB5", "#70F6FF", "#6B7AFF"];
+const otherOptions = ["AMD AM4", "Intel LGA-1200", "Intel LGA-1700", "AMD AM5"];
+const brandList = ["AMD", "Intel"];
+const processorList = [
+  "AMD Ryzen™ 5000 Series",
+  "AMD Ryzen™ 4000 Series",
+  "10th Gen Intel® Core™",
+  "12th Gen Intel® Core™",
+];
 
 export default ProductFilterCard;

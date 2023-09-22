@@ -22,6 +22,40 @@ const ProductSearchResult = () => {
 
   const isTablet = width < 1025;
   const toggleView = useCallback((v) => () => setView(v), []);
+  // select
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedSocketType, setSelectedSocketType] = useState<string[]>([]);
+  // price range
+  const [minPrice, setMinPrice] = useState<string | null>("0");
+  const [maxPrice, setMaxPrice] = useState<string | null>("3000");
+  // handle changes in CPU brands filters
+  const handleBrandCheckboxChange = (brand: string) => {
+    if (selectedBrands.includes(brand)) {
+      setSelectedBrands((prevSelectedBrands) =>
+        prevSelectedBrands.filter((item) => item !== brand)
+      );
+    } else {
+      setSelectedBrands([...selectedBrands, brand]);
+    }
+  };
+  // handle changes in CPU brands filters
+  const handleSocketTypeCheckboxChange = (socketType: string) => {
+    if (selectedSocketType.includes(socketType)) {
+      setSelectedSocketType((prevSelectedSocketType) =>
+        prevSelectedSocketType.filter((item) => item !== socketType)
+      );
+    } else {
+      setSelectedSocketType([...selectedSocketType, socketType]);
+    }
+  };
+  // handle changes in Price Range filters
+  const handleMinPriceChange = (value: string) => {
+    setMinPrice(value);
+  };
+
+  const handleMaxPriceChange = (value: string) => {
+    setMaxPrice(value);
+  };
 
   return (
     <Box pt="20px">
@@ -45,7 +79,11 @@ const ProductSearchResult = () => {
           </Paragraph>
 
           <Box flex="1 1 0" mr="1.75rem" minWidth="150px">
-            <Select placeholder="Short by" defaultValue={sortOptions[0]} options={sortOptions} />
+            <Select
+              placeholder="Short by"
+              defaultValue={sortOptions[0]}
+              options={sortOptions}
+            />
           </Box>
 
           <Paragraph color="text.muted" mr="0.5rem">
@@ -82,7 +120,16 @@ const ProductSearchResult = () => {
                 </IconButton>
               }
             >
-              <ProductFilterCard />
+              <ProductFilterCard
+                selectedBrands={selectedBrands}
+                onBrandCheckboxChange={handleBrandCheckboxChange}
+                selectedSocketType={selectedSocketType}
+                onSocketTypeCheckboxChange={handleSocketTypeCheckboxChange}
+                minPrice={minPrice}
+                onMinPriceChange={handleMinPriceChange}
+                maxPrice={maxPrice}
+                onMaxPriceChange={handleMaxPriceChange}
+              />
             </Sidenav>
           )}
         </FlexBox>
@@ -90,12 +137,27 @@ const ProductSearchResult = () => {
 
       <Grid container spacing={6}>
         <Hidden as={Grid} item lg={3} xs={12} down={1024}>
-          <ProductFilterCard />
+          <ProductFilterCard
+            selectedBrands={selectedBrands}
+            onBrandCheckboxChange={handleBrandCheckboxChange}
+            selectedSocketType={selectedSocketType}
+            onSocketTypeCheckboxChange={handleSocketTypeCheckboxChange}
+            minPrice={minPrice}
+            onMinPriceChange={handleMinPriceChange}
+            maxPrice={maxPrice}
+            onMaxPriceChange={handleMaxPriceChange}
+          />
         </Hidden>
 
         <Grid item lg={9} xs={12}>
           {view === "grid" ? (
-            <ProductCard1List products={db.slice(95, 104)} />
+            <ProductCard1List
+              products={db.slice(95, 104)}
+              selectedBrands={selectedBrands}
+              selectedSocketType={selectedSocketType}
+              minPrice={minPrice} // Make sure minPrice is correctly passed
+              maxPrice={maxPrice}
+            />
           ) : (
             <ProductCard9List products={db.slice(95, 104)} />
           )}
