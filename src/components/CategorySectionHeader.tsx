@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import FlexBox from "./FlexBox";
 import Icon from "./icon/Icon";
-import { H2, SemiSpan } from "./Typography";
+import { H4, SemiSpan } from "./Typography";
 
 export interface CategorySectionHeaderProps {
   title?: string;
@@ -23,16 +23,16 @@ const CategorySectionHeader: FC<CategorySectionHeaderProps> = ({
             {iconName}
           </Icon>
         )}
-        <H2 fontWeight="bold" lineHeight="1">
+        <H4 fontWeight="bold" lineHeight="1">
           {title}
-        </H2>
+        </H4>
       </FlexBox>
 
       {seeMoreLink && (
         <Link href={seeMoreLink}>
           <a>
             <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
-              <SemiSpan mr="0.5rem">View all</SemiSpan>
+              <SemiSpan mr="0.5rem">ดูทั้งหมด</SemiSpan>
               <Icon size="12px" defaultcolor="currentColor">
                 right-arrow
               </Icon>

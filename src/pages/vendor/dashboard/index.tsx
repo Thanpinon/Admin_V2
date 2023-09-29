@@ -51,7 +51,12 @@ const VendorDashboard = () => {
         <Grid container spacing={6}>
           {summeryCards.map((item, ind) => (
             <Grid item lg={4} md={4} sm={6} xs={12} key={ind}>
-              <Typography as={Card} textAlign="center" py="1.5rem" height="100%">
+              <Typography
+                as={Card}
+                textAlign="center"
+                py="1.5rem"
+                height="100%"
+              >
                 <H5 color="text.muted" mb="8px">
                   {item.title}
                 </H5>
@@ -74,7 +79,12 @@ const VendorDashboard = () => {
             <Card p="20px 30px">
               <H5>Top Countries</H5>
               {countrySales.map((item, ind) => (
-                <FlexBox alignItems="center" justifyContent="space-between" my="1rem" key={ind}>
+                <FlexBox
+                  alignItems="center"
+                  justifyContent="space-between"
+                  my="1rem"
+                  key={ind}
+                >
                   <FlexBox alignItems="center">
                     <Avatar src={item.flagUrl} size={30} mr="8px" />
                     <span>{item.name}</span>

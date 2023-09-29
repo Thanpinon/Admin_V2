@@ -16,26 +16,25 @@ import {
   variant,
 } from "styled-system";
 
-interface ButtonProps {
+interface ButtonChoiceProps {
   fullwidth?: boolean;
-  width?: string;
   color?: colorOptions;
-  variant?: "text" | "outlined" | "contained";
+  variant?: "text" | "outlined" | "contained" | "containOutlined";
   size?: "extrasmall" | "small" | "medium" | "large" | "none";
 }
 
-const Button = styled.button<
+const ButtonChoice = styled.button<
   ColorProps &
     BackgroundProps &
     BorderProps &
     SpaceProps &
-    ButtonProps &
+    ButtonChoiceProps &
     LayoutProps
 >(
-  ({ color, fullwidth, width }) =>
+  ({ color, fullwidth }) =>
     systemCss({
       display: "flex",
-      width: width ? "100%" : "unset",
+      width: fullwidth ? "100%" : "unset",
       justifyContent: "center",
       alignItems: "center",
       outline: "none",
@@ -130,6 +129,45 @@ const Button = styled.button<
               : "text.primary",
           },
         },
+        containOutlined: {
+          padding: "10px 16px",
+          color: `#d4001a`,
+          backgroundColor: `#FFE1E6`,
+
+          "&:enabled svg path": {
+            fill: color
+              ? `${theme.colors[color]?.main} !important`
+              : "text.primary",
+          },
+          "&:enabled svg polyline, svg polygon": {
+            color: color
+              ? `${theme.colors[color]?.main} !important`
+              : "text.primary",
+          },
+          "&:focus": {
+            boxShadow: `0px 1px 4px 0px ${theme.colors[color]?.light}`,
+          },
+          "&:active": {
+            bg: "#ff0000", // Background color when active
+            color: "#a4a", // Text color when active
+          },
+          "&:hover:enabled": {
+            bg: color && `${color}.main`,
+            borderColor: color && `${color}.main`,
+            color: color && `${color}.text`,
+            "svg path": {
+              fill: color
+                ? `${theme.colors[color]?.text} !important`
+                : "text.primary",
+            },
+            "svg polyline, svg polygon": {
+              color: color
+                ? `${theme.colors[color]?.text} !important`
+                : "text.primary",
+            },
+            ...(color === "dark" && { color: "white" }),
+          },
+        },
       },
     }),
   variant({
@@ -144,6 +182,6 @@ const Button = styled.button<
   compose(color, layout, space, border, shadow)
 );
 
-Button.defaultProps = { size: "small", borderRadius: 5 };
+ButtonChoice.defaultProps = { size: "small", borderRadius: 5 };
 
-export default Button;
+export default ButtonChoice;

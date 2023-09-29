@@ -10,7 +10,7 @@ import Icon from "@component/icon/Icon";
 import FlexBox from "@component/FlexBox";
 import { Button } from "@component/buttons";
 import Card, { CardProps } from "@component/Card";
-import { H3, SemiSpan } from "@component/Typography";
+import { H3, SemiSpan, H6, Span } from "@component/Typography";
 import { calculateDiscount, currency, getTheme } from "@utils/utils";
 import { deviceSize } from "@utils/constants";
 import ProductQuickView from "@component/products/ProductQuickView";
@@ -106,10 +106,11 @@ interface ProductCard1Props extends CardProps {
   slug: string;
   title: string;
   price: number;
-  imgUrl: string;
-  rating: number;
-  images: string[];
+  imgUrl?: string;
+  rating?: number;
+  images?: string[];
   id?: string | number;
+  description?: string;
 }
 // =======================================================================
 
@@ -121,7 +122,7 @@ const ProductCard1: FC<ProductCard1Props> = ({
   price,
   imgUrl,
   images,
-  rating = 4,
+  description,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -158,7 +159,12 @@ const ProductCard1: FC<ProductCard1Props> = ({
           )}
 
           <FlexBox className="extra-icons">
-            <Icon color="secondary" variant="small" mb="0.5rem" onClick={toggleDialog}>
+            <Icon
+              color="secondary"
+              variant="small"
+              mb="0.5rem"
+              onClick={toggleDialog}
+            >
               eye-alt
             </Icon>
 
@@ -199,12 +205,27 @@ const ProductCard1: FC<ProductCard1Props> = ({
                   </H3>
                 </a>
               </Link>
-
-              <Rating value={rating || 0} outof={5} color="warn" readonly />
-
+              <H6
+                fontSize="12px"
+                fontWeight="100"
+                color="text.secondary"
+                style={{
+                  marginTop: "10px",
+                  textAlign: "left",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 2,
+                  lineHeight: "1",
+                }}
+              >
+                {description}
+              </H6>
               <FlexBox alignItems="center" mt="10px">
                 <SemiSpan pr="0.5rem" fontWeight="600" color="primary.main">
-                  {calculateDiscount(price, off)}
+                  {/* {calculateDiscount(price, off)} */}
+                  {currency(price)}
                 </SemiSpan>
 
                 {!!off && (

@@ -54,7 +54,11 @@ const dark = { main: "#222" };
 
 const warningColor = { main: "#FFCD4E", text: textColor.primary };
 
-const errorColor = { main: "#E94560", light: "#FFE1E6", text: textColor.primary };
+const errorColor = {
+  main: "#E94560",
+  light: "#FFE1E6",
+  text: textColor.primary,
+};
 
 const successColor = {
   text: textColor.primary,
@@ -72,6 +76,17 @@ const defaultColor = {
 const paste = { 50: "#F5F5F5", 100: "#DDFBF1", main: "#4BB4B4" };
 
 const marron = { 50: "#f3f5f9", 100: "#F6F2ED", main: "#BE7374" };
+
+const ihaveCPUColor = {
+  main: "#d4001a",
+  light: "#FFE1E6",
+  text: "#ffffff",
+};
+const socialColor = {
+  main: "#666",
+  light: "#e6e7e8",
+  text: "#999",
+};
 
 export const blue = {
   100: "#DBF0FE",
@@ -100,4 +115,6 @@ export const colors = {
   default: defaultColor,
   primary: primaryColor,
   secondary: secondaryColor,
+  ihavecpu: ihaveCPUColor,
+  social: socialColor,
 };

@@ -18,7 +18,7 @@ const StyledModal = styled(FlexBox)<{ open?: boolean }>(({ open }) => ({
   "& .container": {
     top: "50%",
     width: "100%",
-    overflow: "auto",
+    overflow: "hidden",
     position: "relative",
     transform: "translateY(-50%)",
   },

@@ -1,6 +1,20 @@
 export type deviceOptions = "xs" | "sm" | "md" | "lg";
-export type shadowOptions = "small" | "regular" | "large" | "badge" | "border" | "none";
-export type colorOptions = "primary" | "secondary" | "warn" | "error" | "inherit" | "dark";
+export type shadowOptions =
+  | "small"
+  | "regular"
+  | "large"
+  | "badge"
+  | "border"
+  | "none";
+export type colorOptions =
+  | "primary"
+  | "secondary"
+  | "warn"
+  | "error"
+  | "inherit"
+  | "dark"
+  | "ihavecpu"
+  | "social";
 
 type NavItem = { icon: string; title: string; href: string };
 

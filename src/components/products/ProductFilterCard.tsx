@@ -1,15 +1,14 @@
 import { FC } from "react";
 import Card from "@component/Card";
-import Avatar from "@component/avatar";
-import Rating from "@component/rating";
+import SettingSearch from "./SettingSearch";
 import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
 import CheckBox from "@component/CheckBox";
+import ButtonText from "@component/buttons/ButtonText";
 import TextField from "@component/text-field";
-import { Accordion, AccordionHeader } from "@component/accordion";
-import { H5, H6, Paragraph, SemiSpan } from "@component/Typography";
+import { H5, H6, Paragraph, SemiSpan, Small } from "@component/Typography";
 import { useState } from "react";
-import "next-range-slider/dist/main.css";
+import Box from "@component/Box";
 import { RangeSlider } from "next-range-slider";
 type ProductFilterCardProps = {
   selectedBrands: string[];
@@ -20,6 +19,10 @@ type ProductFilterCardProps = {
   onMinPriceChange: (value: string) => void;
   maxPrice: string | null;
   onMaxPriceChange: (value: string) => void;
+  clearFilters: () => void;
+  handleItemRemove: (itemToRemove: string) => void;
+  clearBrands: () => void;
+  clearSocket: () => void;
 };
 const ProductFilterCard: FC<ProductFilterCardProps> = ({
   selectedBrands,
@@ -30,6 +33,10 @@ const ProductFilterCard: FC<ProductFilterCardProps> = ({
   onMinPriceChange,
   maxPrice,
   onMaxPriceChange,
+  clearFilters,
+  handleItemRemove,
+  clearBrands,
+  clearSocket,
 }) => {
   const render = (items: string[]) =>
     items.map((name) => (
@@ -47,13 +54,36 @@ const ProductFilterCard: FC<ProductFilterCardProps> = ({
 
   const [low, setLow] = useState(minPrice);
   const [high, setHigh] = useState(maxPrice);
+  // get selected items names
+  const getSelectedItemsNames = () => {
+    const selectedItems = [...selectedBrands, ...selectedSocketType];
+    return selectedItems.join(", ");
+  };
 
   return (
     <Card p="18px 27px" elevation={5}>
-      {/* PRICE RANGE FILTER */}
-      <H5 mb="16px">การค้นหา</H5>
-
-      <Divider mt="18px" mb="24px" />
+      {/* SHOW SELECTED ITEMS */}
+      {getSelectedItemsNames().length > 0 ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <H5>การค้นหา</H5>
+            <ButtonText onClick={clearFilters}>ล้างทั้งหมด</ButtonText>
+          </div>
+          <Box m="6px">
+            <SettingSearch
+              items={getSelectedItemsNames()}
+              handleItemRemove={handleItemRemove}
+            ></SettingSearch>
+          </Box>
+          <Divider mt="18px" mb="24px" />
+        </>
+      ) : null}
 
       {/* PRICE RANGE FILTER */}
       <H6 mb="16px">ช่วงราคา</H6>
@@ -88,23 +118,23 @@ const ProductFilterCard: FC<ProductFilterCardProps> = ({
       </FlexBox>
       <RangeSlider
         min={0}
-        max={3000}
+        max={12000}
         step={50}
         options={{
           leftInputProps: {
             value: low,
             onChange: (e) => {
               const value = String(e.target.value);
-              setLow(value); // Update the low state
-              onMinPriceChange(value); // Call onMinPriceChange with the new value
+              setLow(value);
+              onMinPriceChange(value);
             },
           },
           rightInputProps: {
             value: high,
             onChange: (e) => {
               const value = String(e.target.value);
-              setHigh(value); // Update the low state
-              onMaxPriceChange(value); // Call onMinPriceChange with the new value
+              setHigh(value);
+              onMaxPriceChange(value);
             },
           },
         }}
@@ -112,76 +142,79 @@ const ProductFilterCard: FC<ProductFilterCardProps> = ({
 
       <Divider my="24px" />
 
-      {/* BRANDS FILTER */}
-      <H6 mb="16px">CPU Brands</H6>
+      {/* CPU BRANDS FILTER MOCKUP */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "16px",
+        }}
+      >
+        <H6>CPU Brands</H6>
+        {selectedBrands.length > 0 ? (
+          <ButtonText onClick={clearBrands}>ล้าง</ButtonText>
+        ) : null}
+      </div>
+
       {brandList.map((item) => (
         <CheckBox
           my="10px"
-          key={item}
-          name={item}
-          value={item}
-          color="secondary"
-          label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          onChange={() => onBrandCheckboxChange(item)}
-          checked={selectedBrands.includes(item)}
+          key={item.id}
+          name={item.title}
+          value={item.id}
+          color="ihavecpu"
+          label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
+          onChange={() => onBrandCheckboxChange(item.id)}
+          checked={selectedBrands.includes(item.id)}
         />
       ))}
 
       <Divider my="24px" />
 
-      {/* STOCK AND SALES FILTERS */}
-      <H6 mb="16px">CPU SOCKET TYPE</H6>
+      {/* SOCKET TYPE FILTER MOCKUP */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "16px",
+        }}
+      >
+        <H6>CPU SOCKET TYPE</H6>
+        {selectedSocketType.length > 0 ? (
+          <ButtonText onClick={clearSocket}>ล้าง</ButtonText>
+        ) : null}
+      </div>
       {otherOptions.map((item) => (
         <CheckBox
           my="10px"
-          key={item}
-          name={item}
-          value={item}
-          color="secondary"
-          label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          onChange={() => onSocketTypeCheckboxChange(item)}
-          checked={selectedSocketType.includes(item)}
+          key={item.id}
+          name={item.id}
+          value={item.id}
+          color="ihavecpu"
+          label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
+          onChange={() => onSocketTypeCheckboxChange(item.id)}
+          checked={selectedSocketType.includes(item.id)}
         />
       ))}
 
       <Divider my="24px" />
-
-      {/* RATING FILTER */}
-      {/* STOCK AND SALES FILTERS */}
-      <H6 mb="16px">PROCESSOR</H6>
-      {processorList.map((item) => (
-        <CheckBox
-          my="10px"
-          key={item}
-          name={item}
-          value={item}
-          color="secondary"
-          label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          onChange={() => onSocketTypeCheckboxChange(item)}
-          checked={selectedSocketType.includes(item)}
-        />
-      ))}
     </Card>
   );
 };
 
-const categroyList = [
-  {
-    title: "Bath Preparations",
-    child: ["Bubble Bath", "Bath Capsules", "Others"],
-  },
-  { title: "Eye Makeup Preparations" },
-  { title: "Fragrance" },
-  { title: "Hair Preparations" },
+// mock up cpu socket type
+const otherOptions = [
+  { id: "AMD AM4", title: "AMD AM4" },
+  { id: "Intel LGA-1200", title: "Intel LGA-1200" },
+  { id: "Intel LGA-1700", title: "Intel LGA-1700" },
+  { id: "AMD AM5", title: "AMD AM5" },
 ];
-
-const otherOptions = ["AMD AM4", "Intel LGA-1200", "Intel LGA-1700", "AMD AM5"];
-const brandList = ["AMD", "Intel"];
-const processorList = [
-  "AMD Ryzen™ 5000 Series",
-  "AMD Ryzen™ 4000 Series",
-  "10th Gen Intel® Core™",
-  "12th Gen Intel® Core™",
+// mock up cpu brands
+const brandList = [
+  { id: "204", title: "AMD" },
+  { id: "205", title: "Intel" },
 ];
 
 export default ProductFilterCard;

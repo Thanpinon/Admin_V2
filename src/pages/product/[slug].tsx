@@ -40,13 +40,18 @@ const ProductDetails = (props: Props) => {
   return (
     <Fragment>
       <ProductIntro
-        id={product.id}
-        price={product.price}
-        title={product.title}
+        id={product.product_code}
+        price={parseFloat(product.market_price)}
+        title={product.name_th}
         images={product.images}
       />
 
-      <FlexBox borderBottom="1px solid" borderColor="gray.400" mt="80px" mb="26px">
+      <FlexBox
+        borderBottom="1px solid"
+        borderColor="gray.400"
+        mt="80px"
+        mb="26px"
+      >
         <H5
           mr="25px"
           p="4px 10px"
@@ -54,7 +59,9 @@ const ProductDetails = (props: Props) => {
           borderColor="primary.main"
           onClick={handleOptionClick("description")}
           borderBottom={selectedOption === "description" && "2px solid"}
-          color={selectedOption === "description" ? "primary.main" : "text.muted"}
+          color={
+            selectedOption === "description" ? "primary.main" : "text.muted"
+          }
         >
           Description
         </H5>

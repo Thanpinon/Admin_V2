@@ -15,7 +15,7 @@ import {
 } from "styled-system";
 
 interface IconButtonProps {
-  size: "small" | "medium" | "large" | "none";
+  size: "extrasmall" | "small" | "medium" | "large" | "none";
   variant: "text" | "outlined" | "contained";
   color: "primary" | "secondary" | "error" | "default";
 }
@@ -46,14 +46,22 @@ const IconButton = styled.button<
           color: `${props.color}.main`,
           border: "2px solid",
           borderColor: `${props.color}.main`,
-          "&:focus": { boxShadow: `0px 1px 4px 0px ${props.theme.colors[props.color]?.main}` },
+          "&:focus": {
+            boxShadow: `0px 1px 4px 0px ${
+              props.theme.colors[props.color]?.main
+            }`,
+          },
         },
         contained: {
           border: "none",
           color: `${props.color}.text`,
           bg: `${props.color}.main`,
           "&:hover": { bg: `${props.color}.main` },
-          "&:focus": { boxShadow: `0px 1px 4px 0px ${props.theme.colors[props.color]?.main}` },
+          "&:focus": {
+            boxShadow: `0px 1px 4px 0px ${
+              props.theme.colors[props.color]?.main
+            }`,
+          },
         },
       },
     }),
@@ -63,6 +71,7 @@ const IconButton = styled.button<
       large: { padding: "1.25rem" },
       medium: { padding: "1rem" },
       small: { padding: "0.75rem", fontSize: 14 },
+      extrasmall: { padding: "0.30rem", fontSize: 9 },
     },
   }),
   compose(color, layout, space, border, shadow)

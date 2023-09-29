@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 const GlobalStyles = createGlobalStyle`
   html,
   body {
@@ -54,9 +53,9 @@ const GlobalStyles = createGlobalStyle`
   height: 100%;
   display: block;
   position: absolute;
-  box-shadow: 0 0 10px ${({ theme }: any) => theme.colors.primary.main}, 0 0 5px ${({
-  theme,
-}: any) => theme.colors.primary.main};
+  box-shadow: 0 0 10px ${({ theme }: any) =>
+    theme.colors.primary.main}, 0 0 5px ${({ theme }: any) =>
+  theme.colors.primary.main};
   opacity: 1.0;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -105,6 +104,185 @@ const GlobalStyles = createGlobalStyle`
 @keyframes nprogress-spinner {
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.wrap {
+  --rdiff: calc(var(--max) - var(--min));
+  --ruse: calc(var(--tw) - (var(--thw) / 2));
+  display: grid;
+  position: relative;
+  grid-template: repeat(2, -webkit-max-content) var(--th) / 1fr 1fr;
+  grid-template: repeat(2, max-content) var(--th) / 1fr 1fr;
+  margin: var(--tm);
+  width: var(--tw);
+  background: linear-gradient(0deg, var(--tcol) var(--th), transparent 0);
+  border-radius: var(--tbr);
+  border: var(--tb);
+  padding: var(--tp);
+  transform: var(--tt);
+  height: 0.6rem;
+}
+.wrap::before,
+.wrap::after {
+  height: 0.6rem;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  content: '';
+  background: #d4001a;
+  border: var(--rb);
+  transform: var(--rt);
+}
+.wrap::before {
+  margin-left: calc((var(--thw) / 4) + (var(--a) - var(--min)) / var(--rdiff) * var(--ruse));
+  width: calc((var(--b) - var(--a)) / var(--rdiff) * var(--ruse));
+}
+.wrap::after {
+  margin-left: calc((var(--thw) / 4) + (var(--b) - var(--min)) / var(--rdiff) * var(--ruse));
+  width: calc((var(--a) - var(--b)) / var(--rdiff) * var(--ruse));
+}
+
+[id='multi-lbl'] {
+  grid-column: 1 / span 2;
+}
+
+input[type='range'] {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin: 0;
+  background: none;
+  /* get rid of white Chrome background */
+  --col: #000;
+  pointer-events: none;
+}
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb,
+input[type='range'] {
+  -webkit-appearance: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+input[type='range']::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  pointer-events: auto;
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: var(--tht);
+  background: #d4001a; /* Updated thc value */
+  border-radius: var(--thbr);
+  border: var(--thb);
+}
+input[type='range']::-moz-range-thumb {
+  pointer-events: auto;
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: var(--tht);
+  background: #d4001a; /* Updated thc value */
+  border-radius: var(--thbr);
+  border: var(--thb);
+}
+
+input[type='range']:focus {
+  --col: #d4001a; /* Updated thc value */
+}
+
+input[type='range']::-moz-range-thumb:hover {
+  background: #d4001a; /* Updated thfc value */
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  background: #d4001a; /* Updated thfc value */
+}
+/* coupon */
+.coupon {
+  display: flex;
+  border: 2px solid #F1EFEF;
+  width: 100%;
+  max-width: auto;
+  background: #fff;
+  border-radius: 13px;
+  height: 85px;
+}
+
+.couponright {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: flext-start;
+  flex: 1;
+  padding: 10px 20px;
+}
+
+.couponleft {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  width: 88px;
+  padding: 40px 20px;
+  border-right: 2px dashed #F1EFEF;
+  justify-content: center;
+}
+
+.couponright-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* circle-css */
+
+.couponleft::before,
+.couponleft::after {
+  position: absolute;
+  border: 2px solid #F1EFEF;
+  display: block;
+  content: "";
+  border-radius: 100%;
+  background: #F6F9FC;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+}
+
+.couponleft::before {
+  top: -11px;
+  right: -12px;
+}
+
+.couponleft::after {
+  bottom: -11px;
+  right: -12px;
+}
+
+.couponright-inner::before,
+.couponright-inner::after {
+  position: absolute;
+  display: block;
+  content: "";
+  background: #F6F9FC;
+  z-index: 1;
+  width: 22.9px;
+  height: 14px;
+}
+
+.couponright-inner::before {
+  top: -16px;
+  right: -13px;
+}
+
+.couponright-inner::after {
+  bottom: -15.5px;
+  right: -13px;
 }
 `;
 

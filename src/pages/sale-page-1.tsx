@@ -30,7 +30,10 @@ const SalePage1 = ({ products, meta }: Props) => {
 
   const toggleIsFixed = useCallback((fixed) => setIsFixed(fixed), []);
 
-  const handleCategoryClick = useCallback((category) => () => setSelected(category), []);
+  const handleCategoryClick = useCallback(
+    (category) => () => setSelected(category),
+    []
+  );
 
   const handlePageChange = (page: number) => push(`?page=${page + 1}`);
 
@@ -44,7 +47,11 @@ const SalePage1 = ({ products, meta }: Props) => {
   return (
     <Container mt="2rem">
       <Sticky fixedOn={0} onSticky={toggleIsFixed}>
-        {!isFixed ? <Box display="none" /> : <SaleNavbar saleCategoryList={saleCategoryList} />}
+        {!isFixed ? (
+          <Box display="none" />
+        ) : (
+          <SaleNavbar saleCategoryList={saleCategoryList} />
+        )}
       </Sticky>
 
       <Box>
@@ -79,11 +86,16 @@ const SalePage1 = ({ products, meta }: Props) => {
                 onClick={handleCategoryClick(ind)}
                 bg={ind === selected ? "white" : "transparent"}
               >
-                <Icon size="44px" color={ind === selected ? "primary" : "secondary"}>
+                <Icon
+                  size="44px"
+                  color={ind === selected ? "primary" : "secondary"}
+                >
                   {item.icon}
                 </Icon>
 
-                <H5 color={ind === selected ? "primary.main" : "inherit"}>{item.title}</H5>
+                <H5 color={ind === selected ? "primary.main" : "inherit"}>
+                  {item.title}
+                </H5>
 
                 <Chip
                   top="1rem"
@@ -121,8 +133,15 @@ const SalePage1 = ({ products, meta }: Props) => {
         ))}
       </Grid>
 
-      <FlexBox flexWrap="wrap" justifyContent="space-between" alignItems="center" my="4rem">
-        <SemiSpan>{renderProductCount(meta.page - 1, meta.pageSize, meta.total)}</SemiSpan>
+      <FlexBox
+        flexWrap="wrap"
+        justifyContent="space-between"
+        alignItems="center"
+        my="4rem"
+      >
+        <SemiSpan>
+          {renderProductCount(meta.page - 1, meta.pageSize, meta.total)}
+        </SemiSpan>
         <Pagination onChange={handlePageChange} pageCount={meta.totalPage} />
       </FlexBox>
     </Container>

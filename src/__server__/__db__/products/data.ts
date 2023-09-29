@@ -11,7 +11,11 @@ import { products as grocery2 } from "../grocery-2/data";
 import { products as grocery3 } from "../grocery-3/data";
 import { products as furniture } from "../furniture/data";
 import { products as healthBeauty } from "../health-beauty/data";
-import { relatedProducts, frequentlyBoughtData } from "../related-products/data";
+import {
+  relatedProducts,
+  frequentlyBoughtData,
+} from "../related-products/data";
+import Product from "@data/product";
 
 // all used products in the bazaar template
 const productList = [
@@ -30,11 +34,12 @@ const productList = [
   ...relatedProducts,
   ...frequentlyBoughtData,
   ...dbProducts,
+  ...Product,
 ];
 
 // get unique products from prouct list
-const uniqueProudcts = [...new Set(productList.map((item) => item.slug))].map((item) =>
-  productList.find((it) => it.slug === item)
+const uniqueProudcts = [...new Set(productList.map((item) => item.slug))].map(
+  (item) => productList.find((it) => it.slug === item)
 );
 
 // get the all slugs

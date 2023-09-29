@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Box from "@component/Box";
 import Card from "@component/Card";
 import Select from "@component/Select";
@@ -14,7 +14,7 @@ import ProductCard1List from "@component/products/ProductCard1List";
 import ProductCard9List from "@component/products/ProductCard9List";
 import ProductFilterCard from "@component/products/ProductFilterCard";
 import useWindowSize from "@hook/useWindowSize";
-import db from "@data/db";
+import product from "@data/product";
 
 const ProductSearchResult = () => {
   const width = useWindowSize();
@@ -26,35 +26,62 @@ const ProductSearchResult = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedSocketType, setSelectedSocketType] = useState<string[]>([]);
   // price range
-  const [minPrice, setMinPrice] = useState<string | null>("0");
-  const [maxPrice, setMaxPrice] = useState<string | null>("3000");
+  const [minPrice, setMinPrice] = useState<string | null>("0"); // 0 = mock up
+  const [maxPrice, setMaxPrice] = useState<string | null>("12000"); // "12000" = mock up
+
   // handle changes in CPU brands filters
   const handleBrandCheckboxChange = (brand: string) => {
-    if (selectedBrands.includes(brand)) {
-      setSelectedBrands((prevSelectedBrands) =>
-        prevSelectedBrands.filter((item) => item !== brand)
-      );
-    } else {
-      setSelectedBrands([...selectedBrands, brand]);
-    }
+    setSelectedBrands((prevSelectedBrands) => {
+      if (prevSelectedBrands.includes(brand)) {
+        return prevSelectedBrands.filter((item) => item !== brand);
+      } else {
+        return [...prevSelectedBrands, brand];
+      }
+    });
   };
-  // handle changes in CPU brands filters
+  // handle changes in CPU Socket Type filters
   const handleSocketTypeCheckboxChange = (socketType: string) => {
-    if (selectedSocketType.includes(socketType)) {
-      setSelectedSocketType((prevSelectedSocketType) =>
-        prevSelectedSocketType.filter((item) => item !== socketType)
-      );
-    } else {
-      setSelectedSocketType([...selectedSocketType, socketType]);
-    }
+    setSelectedSocketType((prevSelectedSocketType) => {
+      if (prevSelectedSocketType.includes(socketType)) {
+        return prevSelectedSocketType.filter((item) => item !== socketType);
+      } else {
+        return [...prevSelectedSocketType, socketType];
+      }
+    });
   };
+
   // handle changes in Price Range filters
   const handleMinPriceChange = (value: string) => {
     setMinPrice(value);
   };
-
   const handleMaxPriceChange = (value: string) => {
     setMaxPrice(value);
+  };
+
+  // clear all Filters
+  const clearFilters = () => {
+    setSelectedBrands([]);
+    setSelectedSocketType([]);
+    setMinPrice("0");
+    setMaxPrice("12000");
+  };
+  // clear CPU Brands Filter
+  const clearBrands = () => {
+    setSelectedBrands([]);
+  };
+  // clear CPU Socket Type Filter
+  const clearSocket = () => {
+    setSelectedSocketType([]);
+  };
+
+  // delete specific item
+  const handleItemRemove = (itemToRemove) => {
+    setSelectedBrands((prevSelectedBrands) =>
+      prevSelectedBrands.filter((item) => item !== itemToRemove)
+    );
+    setSelectedSocketType((prevSelectedSocketType) =>
+      prevSelectedSocketType.filter((item) => item !== itemToRemove)
+    );
   };
 
   return (
@@ -129,6 +156,10 @@ const ProductSearchResult = () => {
                 onMinPriceChange={handleMinPriceChange}
                 maxPrice={maxPrice}
                 onMaxPriceChange={handleMaxPriceChange}
+                clearFilters={clearFilters}
+                handleItemRemove={handleItemRemove}
+                clearBrands={clearBrands}
+                clearSocket={clearSocket}
               />
             </Sidenav>
           )}
@@ -136,6 +167,7 @@ const ProductSearchResult = () => {
       </FlexBox>
 
       <Grid container spacing={6}>
+        {/* FILTER */}
         <Hidden as={Grid} item lg={3} xs={12} down={1024}>
           <ProductFilterCard
             selectedBrands={selectedBrands}
@@ -146,20 +178,24 @@ const ProductSearchResult = () => {
             onMinPriceChange={handleMinPriceChange}
             maxPrice={maxPrice}
             onMaxPriceChange={handleMaxPriceChange}
+            clearFilters={clearFilters}
+            handleItemRemove={handleItemRemove}
+            clearBrands={clearBrands}
+            clearSocket={clearSocket}
           />
         </Hidden>
-
+        {/* PRODUCTS */}
         <Grid item lg={9} xs={12}>
           {view === "grid" ? (
             <ProductCard1List
-              products={db.slice(95, 104)}
+              products={product}
               selectedBrands={selectedBrands}
               selectedSocketType={selectedSocketType}
-              minPrice={minPrice} // Make sure minPrice is correctly passed
+              minPrice={minPrice}
               maxPrice={maxPrice}
             />
           ) : (
-            <ProductCard9List products={db.slice(95, 104)} />
+            <ProductCard9List products={product} />
           )}
         </Grid>
       </Grid>

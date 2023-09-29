@@ -2,7 +2,8 @@ import { ceil } from "lodash";
 import { differenceInMinutes } from "date-fns";
 import { themeGet } from "@styled-system/theme-get";
 
-export const getTheme = (query: string, fallback?: string) => themeGet(query, fallback);
+export const getTheme = (query: string, fallback?: string) =>
+  themeGet(query, fallback);
 
 // CONVERT HEX TO RGB COLOR
 export const convertHexToRGB = (hex: string) => {
@@ -51,7 +52,9 @@ export const renderProductCount = (
 
   if (endNumber > totalProductLenth) endNumber = totalProductLenth;
 
-  return `Showing ${startNumber + 1}-${endNumber} of ${totalProductLenth} products`;
+  return `Showing ${
+    startNumber + 1
+  }-${endNumber} of ${totalProductLenth} products`;
 };
 
 /**
@@ -78,7 +81,7 @@ export function currency(price: number, fraction: number = 2) {
   // currency: publicRuntimeConfig.currency,
 
   const formatCurrency = new Intl.NumberFormat(undefined, {
-    currency: "USD",
+    currency: "THB",
     style: "currency",
     maximumFractionDigits: fraction,
     minimumFractionDigits: fraction,

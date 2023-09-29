@@ -22,7 +22,11 @@ const CategorySectionCreator: FC<CategorySectionCreatorProps> = ({
     <Box mb="3.75rem">
       <Container pb="1rem">
         {title && (
-          <CategorySectionHeader title={title} iconName={iconName} seeMoreLink={seeMoreLink} />
+          <CategorySectionHeader
+            title={title}
+            iconName={iconName}
+            seeMoreLink={seeMoreLink}
+          />
         )}
 
         {children}

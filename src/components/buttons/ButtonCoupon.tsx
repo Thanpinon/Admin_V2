@@ -16,33 +16,34 @@ import {
   variant,
 } from "styled-system";
 
-interface ButtonProps {
+interface ButtonCouponProps {
   fullwidth?: boolean;
-  width?: string;
   color?: colorOptions;
   variant?: "text" | "outlined" | "contained";
-  size?: "extrasmall" | "small" | "medium" | "large" | "none";
+  size?: "small" | "medium" | "large" | "none";
+  fontSize: string;
 }
 
-const Button = styled.button<
+const ButtonCoupon = styled.button<
   ColorProps &
     BackgroundProps &
     BorderProps &
     SpaceProps &
-    ButtonProps &
+    ButtonCouponProps &
     LayoutProps
 >(
-  ({ color, fullwidth, width }) =>
+  ({ color, fullwidth, fontSize }) =>
     systemCss({
       display: "flex",
-      width: width ? "100%" : "unset",
+      width: fullwidth ? "100%" : "50px",
       justifyContent: "center",
       alignItems: "center",
+      whiteSpace: "nowrap",
       outline: "none",
       border: "none",
       cursor: "pointer",
       padding: "11px 1.5rem",
-      fontSize: "1rem",
+      fontSize: fontSize ? `${fontSize}px` : "10px",
       fontWeight: 600,
       fontFamily: "inherit",
       color: color ? `${color}.main` : "body.text",
@@ -137,13 +138,12 @@ const Button = styled.button<
     variants: {
       large: { height: "56px", px: 30 },
       medium: { height: "48px", px: 30 },
-      small: { height: "40px", fontSize: 14 },
-      extrasmall: { height: "30px", fontSize: 10 },
+      small: { height: "40px" },
     },
   }),
   compose(color, layout, space, border, shadow)
 );
 
-Button.defaultProps = { size: "small", borderRadius: 5 };
+ButtonCoupon.defaultProps = { size: "small", borderRadius: 5 };
 
-export default Button;
+export default ButtonCoupon;

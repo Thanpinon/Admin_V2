@@ -26,15 +26,15 @@ const ProductCard1List: FC<Props> = ({
   // filter products based on selected
   const filteredProducts = products.filter((item) => {
     const brandMatch =
-      selectedBrands.length === 0 || selectedBrands.includes(item.brand);
+      selectedBrands.length === 0 || selectedBrands.includes(item.brand_id);
     const unitMatch =
       selectedSocketType.length === 0 ||
-      selectedSocketType.includes(item.socket);
+      selectedSocketType.includes(item.product_code);
     const priceMatch =
       minPrice === null ||
-      maxPrice === null || // If either is null, skip the filter
-      (item.price >= parseFloat(minPrice) &&
-        item.price <= parseFloat(maxPrice));
+      maxPrice === null ||
+      (parseFloat(item.market_price) >= parseFloat(minPrice) &&
+        parseFloat(item.market_price) <= parseFloat(maxPrice));
 
     return brandMatch && unitMatch && priceMatch;
   });
@@ -43,16 +43,14 @@ const ProductCard1List: FC<Props> = ({
     <div>
       <Grid container spacing={6}>
         {filteredProducts.map((item) => (
-          <Grid item lg={3} sm={6} xs={12} key={item.id}>
+          <Grid item lg={3} sm={6} xs={12} key={item.product_id}>
             <ProductCard1
-              id={item.id}
-              slug={item.slug}
-              price={item.price}
-              title={item.title}
-              off={item.discount}
-              images={item.images}
-              imgUrl={item.thumbnail}
-              rating={item.rating || 4}
+              id={item.product_id}
+              slug={item.product_code}
+              price={parseFloat(item.market_price)}
+              title={item.name_th}
+              imgUrl={item.description_th}
+              description={item.meta_description_th}
             />
           </Grid>
         ))}

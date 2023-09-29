@@ -22,7 +22,9 @@ export const StyledCarousel = styled(
     showArrowOnHover,
     dotGroupMarginTop,
     ...props
-  }: CarouselProviderProps & StyledCarouselProps) => <CarouselProvider {...props} />
+  }: CarouselProviderProps & StyledCarouselProps) => (
+    <CarouselProvider {...props} />
+  )
 )`
   position: relative;
   min-width: 0px;
@@ -39,7 +41,9 @@ export const StyledCarousel = styled(
 
   .arrow-button {
     position: absolute;
-    top: calc(50% - ${(props) => (props.showDots ? props.dotGroupMarginTop : "0px")});
+    top: calc(
+      50% - ${(props) => (props.showDots ? props.dotGroupMarginTop : "0px")}
+    );
     transform: translateY(-50%);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   }
@@ -75,10 +79,10 @@ export const StyledCarousel = styled(
 
   @media only screen and (max-width: 1330px) {
     .right-arrow-class {
-      right: 0px;
+      right: -11px;
     }
     .left-arrow-class {
-      left: 0px;
+      left: -11px;
     }
   }
 
@@ -95,7 +99,8 @@ export const StyledCarousel = styled(
     border-radius: 300px;
     margin: 0.25rem;
     cursor: pointer;
-    border: 1px solid ${({ dotColor }) => dotColor || getTheme("colors.secondary.main")};
+    border: 1px solid
+      ${({ dotColor }) => dotColor || getTheme("colors.secondary.main")};
   }
   .dot:after {
     position: absolute;
@@ -106,28 +111,37 @@ export const StyledCarousel = styled(
     left: 50%;
     border-radius: 300px;
     transform: translate(-50%, -50%) scaleX(0);
-    background: ${({ dotColor }) => dotColor || getTheme("colors.secondary.main")};
+    background: ${({ dotColor }) =>
+      dotColor || getTheme("colors.secondary.main")};
   }
   .dot-active:after {
     transform: translate(-50%, -50%) scaleX(1);
   }
 `;
 
-export const CarouselWrapper = styled(Box)<{ color?: colorOptions }>(({ color = "primary" }) => ({
-  overflow: "hidden",
-  "& .carousel__back-button, & .carousel__next-button": {
-    color: "white",
-    borderRadius: 0,
-    transition: "0.3s",
-    backgroundColor: theme.colors[color].main,
-    ":hover:not(:disabled)": {
+export const CarouselWrapper = styled(Box)<{ color?: colorOptions }>(
+  ({ color = "primary" }) => ({
+    overflow: "hidden",
+    "& .carousel__back-button, & .carousel__next-button": {
       color: "white",
+      borderRadius: 0,
+      transition: "0.3s",
       backgroundColor: theme.colors[color].main,
+      ":hover:not(:disabled)": {
+        color: "white",
+        backgroundColor: theme.colors[color].main,
+      },
     },
-  },
-  "& .carousel__back-button": { left: 0, boxShadow: "-4px 0 7px -5px rgb(0 0 0 / 20%)" },
-  "& .carousel__next-button": { right: 0, boxShadow: "4px 0 7px -5px rgb(0 0 0 / 20%)" },
-  "& .carousel__back-button:disabled, & .carousel__next-button:disabled": {
-    backgroundColor: theme.colors[color][200] ?? theme.colors.gray[300],
-  },
-}));
+    "& .carousel__back-button": {
+      left: 0,
+      boxShadow: "-4px 0 7px -5px rgb(0 0 0 / 20%)",
+    },
+    "& .carousel__next-button": {
+      right: 0,
+      boxShadow: "4px 0 7px -5px rgb(0 0 0 / 20%)",
+    },
+    "& .carousel__back-button:disabled, & .carousel__next-button:disabled": {
+      backgroundColor: theme.colors[color][200] ?? theme.colors.gray[300],
+    },
+  })
+);
