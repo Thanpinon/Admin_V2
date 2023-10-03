@@ -4,14 +4,17 @@
 // CONTACT US AT support@ui-lib.com
 import { shuffle } from "lodash";
 import Mock from "../../mock";
-import { uniqueProudcts, slugs } from "./data";
+import { uniqueProudcts, slugs, Product } from "./data";
 
 Mock.onGet("/api/products").reply(async (config) => {
   try {
     const page = config.params?.page || 1;
     const pageSize = config.params?.pageSize || 28;
     const reversedOrder = uniqueProudcts.reverse();
-    const products = reversedOrder.slice((page - 1) * pageSize, page * pageSize);
+    const products = reversedOrder.slice(
+      (page - 1) * pageSize,
+      page * pageSize
+    );
 
     const meta = {
       page,
@@ -31,7 +34,9 @@ Mock.onGet("/api/products").reply(async (config) => {
 Mock.onGet("/api/products/slug").reply(async (config) => {
   try {
     if (config?.params?.slug) {
-      const product = uniqueProudcts.find((item) => item.slug === config.params.slug);
+      const product = uniqueProudcts.find(
+        (item) => item.slug === config.params.slug
+      );
       return [200, product];
     }
 
@@ -46,6 +51,16 @@ Mock.onGet("/api/products/slug").reply(async (config) => {
 Mock.onGet("/api/products/slug-list").reply(async () => {
   try {
     return [200, slugs];
+  } catch (err) {
+    console.error(err);
+    return [500, { message: "Internal server error" }];
+  }
+});
+
+//all products mockup cpu
+Mock.onGet("/api/products/cpu").reply(async () => {
+  try {
+    return [200, Product];
   } catch (err) {
     console.error(err);
     return [500, { message: "Internal server error" }];

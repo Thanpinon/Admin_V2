@@ -38,3 +38,18 @@ export const StyledWrapper = styled(Card)`
 `;
 
 export const StyledWrapperPageTitle = styled(FlexBox)``;
+
+export const FadeInUp = styled.div`
+  animation: fadeinup 0.8s ease;
+
+  @keyframes fadeinup {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;

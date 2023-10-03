@@ -1,5 +1,6 @@
 import axios from "axios";
 import Product from "@models/product.model";
+import Products from "@models/products.model";
 import Shop from "@models/shop.model";
 
 // get all product slug
@@ -29,4 +30,16 @@ const getAvailableShop = async (): Promise<Shop[]> => {
   return response.data;
 };
 
-export default { getSlugs, getProduct, getFrequentlyBought, getRelatedProducts, getAvailableShop };
+const getSameBrandProducts = async (): Promise<Products[]> => {
+  const response = await axios.get("/api/products/cpu");
+  return response.data;
+};
+
+export default {
+  getSlugs,
+  getProduct,
+  getFrequentlyBought,
+  getRelatedProducts,
+  getAvailableShop,
+  getSameBrandProducts,
+};

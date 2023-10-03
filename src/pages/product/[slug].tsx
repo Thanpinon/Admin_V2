@@ -9,23 +9,35 @@ import ProductIntro from "@component/products/ProductIntro";
 import ProductReview from "@component/products/ProductReview";
 import AvailableShops from "@component/products/AvailableShops";
 import RelatedProducts from "@component/products/RelatedProducts";
+import SameBrandProducts from "@component/products/SameBrandProducts";
 import FrequentlyBought from "@component/products/FrequentlyBought";
 import ProductDescription from "@component/products/ProductDescription";
+import TestResult from "@component/products/TestResult";
+import Overview from "@component/products/Overview";
+import ProductDetail from "@component/products/ProductDetail";
 import api from "@utils/__api__/products";
 import Shop from "@models/shop.model";
 import Product from "@models/product.model";
+import Products from "@models/products.model";
 
 // ===============================================================
 type Props = {
   product: Product;
   shops: Shop[];
+  sameBrandProducts: Products[];
   relatedProducts: Product[];
   frequentlyBought: Product[];
 };
 // ===============================================================
 
 const ProductDetails = (props: Props) => {
-  const { product, shops, relatedProducts, frequentlyBought } = props;
+  const {
+    product,
+    shops,
+    relatedProducts,
+    frequentlyBought,
+    sameBrandProducts,
+  } = props;
 
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("description");
@@ -51,7 +63,45 @@ const ProductDetails = (props: Props) => {
         borderColor="gray.400"
         mt="80px"
         mb="26px"
+        flexWrap="wrap"
       >
+        <H5
+          mr="10px"
+          p="4px 10px"
+          className="cursor-pointer"
+          borderColor="primary.main"
+          onClick={handleOptionClick("overview")}
+          borderBottom={selectedOption === "overview" && "2px solid"}
+          color={selectedOption === "overview" ? "primary.main" : "text.muted"}
+        >
+          ภาพรวม
+        </H5>
+        <H5
+          mr="10px"
+          p="4px 10px"
+          className="cursor-pointer"
+          borderColor="primary.main"
+          onClick={handleOptionClick("testResult")}
+          borderBottom={selectedOption === "testResult" && "2px solid"}
+          color={
+            selectedOption === "testResult" ? "primary.main" : "text.muted"
+          }
+        >
+          ผลเทส
+        </H5>
+        <H5
+          mr="10px"
+          p="4px 10px"
+          className="cursor-pointer"
+          borderColor="primary.main"
+          onClick={handleOptionClick("productDetail")}
+          borderBottom={selectedOption === "productDetail" && "2px solid"}
+          color={
+            selectedOption === "productDetail" ? "primary.main" : "text.muted"
+          }
+        >
+          รายละเอียดสินค้า
+        </H5>
         <H5
           mr="25px"
           p="4px 10px"
@@ -63,10 +113,10 @@ const ProductDetails = (props: Props) => {
             selectedOption === "description" ? "primary.main" : "text.muted"
           }
         >
-          Description
+          คุณสมบัติสินค้า
         </H5>
 
-        <H5
+        {/* <H5
           p="4px 10px"
           className="cursor-pointer"
           borderColor="primary.main"
@@ -74,24 +124,32 @@ const ProductDetails = (props: Props) => {
           borderBottom={selectedOption === "review" && "2px solid"}
           color={selectedOption === "review" ? "primary.main" : "text.muted"}
         >
-          Review (3)
-        </H5>
+          รีวิวสินค้า (3)
+        </H5> */}
       </FlexBox>
 
       {/* DESCRIPTION AND REVIEW TAB DETAILS */}
       <Box mb="50px">
+        {selectedOption === "overview" && <Overview />}
+        {selectedOption === "testResult" && <TestResult />}
+        {selectedOption === "productDetail" && <ProductDetail />}
         {selectedOption === "description" && <ProductDescription />}
-        {selectedOption === "review" && <ProductReview />}
+        {/* {selectedOption === "review" && <ProductReview />} */}
       </Box>
 
       {/* FREQUENTLY BOUGHT TOGETHER PRODUCTS */}
-      {frequentlyBought && <FrequentlyBought products={frequentlyBought} />}
+      {/* {frequentlyBought && <FrequentlyBought products={frequentlyBought} />} */}
 
       {/* AVAILABLE SHOPS */}
-      {shops && <AvailableShops shops={shops} />}
+      {/* {shops && <AvailableShops shops={shops} />} */}
 
       {/* RELATED PRODUCTS */}
-      {relatedProducts && <RelatedProducts products={relatedProducts} />}
+      {sameBrandProducts && <SameBrandProducts products={sameBrandProducts} />}
+
+      {/* RELATED PRODUCTS */}
+      {sameBrandProducts && <SameBrandProducts products={sameBrandProducts} />}
+
+      {/* {relatedProducts && <RelatedProducts products={relatedProducts} />} */}
     </Fragment>
   );
 };
@@ -109,11 +167,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const shops = await api.getAvailableShop();
+  const sameBrandProducts = await api.getSameBrandProducts();
   const relatedProducts = await api.getRelatedProducts();
   const frequentlyBought = await api.getFrequentlyBought();
   const product = await api.getProduct(params.slug as string);
 
-  return { props: { frequentlyBought, relatedProducts, product, shops } };
+  return {
+    props: {
+      frequentlyBought,
+      relatedProducts,
+      product,
+      shops,
+      sameBrandProducts,
+    },
+  };
 };
 
 export default ProductDetails;

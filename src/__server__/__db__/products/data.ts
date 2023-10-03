@@ -45,4 +45,4 @@ const uniqueProudcts = [...new Set(productList.map((item) => item.slug))].map(
 // get the all slugs
 const slugs = uniqueProudcts.map((item) => ({ params: { slug: item.slug } }));
 
-export { uniqueProudcts, slugs };
+export { uniqueProudcts, slugs, Product };
