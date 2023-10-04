@@ -19,7 +19,7 @@ import {
 interface ButtonCouponProps {
   fullwidth?: boolean;
   color?: colorOptions;
-  variant?: "text" | "outlined" | "contained";
+  variant?: "text" | "outlined" | "contained" | "border";
   size?: "small" | "medium" | "large" | "none";
   fontSize: string;
 }
@@ -35,7 +35,7 @@ const ButtonCoupon = styled.button<
   ({ color, fullwidth, fontSize }) =>
     systemCss({
       display: "flex",
-      width: fullwidth ? "100%" : "50px",
+      width: fullwidth ? "100%" : "80%",
       justifyContent: "center",
       alignItems: "center",
       whiteSpace: "nowrap",
@@ -129,6 +129,27 @@ const ButtonCoupon = styled.button<
             color: color
               ? `${theme.colors[color]?.text} !important`
               : "text.primary",
+          },
+        },
+        border: {
+          cursor: "default",
+          padding: "10px 16px",
+          color: `${color}.main`,
+          border: "1px solid",
+          borderColor: color ? `${color}.main` : "text.disabled",
+
+          "&:enabled svg path": {
+            fill: color
+              ? `${theme.colors[color]?.main} !important`
+              : "text.primary",
+          },
+          "&:enabled svg polyline, svg polygon": {
+            color: color
+              ? `${theme.colors[color]?.main} !important`
+              : "text.primary",
+          },
+          "&:focus": {
+            boxShadow: `0px 1px 4px 0px ${theme.colors[color]?.light}`,
           },
         },
       },

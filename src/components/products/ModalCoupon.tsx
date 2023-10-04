@@ -36,23 +36,23 @@ const ModalCoupon: FC<Props> = (props) => {
               <Grid container spacing={3}>
                 <Grid item md={4} xs={4}>
                   <Coupon
-                    topic="asdasd"
-                    description="asdads"
-                    dateExpired="{dateExpired}"
+                    topic="TEST"
+                    description="TEST"
+                    dateExpired="2023-07-29 18:46:56"
                   />
                 </Grid>
                 <Grid item md={4} xs={4}>
                   <Coupon
-                    topic="asdasd"
-                    description="asdads"
-                    dateExpired="{dateExpired}"
+                    topic="TEST"
+                    description="TEST"
+                    dateExpired="2023-07-29 18:46:56"
                   />
                 </Grid>
                 <Grid item md={4} xs={4}>
                   <Coupon
-                    topic="asdasd"
-                    description="asdads"
-                    dateExpired="{dateExpired}"
+                    topic="TEST"
+                    description="TEST"
+                    dateExpired="2023-07-29 18:46:56"
                   />
                 </Grid>
               </Grid>

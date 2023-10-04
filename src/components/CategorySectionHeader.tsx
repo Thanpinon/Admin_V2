@@ -3,23 +3,26 @@ import { FC } from "react";
 import FlexBox from "./FlexBox";
 import Icon from "./icon/Icon";
 import { H4, SemiSpan } from "./Typography";
+import { colorOptions } from "../../interfaces";
 
 export interface CategorySectionHeaderProps {
   title?: string;
   iconName?: string;
   seeMoreLink?: string;
+  color?: colorOptions;
 }
 
 const CategorySectionHeader: FC<CategorySectionHeaderProps> = ({
   title,
   iconName,
   seeMoreLink,
+  color,
 }) => {
   return (
     <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
       <FlexBox alignItems="center">
         {iconName && (
-          <Icon defaultcolor="auto" mr="0.5rem">
+          <Icon defaultcolor="auto" color={color ?? null} mr="0.5rem">
             {iconName}
           </Icon>
         )}

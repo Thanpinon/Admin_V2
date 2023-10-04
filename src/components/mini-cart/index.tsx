@@ -10,6 +10,7 @@ import Typography, { H5, Paragraph, Tiny } from "@component/Typography";
 import { useAppContext } from "@context/AppContext";
 import { StyledMiniCart } from "./styles";
 import { currency } from "@utils/utils";
+import { notify } from "@component/toast";
 
 type MiniCartProps = { toggleSidenav?: () => void };
 
@@ -17,14 +18,25 @@ const MiniCart: FC<MiniCartProps> = ({ toggleSidenav }) => {
   const { state, dispatch } = useAppContext();
 
   const handleCartAmountChange = (amount: number, product: any) => () => {
-    dispatch({
-      type: "CHANGE_CART_AMOUNT",
-      payload: { ...product, qty: amount },
-    });
+    if (!isNaN(amount)) {
+      if (amount > 5) {
+        notify("error", "Out of Stock");
+        return;
+      }
+      dispatch({
+        type: "CHANGE_CART_AMOUNT",
+        payload: { ...product, qty: amount },
+      });
+    }
   };
 
   const getTotalPrice = () => {
-    return state.cart.reduce((accumulator, item) => accumulator + item.price * item.qty, 0) || 0;
+    return (
+      state.cart.reduce(
+        (accumulator, item) => accumulator + item.price * item.qty,
+        0
+      ) || 0
+    );
   };
 
   return (
@@ -46,8 +58,17 @@ const MiniCart: FC<MiniCartProps> = ({ toggleSidenav }) => {
             justifyContent="center"
             height="calc(100% - 80px)"
           >
-            <NextImage src="/assets/images/logos/shopping-bag.svg" width="90px" height="100%" />
-            <Paragraph mt="1rem" color="text.muted" textAlign="center" maxWidth="200px">
+            <NextImage
+              src="/assets/images/logos/shopping-bag.svg"
+              width="90px"
+              height="100%"
+            />
+            <Paragraph
+              mt="1rem"
+              color="text.muted"
+              textAlign="center"
+              maxWidth="200px"
+            >
               Your shopping bag is empty. Start shopping
             </Paragraph>
           </FlexBox>
@@ -111,7 +132,12 @@ const MiniCart: FC<MiniCartProps> = ({ toggleSidenav }) => {
                   {currency(item.price, 0)} x {item.qty}
                 </Tiny>
 
-                <Typography fontWeight={600} fontSize="14px" color="primary.main" mt="4px">
+                <Typography
+                  fontWeight={600}
+                  fontSize="14px"
+                  color="primary.main"
+                  mt="4px"
+                >
                   {currency(item.qty * item.price)}
                 </Typography>
               </div>
@@ -139,12 +165,19 @@ const MiniCart: FC<MiniCartProps> = ({ toggleSidenav }) => {
               m="1rem 1rem 0.75rem"
               onClick={toggleSidenav}
             >
-              <Typography fontWeight={600}>Checkout Now ({currency(getTotalPrice())})</Typography>
+              <Typography fontWeight={600}>
+                Checkout Now ({currency(getTotalPrice())})
+              </Typography>
             </Button>
           </Link>
 
           <Link href="/cart">
-            <Button color="primary" variant="outlined" m="0px 1rem 0.75rem" onClick={toggleSidenav}>
+            <Button
+              color="primary"
+              variant="outlined"
+              m="0px 1rem 0.75rem"
+              onClick={toggleSidenav}
+            >
               <Typography fontWeight={600}>View Cart</Typography>
             </Button>
           </Link>

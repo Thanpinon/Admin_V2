@@ -7,7 +7,6 @@ const TestResult: FC = () => {
   return (
     <FadeInUp>
       <Box>
-        <H3 mb="1rem">TestResult:</H3>
         <Typography>ผลเทส</Typography>
       </Box>
     </FadeInUp>

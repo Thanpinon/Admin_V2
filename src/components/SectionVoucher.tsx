@@ -33,27 +33,41 @@ const SectionVoucher: FC<CategorySectionCreatorProps> = ({
             alignItems="center"
             mb="1.5rem"
           >
-            <FlexBox alignItems="center">
+            <FlexBox alignItems="center" style={{ flex: 1 }}>
               {iconName && (
                 <Icon defaultcolor="auto" mr="0.5rem">
                   {iconName}
                 </Icon>
               )}
-              <H4 fontWeight="bold" lineHeight="1">
+              <H4
+                fontWeight="bold"
+                lineHeight="1"
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
                 {title}
               </H4>
             </FlexBox>
 
-            {seeMoreLink && (
-              <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
-                <SemiSpan mr="0.5rem" onClick={onClickSeeMore}>
-                  ดูทั้งหมด
-                </SemiSpan>
-                <Icon size="12px" defaultcolor="currentColor">
-                  right-arrow
-                </Icon>
-              </FlexBox>
-            )}
+            <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
+              <SemiSpan
+                mr="0.5rem"
+                onClick={onClickSeeMore}
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                ดูทั้งหมด
+              </SemiSpan>
+              <Icon size="12px" defaultcolor="currentColor">
+                right-arrow
+              </Icon>
+            </FlexBox>
           </FlexBox>
         )}
 

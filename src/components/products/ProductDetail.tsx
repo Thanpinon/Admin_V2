@@ -7,7 +7,6 @@ const ProductDetail: FC = () => {
   return (
     <FadeInUp>
       <Box>
-        <H3 mb="1rem">TestResult:</H3>
         <Typography>รายละเอียดสินค้า</Typography>
       </Box>
     </FadeInUp>

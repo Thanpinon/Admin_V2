@@ -10,6 +10,8 @@ type ProductCard6Props = {
   topic: string;
   description: string;
   dateExpired: string;
+  checked: boolean;
+  onClick: () => void;
 };
 // ===========================================================================
 
@@ -17,9 +19,17 @@ const ProductCard20: FC<ProductCard6Props> = ({
   topic,
   description,
   dateExpired,
+  checked,
+  onClick,
 }) => {
   return (
-    <Coupon topic={topic} description={description} dateExpired={dateExpired} />
+    <Coupon
+      onClick={onClick}
+      checked={checked}
+      topic={topic}
+      description={description}
+      dateExpired={dateExpired}
+    />
   );
 };
 

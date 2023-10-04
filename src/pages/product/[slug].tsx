@@ -40,7 +40,7 @@ const ProductDetails = (props: Props) => {
   } = props;
 
   const router = useRouter();
-  const [selectedOption, setSelectedOption] = useState("description");
+  const [selectedOption, setSelectedOption] = useState("overview");
 
   const handleOptionClick = (opt) => () => setSelectedOption(opt);
 
@@ -74,7 +74,7 @@ const ProductDetails = (props: Props) => {
           borderBottom={selectedOption === "overview" && "2px solid"}
           color={selectedOption === "overview" ? "primary.main" : "text.muted"}
         >
-          ภาพรวม
+          ทั้งหมด
         </H5>
         <H5
           mr="10px"
@@ -142,9 +142,6 @@ const ProductDetails = (props: Props) => {
 
       {/* AVAILABLE SHOPS */}
       {/* {shops && <AvailableShops shops={shops} />} */}
-
-      {/* RELATED PRODUCTS */}
-      {sameBrandProducts && <SameBrandProducts products={sameBrandProducts} />}
 
       {/* RELATED PRODUCTS */}
       {sameBrandProducts && <SameBrandProducts products={sameBrandProducts} />}

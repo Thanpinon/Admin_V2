@@ -7,8 +7,8 @@ import NProgress from "nprogress";
 import { ThemeProvider } from "styled-components";
 import GoogleAnalytics from "@component/GoogleAnalytics";
 import { AppProvider } from "@context/AppContext";
-// import { GlobalStyles } from "@utils/globalStyles";
-// import { theme } from "@utils/theme";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../__server__";
 import theme from "../theme";
 import GlobalStyles from "theme/globalStyles";
@@ -42,7 +42,10 @@ const App = ({ Component, pageProps }: MyAppProps) => {
           property="og:description"
           content="iHAVECPU ร้านขายและจำหน่ายอุปกรณ์คอมพิวเตอร์แบบครบวงจร รับประกันทุกชิ้น รับจัดสเปกคอมพิวเตอร์ตามสั่ง"
         />
-        <meta property="og:image" content="/assets/images/landing/preview.png" />
+        <meta
+          property="og:image"
+          content="/assets/images/landing/preview.png"
+        />
 
         {/* Google analytics */}
         <GoogleAnalytics />
@@ -51,6 +54,7 @@ const App = ({ Component, pageProps }: MyAppProps) => {
       <AppProvider>
         <ThemeProvider theme={theme()}>
           <GlobalStyles />
+          <ToastContainer />
 
           <Layout>
             <Component {...pageProps} />

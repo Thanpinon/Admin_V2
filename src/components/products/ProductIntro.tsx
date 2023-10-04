@@ -25,6 +25,10 @@ import Divider from "@component/Divider";
 import { IconButton } from "@component/buttons";
 import Typography from "@component/Typography";
 import { DetailsWrapper, StyledWrapper } from "./styles";
+import FlashSaleBar from "@component/flashsale/FlashSaleBar";
+import { ToastContainer, toast } from "react-toastify";
+import { notify } from "@component/toast";
+import "react-toastify/dist/ReactToastify.css";
 
 // ========================================
 type ProductIntroProps = {
@@ -38,7 +42,11 @@ type ProductIntroProps = {
 const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
   const router = useRouter();
   const { state, dispatch } = useAppContext();
+  const base = "http://localhost:3000";
+  const links = base + router.asPath;
+
   const [selectedImage, setSelectedImage] = useState(0);
+  const handleImageClick = (ind: number) => () => setSelectedImage(ind);
 
   const routerId = router.query.id as string;
   const cartItem = state.cart.find(
@@ -47,20 +55,61 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
   const [open, setOpen] = useState(false);
   const toggleDialog = useCallback(() => setOpen((open) => !open), []);
 
+  // Choose Color
   const [selectedColor, setSelectedColor] = useState<string>("204");
   const handleColorClick = (color: string) => {
     setSelectedColor(color);
   };
 
+  // Choose Button
   const [selectedSwitch, setSelectedSwitch] = useState(null);
   const handleSwitchClick = (color) => {
     setSelectedSwitch(color);
   };
+  // Wishlist
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const handleWishlistClick = () => {
+    if (isInWishlist) {
+      notify("error", "Removed from Wishlist");
+      setIsInWishlist(false);
+    } else {
+      notify("success", "เพิ่มเข้ารายการสินค้าที่สนใจ");
+      setIsInWishlist(true);
+    }
+  };
 
-  const handleImageClick = (ind: number) => () => setSelectedImage(ind);
+  // Compare
+  const [isInCompare, setIsInCompare] = useState(false);
+  const handleCompareClick = () => {
+    if (isInCompare) {
+      notify("error", "Removed from Compare");
+      setIsInCompare(false);
+    } else {
+      notify("success", "Add to Compare");
+      setIsInCompare(true);
+    }
+  };
 
+  // Copy Link
+  const handleCopyLinkClick = () => {
+    navigator.clipboard.writeText(links);
+    notify("success", "Copy Link!");
+  };
+
+  // Keep Coupon
+  const [isInCoupon, setisInCoupon] = useState(false);
+  const handleInCoupleClick = () => {
+    setisInCoupon(true);
+  };
+
+  // Cart Amount
   const handleCartAmountChange = (amount: number) => () => {
     if (!isNaN(amount)) {
+      if (amount > 5) {
+        notify("error", "Out of Stock");
+        return;
+      }
+
       dispatch({
         type: "CHANGE_CART_AMOUNT",
         payload: {
@@ -74,6 +123,7 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
     }
   };
 
+  // Get Color
   const getColor = (status: string) => {
     switch (status) {
       case "Pending":
@@ -87,6 +137,12 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
       default:
         return "";
     }
+  };
+
+  // Style for IconButton (Social Media/Wishlist/Compare)
+  const iconButtonStyle = {
+    borderColor: "#e6e7e8",
+    border: "1px solid #e6e7e8",
   };
 
   return (
@@ -103,7 +159,6 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
                 style={{ objectFit: "contain" }}
               />
             </FlexBox>
-
             <FlexBox overflow="auto">
               {images.map((url, ind) => (
                 <Box
@@ -131,7 +186,7 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
           </Box>
         </Grid>
         {/* PRODUCT DETAILS */}
-        <Grid item md={4.5} xs={12} alignItems="center">
+        <Grid item lg={4.5} md={6} xs={12} alignItems="center">
           <Box mb="15px">
             <ShowStock p="0.1rem 1rem" bg={`${getColor("Delivered")}.light`}>
               <Small color={`${getColor("Delivered")}.main`} fontWeight={800}>
@@ -164,24 +219,16 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
               {currency(price)}
             </H1>
           </Box>
+          {/* FLASH SALES DEALS */}
+          <Box mb="20px">
+            <FlashSaleBar dateExpired="2023-10-04T23:59:59"></FlashSaleBar>
+          </Box>
 
+          {/* COLOR */}
           <Box mb="10px">
-            <Grid item md={12} xs={12}>
+            <Grid item lg={12} md={12} xs={12}>
               <H6 mb="0.8rem">Color : </H6>
               <Grid container>
-                {/* {colorList.map((item, ind) => (
-                  <Grid item md={3} xs={3} key={item.id}>
-                    <ChoiceDetails
-                      key={ind}
-                      open={open}
-                      title="colors"
-                      product_id={item.id}
-                      choice={item.title}
-                      selected={selectedColor === item.id}
-                      onClick={() => handleColorClick(item.id)}
-                    />
-                  </Grid>
-                ))} */}
                 <FlexBox mb="1rem">
                   {colorList.map((item, ind) => (
                     <ColorCircle
@@ -201,12 +248,13 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
               </Grid>
             </Grid>
           </Box>
+          {/* SWITCH */}
           <Box mb="20px">
-            <Grid item md={12} xs={12}>
+            <Grid item lg={12} md={12} xs={12}>
               <H6 mb="0.8rem">Switch : </H6>
               <Grid container>
                 {switchList.map((item, ind) => (
-                  <Grid item md={3} xs={3} key={item.id}>
+                  <Grid item lg={3} md={3} xs={6} key={item.id}>
                     <ChoiceDetails
                       key={ind}
                       open={open}
@@ -223,9 +271,8 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
           </Box>
 
           {/* BUTTON TO BUY */}
-          <Grid container justifyContent="center" spacing={2}>
-            <Grid item md={4} xs={4}>
-              {/* Content for the first Grid item */}
+          <Grid container justifyContent="center" spacing={6}>
+            <Grid item lg={4} md={4} xs={6}>
               <FlexBox alignItems="center">
                 <Button
                   p="9px"
@@ -254,9 +301,8 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
                 </Button>
               </FlexBox>
             </Grid>
-            <Grid item md={7} xs={7}>
+            <Grid item lg={7} md={7} xs={6}>
               <Button
-                ml="10px"
                 mb="25px"
                 size="small"
                 color="ihavecpu"
@@ -266,85 +312,64 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
                 ซื้อเลย
               </Button>
             </Grid>
-            {/* <Grid item md={2} xs={1.5}>
-              <Button
-                ml="10px"
-                mb="36px"
-                size="small"
-                color="ihavecpu"
-                variant="outlined"
-                width="100%"
-              >
-                <Icon variant="small">heart</Icon>
-              </Button>
-            </Grid> */}
           </Grid>
           <Divider height={1} style={{ backgroundColor: "#DAE1E7" }} />
           <Box mt="15px" display="flex" justifyContent="space-between">
             <div>
-              <Link href={`/address`}>
-                <Typography as="a" color="inherit">
-                  <IconButton
-                    mr="0.5rem"
-                    size="extrasmall"
-                    style={{
-                      backgroundColor: "#F6F9FC",
-                      borderColor: "#e6e7e8",
-                      border: "1px solid #e6e7e8",
-                    }}
+              {/** COMPARE */}
+              <Typography as="a" color="inherit">
+                <IconButton
+                  onClick={handleCompareClick}
+                  mr="0.5rem"
+                  size="extrasmall"
+                  style={iconButtonStyle}
+                >
+                  <Icon
+                    variant="small"
+                    color={isInCompare ? "ihavecpu" : "social"}
                   >
-                    <Icon variant="small" color="social">
-                      compare
-                    </Icon>
-                  </IconButton>
-                </Typography>
-              </Link>
-              <Link href={`/address`}>
-                <Typography as="a" color="inherit">
-                  <IconButton
-                    mr="1rem"
-                    size="extrasmall"
-                    style={{
-                      backgroundColor: "#F6F9FC",
-                      borderColor: "#e6e7e8",
-                      border: "1px solid #e6e7e8",
-                    }}
+                    compare
+                  </Icon>
+                </IconButton>
+              </Typography>
+              {/** WISHLIST */}
+              <Typography as="a" color="inherit">
+                <IconButton
+                  onClick={handleWishlistClick}
+                  mr="1rem"
+                  size="extrasmall"
+                  style={iconButtonStyle}
+                >
+                  <Icon
+                    variant="small"
+                    color={isInWishlist ? "ihavecpu" : "social"}
                   >
-                    <Icon variant="small" color="social">
-                      heart
-                    </Icon>
-                  </IconButton>
-                </Typography>
-              </Link>
+                    {isInWishlist ? "heart-filled" : "heart"}
+                  </Icon>
+                </IconButton>
+              </Typography>
             </div>
             <div>
+              {/** COPY LINK */}
+              <Typography as="a" color="inherit">
+                <IconButton
+                  onClick={handleCopyLinkClick}
+                  mr="0.5rem"
+                  size="extrasmall"
+                  style={iconButtonStyle}
+                >
+                  <Icon variant="small" color="social">
+                    link
+                  </Icon>
+                </IconButton>
+              </Typography>
+              {/** FACEBOOK */}
               <Link href={`/address`}>
                 <Typography as="a" color="inherit">
                   <IconButton
                     mr="0.5rem"
                     size="extrasmall"
-                    style={{
-                      backgroundColor: "#F6F9FC",
-                      borderColor: "#e6e7e8",
-                      border: "1px solid #e6e7e8",
-                    }}
-                  >
-                    <Icon variant="small" color="social">
-                      link
-                    </Icon>
-                  </IconButton>
-                </Typography>
-              </Link>
-              <Link href={`/address`}>
-                <Typography as="a" color="inherit">
-                  <IconButton
-                    mr="0.5rem"
-                    size="extrasmall"
-                    style={{
-                      backgroundColor: "#F6F9FC",
-                      borderColor: "#e6e7e8",
-                      border: "1px solid #e6e7e8",
-                    }}
+                    style={iconButtonStyle}
                   >
                     <Icon variant="small" color="social">
                       facebook
@@ -352,16 +377,10 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
                   </IconButton>
                 </Typography>
               </Link>
+              {/** TWITTER */}
               <Link href={`/address`}>
                 <Typography as="a" color="inherit">
-                  <IconButton
-                    size="extrasmall"
-                    style={{
-                      backgroundColor: "#F6F9FC",
-                      borderColor: "#e6e7e8",
-                      border: "1px solid #e6e7e8",
-                    }}
-                  >
+                  <IconButton size="extrasmall" style={iconButtonStyle}>
                     <Icon variant="small" color="social">
                       twitter
                     </Icon>
@@ -373,22 +392,18 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
         </Grid>
         {/* VOUCHER */}
         <Grid item lg={3} md={12} xs={12} alignItems="left">
-          <Grid item lg={12}>
+          <Grid item lg={12} md={12} xs={12}>
             <SectionVoucher
               iconName="coupon"
               title="คูปองส่วนลด"
-              seeMoreLink="ดูทั้งมด"
               onClickSeeMore={() => {
                 toggleDialog();
               }}
             >
               <CarouselVoucher totalSlides={2} visibleSlides={1}>
                 <ProductCard20
-                  topic="Notebook MSI"
-                  description="เมื่อช้อปครบ 50,000.-"
-                  dateExpired="2023-07-29 18:46:56"
-                />
-                <ProductCard20
+                  onClick={handleInCoupleClick}
+                  checked={isInCoupon}
                   topic="Notebook MSI"
                   description="เมื่อช้อปครบ 50,000.-"
                   dateExpired="2023-07-29 18:46:56"
@@ -476,15 +491,6 @@ const colorList = [
   { id: "205", product_id: "SKU-67171", title: "#d4001a" },
   { id: "205", product_id: "SKU-67171", title: "#6B7AFF" },
 ];
-// const colorList = [
-//   "#1C1C1C",
-//   "#FF7A7A",
-//   "#FFC672",
-//   "#84FFB5",
-//   "#70F6FF",
-//   "#6B7AFF",
-// ];
-
 const switchList = [
   { id: "209", product_id: "SKU-67171", title: "Red Switch" },
   { id: "210", product_id: "SKU-67171", title: "Blue Switch" },
