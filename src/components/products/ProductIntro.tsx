@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, useState, useCallback } from "react";
+import { FC, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import Box from "@component/Box";
 import Image from "@component/Image";
@@ -29,6 +29,7 @@ import FlashSaleBar from "@component/flashsale/FlashSaleBar";
 import { ToastContainer, toast } from "react-toastify";
 import { notify } from "@component/toast";
 import "react-toastify/dist/ReactToastify.css";
+import CompareNotification from "@component/compare/CompareNotification";
 
 // ========================================
 type ProductIntroProps = {
@@ -36,10 +37,17 @@ type ProductIntroProps = {
   title: string;
   images: string[];
   id: string | number;
+  category_id: number;
 };
 // ========================================
 
-const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
+const ProductIntro: FC<ProductIntroProps> = ({
+  images,
+  title,
+  price,
+  id,
+  category_id,
+}) => {
   const router = useRouter();
   const { state, dispatch } = useAppContext();
   const base = "http://localhost:3000";
@@ -77,16 +85,62 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
       setIsInWishlist(true);
     }
   };
-
   // Compare
-  const [isInCompare, setIsInCompare] = useState(false);
+  const [compareList, setCompareList] = useState<
+    { id: string; category_id: number }[]
+  >([]);
+  const maxCompareProducts = 4;
+  useEffect(() => {
+    const storedCompareList = localStorage.getItem("compareList");
+    if (storedCompareList) {
+      setCompareList(JSON.parse(storedCompareList));
+    }
+  }, []);
+
   const handleCompareClick = () => {
-    if (isInCompare) {
-      notify("error", "Removed from Compare");
-      setIsInCompare(false);
+    const productIdString = id.toString();
+    const productCategoryId = category_id;
+
+    if (
+      compareList.length === 0 ||
+      compareList[0].category_id === productCategoryId
+    ) {
+      if (compareList.some((product) => product.id === productIdString)) {
+        notify("error", "removed from compare");
+        const updatedCompareList = compareList.filter(
+          (product) => product.id !== productIdString
+        );
+        localStorage.setItem("compareList", JSON.stringify(updatedCompareList));
+        setCompareList(updatedCompareList);
+      } else {
+        if (compareList.length >= maxCompareProducts) {
+          notify("error", "เลือกเปรียบเทียบสินค้าได้สูงสุด 4 สินค้าเท่านั้น");
+        } else {
+          notify("success", "added to compare");
+          // add product to the comparison list
+          const updatedCompareList = [
+            ...compareList,
+            { id: productIdString, category_id: productCategoryId },
+          ];
+
+          // store the updated compareList in local storage
+          localStorage.setItem(
+            "compareList",
+            JSON.stringify(updatedCompareList)
+          );
+
+          // update the state with the new compareList
+          setCompareList(updatedCompareList);
+        }
+      }
     } else {
-      notify("success", "Add to Compare");
-      setIsInCompare(true);
+      // Clear the compare list and add the current product
+      notify("success", "added to compare");
+      const updatedCompareList = [
+        { id: productIdString, category_id: productCategoryId },
+      ];
+      localStorage.setItem("compareList", JSON.stringify(updatedCompareList));
+      setCompareList(updatedCompareList);
     }
   };
 
@@ -147,6 +201,8 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
 
   return (
     <Box overflow="hidden">
+      <CompareNotification count={compareList.length} />
+
       <Grid container justifyContent="center" spacing={16}>
         {/* PRODUCT IMAGE */}
         <Grid item md={4} xs={12} alignItems="center">
@@ -221,7 +277,7 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
           </Box>
           {/* FLASH SALES DEALS */}
           <Box mb="20px">
-            <FlashSaleBar dateExpired="2023-10-04T23:59:59"></FlashSaleBar>
+            <FlashSaleBar dateExpired="2023-10-05T23:59:59"></FlashSaleBar>
           </Box>
 
           {/* COLOR */}
@@ -326,7 +382,15 @@ const ProductIntro: FC<ProductIntroProps> = ({ images, title, price, id }) => {
                 >
                   <Icon
                     variant="small"
-                    color={isInCompare ? "ihavecpu" : "social"}
+                    color={
+                      compareList.some(
+                        (product) =>
+                          product.id === id.toString() &&
+                          product.category_id === category_id
+                      )
+                        ? "ihavecpu"
+                        : "social"
+                    }
                   >
                     compare
                   </Icon>

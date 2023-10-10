@@ -16,6 +16,7 @@ import {
   frequentlyBoughtData,
 } from "../related-products/data";
 import Product from "@data/product";
+import compareProduct from "@data/compareProduct";
 
 // all used products in the bazaar template
 const productList = [
@@ -45,4 +46,8 @@ const uniqueProudcts = [...new Set(productList.map((item) => item.slug))].map(
 // get the all slugs
 const slugs = uniqueProudcts.map((item) => ({ params: { slug: item.slug } }));
 
-export { uniqueProudcts, slugs, Product };
+const compareProducts = compareProduct.map(
+  (item) => item.data[0].data.items[0].product_id
+);
+
+export { uniqueProudcts, slugs, Product, compareProducts };

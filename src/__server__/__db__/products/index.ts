@@ -4,7 +4,7 @@
 // CONTACT US AT support@ui-lib.com
 import { shuffle } from "lodash";
 import Mock from "../../mock";
-import { uniqueProudcts, slugs, Product } from "./data";
+import { uniqueProudcts, slugs, Product, compareProducts } from "./data";
 
 Mock.onGet("/api/products").reply(async (config) => {
   try {
@@ -61,6 +61,32 @@ Mock.onGet("/api/products/slug-list").reply(async () => {
 Mock.onGet("/api/products/cpu").reply(async () => {
   try {
     return [200, Product];
+  } catch (err) {
+    console.error(err);
+    return [500, { message: "Internal server error" }];
+  }
+});
+
+//product mockup compare
+Mock.onGet("/api/products/cpu").reply(async () => {
+  try {
+    return [200, Product];
+  } catch (err) {
+    console.error(err);
+    return [500, { message: "Internal server error" }];
+  }
+});
+
+Mock.onGet("/api/products/compare").reply(async (config) => {
+  try {
+    if (config?.params?.slug) {
+      const product = compareProducts.find(
+        (item) => item.data[0].items[0].product_id === config.params.slug
+      );
+      return [200, product];
+    }
+
+    return [200, shuffle(compareProducts)[0]];
   } catch (err) {
     console.error(err);
     return [500, { message: "Internal server error" }];

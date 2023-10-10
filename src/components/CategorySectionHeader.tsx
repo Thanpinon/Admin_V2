@@ -3,7 +3,7 @@ import { FC } from "react";
 import FlexBox from "./FlexBox";
 import Icon from "./icon/Icon";
 import { H4, SemiSpan } from "./Typography";
-import { colorOptions } from "../../interfaces";
+import { colorOptions } from "../interfaces";
 
 export interface CategorySectionHeaderProps {
   title?: string;

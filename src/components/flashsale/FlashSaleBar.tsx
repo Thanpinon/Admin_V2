@@ -11,9 +11,7 @@ const FlashSaleBar: FC<FlashSaleBarProps> = (props) => {
   const endTime = new Date(`${dateExpired}`).getTime();
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <div>Flash Sale has ended</div>;
-    } else {
+    if (!completed) {
       return (
         <StyledFlashSaleBar>
           <div className="flash-sale-container">

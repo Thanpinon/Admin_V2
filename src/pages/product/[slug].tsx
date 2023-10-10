@@ -53,6 +53,7 @@ const ProductDetails = (props: Props) => {
     <Fragment>
       <ProductIntro
         id={product.product_code}
+        category_id={product.cat_id}
         price={parseFloat(product.market_price)}
         title={product.name_th}
         images={product.images}

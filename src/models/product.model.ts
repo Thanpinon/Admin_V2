@@ -6,7 +6,7 @@ interface Product {
   sel_option?: string;
   product_code?: string;
   supplier_id?: string;
-  cat_id?: string;
+  cat_id?: number;
   brand_id?: string;
   barcode?: string;
   sku?: string;

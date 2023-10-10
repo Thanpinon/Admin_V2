@@ -35,6 +35,20 @@ const getSameBrandProducts = async (): Promise<Products[]> => {
   return response.data;
 };
 
+const getCompareProducts = async (product_id: any): Promise<Products[]> => {
+  const response = await axios.get("http://localhost:8000/api/compare", {
+    params: { product_id },
+  });
+  return response.data;
+};
+
+const getCompareMockUp = async (slug: any): Promise<Products[]> => {
+  const response = await axios.get("/api/products/compare", {
+    params: { slug },
+  });
+  return response.data;
+};
+
 export default {
   getSlugs,
   getProduct,
@@ -42,4 +56,6 @@ export default {
   getRelatedProducts,
   getAvailableShop,
   getSameBrandProducts,
+  getCompareProducts,
+  getCompareMockUp,
 };

@@ -1,0 +1,42 @@
+.imageContainer {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.extraIcons {
+  z-index: 2;
+  top: 0.75rem;
+  display: block;
+  right: 0.75rem;
+  cursor: pointer;
+  position: absolute;
+  opacity: 0; /* Initially set opacity to 0 to hide the icons */
+
+  transition: opacity 0.3s ease;
+}
+.imageContainer:hover {
+  .extraIcons {
+    opacity: 1;
+  }
+}
+
+.productTitleSpec {
+  color: red;
+  font-weight: 700;
+  justify-items: center;
+}
+.productDetailSpec {
+  padding: 0.5rem 0rem;
+  border-bottom: 1px solid;
+  border-color: rgb(223, 227, 232);
+  justify-items: center;
+}
+.beforePrice {
+  text-decoration: line-through;
+}
+.productMainTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
