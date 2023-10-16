@@ -10,16 +10,18 @@ import { CardProduct } from "@sections/compare/card";
 import { Button } from "@component/buttons";
 import DashboardPageHeader from "@component/layout/DashboardPageHeader";
 import Icon from "@component/icon/Icon";
+import CardAddProduct from "./card/CardAddProduct";
 
 // ======================================================
 // type Props = { carouselData: MainCarouselItem[] };
 // ======================================================
 
-const Section1 = ({
-  classStyle,
+const Section2 = ({
+  onAddProduct,
   productDetail,
-  onRemoveFromCompare,
-  shouldRenderDeleteButton,
+  showAddProductBox,
+  onAddProductFromCompare,
+  back,
 }) => {
   const [compareList, setCompareList] = useState([]);
 
@@ -50,20 +52,15 @@ const Section1 = ({
 
   return (
     <Grid item lg={3} md={6} xs={12} spacing={6}>
-      <CardProduct
-        title={productDetail.name_th}
-        brand={productDetail.brand}
-        priceBefore={productDetail.price_before}
-        priceSale={productDetail.price_sale}
-        discount={productDetail.discount}
-        imgUrl={productDetail.image}
-        detail={productDetail.product_detail}
-        onRemoveFromCompare={onRemoveFromCompare}
-        shouldRenderDeleteButton={shouldRenderDeleteButton}
-        classStyle={classStyle}
+      <CardAddProduct
+        onAddProduct={onAddProduct}
+        productDetail={productDetail}
+        showAddProductBox={showAddProductBox}
+        onAddProductFromCompare={onAddProductFromCompare}
+        back={back}
       />
     </Grid>
   );
 };
 
-export default Section1;
+export default Section2;

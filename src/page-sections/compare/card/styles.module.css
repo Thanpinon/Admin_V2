@@ -1,3 +1,13 @@
+.card {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.card.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .imageContainer {
   border-radius: 20px;
   overflow: hidden;
@@ -39,4 +49,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.myContainer::-webkit-scrollbar {
+  border-radius: 8px;
+  width: 5px;
+}
+
+.myContainer::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 8px;
+}
+
+.myContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.icon {
+  transition: color 0.8s ease;
+}
+.icon:hover {
+  color: #d4001a;
 }

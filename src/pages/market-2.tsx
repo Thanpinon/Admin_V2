@@ -20,7 +20,10 @@ import Brand from "@models/Brand.model";
 import Service from "@models/service.model";
 import Product from "@models/product.model";
 import Category from "@models/category.model";
-import { CategoryBasedProducts, MainCarouselItem } from "@models/market-2.model";
+import {
+  CategoryBasedProducts,
+  MainCarouselItem,
+} from "@models/market-2.model";
 
 // =======================================================
 type Props = {

@@ -36,6 +36,9 @@ export interface CardProductProps {
       subfilter_names: string;
     }[];
   };
+  onRemoveFromCompare: () => void;
+  shouldRenderDeleteButton?: boolean;
+  classStyle?: string;
 }
 
 const CardProduct: FC<CardProductProps> = ({
@@ -46,6 +49,9 @@ const CardProduct: FC<CardProductProps> = ({
   priceSale,
   discount,
   detail,
+  onRemoveFromCompare,
+  shouldRenderDeleteButton,
+  classStyle,
 }) => {
   const getColor = (status: string) => {
     switch (status) {
@@ -63,14 +69,24 @@ const CardProduct: FC<CardProductProps> = ({
   };
   return (
     <a>
-      <Card boxShadow="border" height="100%" borderRadius={4} hoverEffect>
+      <Card
+        boxShadow="border"
+        height="100%"
+        borderRadius={4}
+        hoverEffect
+        className={classStyle}
+      >
         <Box mb="1rem" p="2rem">
           <FlexBox justifyContent="right" style={{ position: "relative" }}>
-            <IconButton size="small" bg="white">
-              <Icon variant="medium" defaultcolor="currentColor">
-                delete
-              </Icon>
-            </IconButton>
+            {shouldRenderDeleteButton ? (
+              <IconButton size="small" bg="white" onClick={onRemoveFromCompare}>
+                <Icon variant="medium" defaultcolor="currentColor">
+                  delete
+                </Icon>
+              </IconButton>
+            ) : (
+              <Box mb="3rem"></Box>
+            )}
           </FlexBox>
 
           <Grid item lg={12}>
