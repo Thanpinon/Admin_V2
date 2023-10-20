@@ -24,7 +24,12 @@ const Stepper: FC<StepperProps> = ({ selectedStep, stepperList, onChange }) => {
   useEffect(() => setSelected(selectedStep - 1), [selectedStep]);
 
   return (
-    <FlexBox alignItems="center" flexWrap="wrap" justifyContent="center" my="-4px">
+    <FlexBox
+      alignItems="center"
+      flexWrap="wrap"
+      justifyContent="center"
+      my="-4px"
+    >
       {stepperList.map((step, ind) => (
         <Fragment key={step.title}>
           <Chip
@@ -32,16 +37,20 @@ const Stepper: FC<StepperProps> = ({ selectedStep, stepperList, onChange }) => {
             fontSize="14px"
             fontWeight="600"
             p="0.5rem 1.5rem"
-            color={ind <= selected ? "white" : "primary.main"}
+            color={ind <= selected ? "white" : "ihavecpu.main"}
             cursor={step.disabled ? "not-allowed" : "pointer"}
-            bg={ind <= selected ? "primary.main" : "primary.light"}
+            bg={ind <= selected ? "ihavecpu.main" : "ihavecpu.light"}
             onClick={handleStepClick(step, ind)}
           >
             {ind + 1}. {step.title}
           </Chip>
 
           {ind < stepperList.length - 1 && (
-            <Box width="50px" height="4px" bg={ind < selected ? "primary.main" : "primary.light"} />
+            <Box
+              width="50px"
+              height="4px"
+              bg={ind < selected ? "primary.main" : "primary.light"}
+            />
           )}
         </Fragment>
       ))}

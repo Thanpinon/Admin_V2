@@ -1,4 +1,10 @@
-import { cloneElement, FC, InputHTMLAttributes, useEffect, useState } from "react";
+import {
+  cloneElement,
+  FC,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import { SpaceProps } from "styled-system";
 import Box from "../Box";
 import { colorOptions } from "../../interfaces";
@@ -13,20 +19,16 @@ export interface TextFieldProps {
   endAdornment?: any;
 }
 
-const TextField: FC<InputHTMLAttributes<HTMLInputElement> & TextFieldProps & SpaceProps> = ({
-  id,
-  label,
-  errorText,
-  labelColor,
-  endAdornment,
-  ...props
-}) => {
+const TextField: FC<
+  InputHTMLAttributes<HTMLInputElement> & TextFieldProps & SpaceProps
+> = ({ id, label, errorText, labelColor, endAdornment, ...props }) => {
   const [textId, setTextId] = useState(id);
 
   // extract spacing props
   let spacingProps = {};
   for (const key in props) {
-    if (key.startsWith("m") || key.startsWith("p")) spacingProps[key] = props[key];
+    if (key.startsWith("m") || key.startsWith("p"))
+      spacingProps[key] = props[key];
   }
 
   useEffect(() => {

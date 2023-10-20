@@ -1,0 +1,47 @@
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-open .modal-content {
+  transform: scale(1);
+}
+
+/* Media Query for Mobile */
+@media screen and (max-width: 767px) {
+  .modal-container {
+    justify-content: flex-start; /* Adjust alignment for mobile */
+    align-items: flex-start; /* Adjust alignment for mobile */
+    background-color: transparent; /* Remove background overlay on mobile */
+  }
+
+  .modal-content {
+    border-radius: 0; /* Remove border radius for full-screen effect */
+    width: 100%; /* Make the modal full width */
+    height: 100%; /* Make the modal full height */
+  }
+}

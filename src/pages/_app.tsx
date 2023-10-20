@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Router from "next/router";
 import { AppProps } from "next/app";
 import NProgress from "nprogress";
@@ -14,6 +14,7 @@ import theme from "../theme";
 import GlobalStyles from "theme/globalStyles";
 import { useState, useEffect } from "react";
 import CompareNotification from "@component/compare/CompareNotification";
+import clearExpirationCompare from "./clearExpirationCompare";
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -30,7 +31,7 @@ interface MyAppProps extends AppProps {
 const App = ({ Component, pageProps }: MyAppProps) => {
   let Layout = Component.layout || Fragment;
   const [compareList, setCompareList] = useState([]);
-  const [compareCount, setCompareCount] = useState(0);
+  clearExpirationCompare();
 
   useEffect(() => {
     // Retrieve the comparison list from local storage

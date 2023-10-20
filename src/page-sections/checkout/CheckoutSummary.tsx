@@ -1,12 +1,19 @@
-import { FC } from "react";
+import { FC, useCallback, useState } from "react";
 import { Card1 } from "@component/Card1";
 import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
 import { Button } from "@component/buttons";
 import TextField from "@component/text-field";
-import Typography from "@component/Typography";
+import Typography, { H4, H5, H6 } from "@component/Typography";
+import Radio from "@component/radio";
+import Grid from "@component/grid/Grid";
+import Icon from "@component/icon/Icon";
+import PriceFormat from "@component/PriceFormat";
+import ModalCouponPurchase from "@component/products/ModalCouponPurchase";
 
 const CheckoutSummary: FC = () => {
+  const [open, setOpen] = useState(false);
+  const toggleDialog = useCallback(() => setOpen((open) => !open), []);
   return (
     <Card1>
       <FlexBox justifyContent="space-between" alignItems="center" mb="0.5rem">
@@ -14,7 +21,7 @@ const CheckoutSummary: FC = () => {
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-          ฿2610.
+            ฿2610.
           </Typography>
 
           <Typography fontWeight="600" fontSize="14px" lineHeight="1">
@@ -38,7 +45,7 @@ const CheckoutSummary: FC = () => {
 
         <FlexBox alignItems="flex-end">
           <Typography fontSize="18px" fontWeight="600" lineHeight="1">
-          ฿40.
+            ฿40.
           </Typography>
 
           <Typography fontWeight="600" fontSize="14px" lineHeight="1">
@@ -58,16 +65,90 @@ const CheckoutSummary: FC = () => {
       </FlexBox>
 
       <Divider mb="1rem" />
+      <FlexBox justifyContent="space-between" alignItems="center" mb="1rem">
+        <Typography color="text.hint">วิธีการจัดส่ง:</Typography>
+        <FlexBox flexDirection="column">
+          <Radio
+            mb="0.5rem"
+            color="secondary"
+            name="shipping1"
+            width={15}
+            height={15}
+            label={
+              <Typography ml="6px" fontWeight="600" fontSize="13px">
+                DHL +฿50.00
+              </Typography>
+            }
+          />
+          <Radio
+            color="secondary"
+            name="shipping2"
+            width={15}
+            height={15}
+            label={
+              <Typography ml="6px" fontWeight="600" fontSize="13px">
+                รับเองที่สาขา
+              </Typography>
+            }
+          />
+        </FlexBox>
+      </FlexBox>
 
-      <Typography fontSize="25px" fontWeight="600" lineHeight="1" textAlign="right" mb="1.5rem">
-      ฿2610.00
+      <Divider mb="1rem" />
+
+      <Typography
+        fontSize="25px"
+        fontWeight="600"
+        lineHeight="1"
+        textAlign="right"
+        mb="1.5rem"
+      >
+        ฿26100.00
       </Typography>
 
-      <TextField placeholder="โค๊ดส่วนลด" fullwidth />
+      {/* <TextField placeholder="โค๊ดส่วนลด" fullwidth />
 
       <Button variant="outlined" color="primary" mt="1rem" mb="30px" fullwidth>
         ใช้คูปองส่วนลด
-      </Button>
+      </Button> */}
+      <Grid item xl={12} md={12} xs={12}>
+        <Card1 style={{ border: "2px solid #f1f1f1" }}>
+          <FlexBox alignItems="center">
+            <Icon
+              mr="1rem"
+              size="30px"
+              variant="medium"
+              defaultcolor="currentColor"
+            >
+              coupon
+            </Icon>
+            <H6>ใช้รหัสคูปองส่วนลด?</H6>
+          </FlexBox>
+          <FlexBox>
+            <Button
+              onClick={toggleDialog}
+              mt="1rem"
+              variant="outlined"
+              color="ihavecpu"
+              style={{ width: "100%" }}
+            >
+              ใช้รหัสคูปองส่วนลด
+            </Button>
+          </FlexBox>
+        </Card1>
+      </Grid>
+      <Grid item xl={12} md={12} xs={12}>
+        <Button
+          mt="1rem"
+          variant="contained"
+          color="ihavecpu"
+          type="submit"
+          style={{ width: "100%" }}
+        >
+          ดำเนินการชำระเงิน
+        </Button>
+        <ModalCouponPurchase open={open} onClose={toggleDialog} />
+      </Grid>
     </Card1>
   );
 };

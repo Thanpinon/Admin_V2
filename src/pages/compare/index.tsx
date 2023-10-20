@@ -11,6 +11,8 @@ import DashboardPageHeader from "@component/layout/DashboardPageHeader";
 import axios from "axios";
 import Icon from "@component/icon/Icon";
 import NavbarLayout from "@component/layout/NavbarLayout";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ComparePage = () => {
   const [compareList, setCompareList] = useState([]);
@@ -18,6 +20,7 @@ const ComparePage = () => {
   const [removedProductId, setRemovedProductId] = useState(null);
   const [addProductResponse, setAddProductResponse] = useState(null);
   const [showAddProductBox, setShowAddProductBox] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
 
   const [shouldRenderDeleteButton, setShouldRenderDeleteButton] = useState(
     compareList.length > 1
@@ -25,6 +28,7 @@ const ComparePage = () => {
 
   const clearCompareList = () => {
     localStorage.removeItem("compareList");
+
     setCompareList([]);
   };
 
@@ -169,6 +173,7 @@ const ComparePage = () => {
       axios
         .get(apiUrl)
         .then((response) => {
+          setisLoading(false);
           setShouldRenderDeleteButton(storedCompareList.length > 1);
           setApiResponse(response.data);
         })
@@ -191,8 +196,9 @@ const ComparePage = () => {
           <DashboardPageHeader
             iconName="compare1"
             title="เปรียบเทียบสินค้า"
-            button={HEADER_LINK}
+            // button={HEADER_LINK}
           />
+
           {apiResponse && (
             <Grid container spacing={6}>
               {[0, 1, 2, 3].map((index) => (
@@ -213,15 +219,17 @@ const ComparePage = () => {
                       }`}
                     />
                   ) : index === 1 && apiResponse.data[0] ? (
-                    <Section2
-                      onAddProduct={() => addProduct()}
-                      productDetail={addProductResponse}
-                      showAddProductBox={showAddProductBox}
-                      onAddProductFromCompare={(product) =>
-                        addProductToCompare(product)
-                      }
-                      back={backtoMain}
-                    />
+                    <>
+                      <Section2
+                        onAddProduct={() => addProduct()}
+                        productDetail={addProductResponse}
+                        showAddProductBox={showAddProductBox}
+                        onAddProductFromCompare={(product) =>
+                          addProductToCompare(product)
+                        }
+                        back={backtoMain}
+                      />
+                    </>
                   ) : index === 2 && apiResponse.data[1] ? (
                     <Section2
                       onAddProduct={() => addProduct()}

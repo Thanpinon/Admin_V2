@@ -21,7 +21,12 @@ const Cart = () => {
   const { state } = useAppContext();
 
   const getTotalPrice = () => {
-    return state.cart.reduce((accumulator, item) => accumulator + item.price * item.qty, 0) || 0;
+    return (
+      state.cart.reduce(
+        (accumulator, item) => accumulator + item.price * item.qty,
+        0
+      ) || 0
+    );
   };
 
   return (
@@ -44,7 +49,11 @@ const Cart = () => {
 
         <Grid item lg={4} md={4} xs={12}>
           <Card1>
-            <FlexBox justifyContent="space-between" alignItems="center" mb="1rem">
+            <FlexBox
+              justifyContent="space-between"
+              alignItems="center"
+              mb="1rem"
+            >
               <Typography color="gray.600">รวม :</Typography>
 
               <Typography fontSize="18px" fontWeight="600" lineHeight="1">
@@ -98,26 +107,17 @@ const Cart = () => {
               onChange={(e) => console.log(e)}
             />
 
-            <Select
-              label="การจัดส่ง"
-              options={branchList}
-              placeholder="เลือกการจัดส่ง"
-              onChange={(e) => console.log(e)}
-            />
-
-            {/* <Box mt="1rem">
-              <TextField label="Zip Code" placeholder="3100" fullwidth />
-            </Box> */}
-
-            <Button variant="outlined" color="primary" my="1rem" fullwidth>
-              ยกเลิก
-            </Button>
-
-            <Link href="/checkout">
-              <Button variant="contained" color="primary" fullwidth>
-                ดำเนินการต่อ
-              </Button>
-            </Link>
+            <Box my="1rem">
+              <Link href="/checkout">
+                <Button
+                  variant="contained"
+                  color="ihavecpu"
+                  style={{ width: "100%" }}
+                >
+                  ดำเนินการต่อ
+                </Button>
+              </Link>
+            </Box>
           </Card1>
         </Grid>
       </Grid>

@@ -58,7 +58,7 @@ const Modal: FC<ModalProps> = ({ children, open, onClose }) => {
         onClick={handleBackdropClick}
       >
         <div className="container">
-          <FlexBox justifyContent="center" m="0.5rem">
+          <FlexBox justifyContent="center">
             {cloneElement(children, { onClick: handleModalContentClick })}
           </FlexBox>
         </div>

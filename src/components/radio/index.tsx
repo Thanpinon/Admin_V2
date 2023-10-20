@@ -10,13 +10,17 @@ export interface RadioProps {
   labelPlacement?: "start" | "end";
   label?: string | React.ReactChild;
   id?: any;
+  width: number;
+  height: number;
 }
 
 interface WrapperProps extends ColorProps, SpaceProps {
   labelPlacement?: "start" | "end";
 }
 
-const SyledRadio = styled.input<InputHTMLAttributes<HTMLInputElement> & RadioProps>(
+const SyledRadio = styled.input<
+  InputHTMLAttributes<HTMLInputElement> & RadioProps
+>(
   (props) =>
     systemCss({
       /* remove standard background appearance */
@@ -31,8 +35,8 @@ const SyledRadio = styled.input<InputHTMLAttributes<HTMLInputElement> & RadioPro
       cursor: "pointer",
 
       margin: 0,
-      width: 20,
-      height: 20,
+      width: `${props.width}px`,
+      height: `${props.height}px`,
       borderRadius: 20,
       border: "2px solid",
       borderColor: "text.hint",
@@ -76,9 +80,13 @@ const SyledRadio = styled.input<InputHTMLAttributes<HTMLInputElement> & RadioPro
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
   align-items: center;
-  flex-direction: ${(props) => (props.labelPlacement !== "end" ? "row" : "row-reverse")};
+  flex-direction: ${(props) =>
+    props.labelPlacement !== "end" ? "row" : "row-reverse"};
   input {
-    ${(props) => (props.labelPlacement !== "end" ? "margin-right: 0.5rem" : "margin-left: 0.5rem")};
+    ${(props) =>
+      props.labelPlacement !== "end"
+        ? "margin-right: 0.5rem"
+        : "margin-left: 0.5rem"};
   }
   label {
     cursor: pointer;
@@ -92,19 +100,16 @@ const Wrapper = styled.div<WrapperProps>`
   ${space}
 `;
 
-const Radio: FC<InputHTMLAttributes<HTMLInputElement> & SpaceProps & RadioProps> = ({
-  id,
-  label,
-  labelColor,
-  labelPlacement,
-  ...props
-}: RadioProps) => {
+const Radio: FC<
+  InputHTMLAttributes<HTMLInputElement> & SpaceProps & RadioProps
+> = ({ id, label, labelColor, labelPlacement, ...props }: RadioProps) => {
   const [radioId, setRadioId] = useState(id);
 
   // extract spacing props
   let spacingProps = {};
   for (const key in props) {
-    if (key.startsWith("m") || key.startsWith("p")) spacingProps[key] = props[key];
+    if (key.startsWith("m") || key.startsWith("p"))
+      spacingProps[key] = props[key];
   }
 
   useEffect(() => {
@@ -112,7 +117,11 @@ const Radio: FC<InputHTMLAttributes<HTMLInputElement> & SpaceProps & RadioProps>
   }, []);
 
   return (
-    <Wrapper labelPlacement={labelPlacement} color={`${labelColor}.main`} {...spacingProps}>
+    <Wrapper
+      labelPlacement={labelPlacement}
+      color={`${labelColor}.main`}
+      {...spacingProps}
+    >
       <SyledRadio id={radioId} type="radio" {...props} />
       <label htmlFor={radioId}>{label}</label>
     </Wrapper>

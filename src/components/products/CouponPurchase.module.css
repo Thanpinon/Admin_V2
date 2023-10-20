@@ -1,0 +1,183 @@
+.mySwiperNested .coupon__wrap {
+  display: flex;
+  flex-flow: row;
+  max-width: auto;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.mySwiperNested .coupon__title {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 35%;
+  padding: 10px;
+}
+
+.mySwiperNested .coupon__title:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.mySwiperNested .coupon__title:after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: -10px;
+  width: 20px;
+  height: 10px;
+  background-color: #ffffff;
+}
+
+.mySwiperNested .coupon__title .couple__category {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mySwiperNested .coupon__title .coupon__max {
+  font-size: 11px;
+}
+
+.mySwiperNested .coupon__detail {
+  position: relative;
+  flex-flow: column;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  width: 150px;
+  padding: 10px 10px 10px 15px;
+}
+
+.mySwiperNested .coupon__detail:before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.mySwiperNested .coupon__detail:after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: -10px;
+  width: 20px;
+  height: 10px;
+  background-color: #ffffff;
+}
+
+.mySwiperNested .coupon__detail .coupon__price {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.mySwiperNested .coupon__detail .coupon__info span {
+  margin-bottom: 5px;
+  font-size: 11px;
+  text-align: left;
+}
+
+.mySwiperNested .coupon__footer {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mySwiperNested .coupon__condition a {
+  display: inline-flex;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mySwiperNested .coupon__btn a {
+  display: inline-flex;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.mySwiperNested .coupon__border {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2px;
+  height: calc(100% - 30px);
+  transform: translateY(-50%);
+}
+
+.swiperHomeElectric .coupon__wrap {
+  border: 1px solid #f1efef;
+  background-color: #fff;
+}
+
+/* .swiperHomeElectric .coupon__title,
+.swiperHomeElectric .coupon__detail:before {
+} */
+.swiperHomeElectric .coupon__title:before {
+  border: 1px solid #f1efef;
+}
+.swiperHomeElectric .coupon__detail:before {
+  border: 1px solid #f1efef;
+}
+.swiperHomeElectric .coupon__max,
+.swiperHomeElectric .couple__category {
+  color: var(--blue);
+}
+
+.swiperHomeElectric .coupon__price {
+  color: var(--blue);
+}
+
+.swiperHomeElectric .coupon__info span {
+  color: var(--blue);
+}
+
+.swiperHomeElectric .coupon__condition a {
+  color: var(--blue);
+  background-color: rgba(var(--blueRGB), 0.15);
+}
+
+.swiperHomeElectric .coupon__btn a {
+  background-color: #d4001a;
+}
+
+.swiperHomeElectric .coupon__border {
+  border-left: 1px dashed #f1e4e4;
+}
+
+/* Content styles */
+.content {
+  margin-bottom: 30px;
+}
+
+.content h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.content p {
+  text-align: center;
+}
