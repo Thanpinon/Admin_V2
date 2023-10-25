@@ -3,21 +3,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import * as yup from "yup";
 import { Formik } from "formik";
-import Select from "@component/Select";
 import Grid from "@component/grid/Grid";
 import { Card1 } from "@component/Card1";
 import CheckBox from "@component/CheckBox";
-import countryList from "@data/countryList";
 import { Button } from "@component/buttons";
 import TextField from "@component/text-field";
-import Typography, { H6, SemiSpan, Span, Small } from "@component/Typography";
+import Typography, { H6 } from "@component/Typography";
 import { Fragment } from "react";
 import FlexBox from "@component/FlexBox";
 import Divider from "@component/Divider";
 import Radio from "@component/radio";
 import Icon from "@component/icon/Icon";
 import ModalCouponPurchase from "@component/products/ModalCouponPurchase";
-import { useFormik } from "formik";
 
 const CheckoutForm: FC = () => {
   const router = useRouter();
@@ -32,11 +29,11 @@ const CheckoutForm: FC = () => {
     console.log(values);
     router.push("/payment");
   };
-  const formik = useFormik({
-    initialValues,
-    onSubmit: handleFormSubmit,
-    validationSchema: checkoutSchema,
-  });
+  // const formik = useFormik({
+  //   initialValues,
+  //   onSubmit: handleFormSubmit,
+  //   validationSchema: checkoutSchema,
+  // });
 
   const handleCheckboxChange =
     (values, setFieldValue) =>
@@ -67,7 +64,7 @@ const CheckoutForm: FC = () => {
       setTaxInvoice(checked);
       setFieldValue("request_tax", checked);
       setFieldValue("same_as_shipping", checked);
-      // setFieldValue("billing_name", checked ? values.shipping_name : "");
+      setFieldValue("billing_name", checked ? values.ship_firstname : "");
     };
 
   useEffect(() => {
@@ -257,6 +254,7 @@ const CheckoutForm: FC = () => {
                     </Grid>
                   </Grid>
                 </Card1>
+                {sameAsShipping}
                 {taxInvoice && (
                   <Card1 mb="2rem">
                     <Typography fontWeight="600" mb="1rem">

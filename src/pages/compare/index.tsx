@@ -1,17 +1,12 @@
 import { useEffect, useState, Fragment } from "react";
 import Box from "@component/Box";
 import Grid from "@component/grid/Grid";
-
-import AppLayout from "@component/layout/AppLayout";
 import Section1 from "@sections/compare/Section1";
 import Section2 from "@sections/compare/Section2";
 import Container from "@component/Container";
-import { Button } from "@component/buttons";
 import DashboardPageHeader from "@component/layout/DashboardPageHeader";
 import axios from "axios";
-import Icon from "@component/icon/Icon";
 import NavbarLayout from "@component/layout/NavbarLayout";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const ComparePage = () => {
@@ -26,27 +21,27 @@ const ComparePage = () => {
     compareList.length > 1
   );
 
-  const clearCompareList = () => {
-    localStorage.removeItem("compareList");
+  // const clearCompareList = () => {
+  //   localStorage.removeItem("compareList");
 
-    setCompareList([]);
-  };
+  //   setCompareList([]);
+  // };
 
-  const deleteAllCompare = () => {
-    clearCompareList();
-    setApiResponse(null);
-  };
+  // const deleteAllCompare = () => {
+  //   clearCompareList();
+  //   setApiResponse(null);
+  // };
 
-  const HEADER_LINK = (
-    <Button
-      color="primary"
-      bg="primary.light"
-      px="2rem"
-      onClick={deleteAllCompare}
-    >
-      ล้างข้อมูล<Icon>delete</Icon>
-    </Button>
-  );
+  // const HEADER_LINK = (
+  //   <Button
+  //     color="primary"
+  //     bg="primary.light"
+  //     px="2rem"
+  //     onClick={deleteAllCompare}
+  //   >
+  //     ล้างข้อมูล<Icon>delete</Icon>
+  //   </Button>
+  // );
   const removeProductFromCompare = (productId) => {
     console.log(compareList);
     const index = compareList.findIndex((product) => product.id === productId);
@@ -198,6 +193,8 @@ const ComparePage = () => {
             title="เปรียบเทียบสินค้า"
             // button={HEADER_LINK}
           />
+
+          {isLoading && ""}
 
           {apiResponse && (
             <Grid container spacing={6}>

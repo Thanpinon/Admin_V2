@@ -1,4 +1,3 @@
-import { getTheme } from "@utils/utils";
 import styled from "styled-components";
 
 const StyledFlashSaleBar = styled.div`

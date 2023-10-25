@@ -1,12 +1,11 @@
-import { FC, CSSProperties } from "react";
+import { FC } from "react";
 import Box from "@component/Box";
 import Card from "@component/Card";
 import Modal from "@component/Modal";
 import Icon from "@component/icon/Icon";
-import ProductIntro from "./ProductIntro";
 import Coupon from "@component/products/Coupon";
 import Grid from "@component/grid/Grid";
-import { H1, H2, H3, H6, SemiSpan, Small } from "@component/Typography";
+import { H1 } from "@component/Typography";
 import styles from "./ModalCoupon.module.css"; // Import the CSS module
 
 // ===================================================
@@ -39,6 +38,8 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
+                    onClick=""
+                    checked={true}
                   />
                 </Grid>
                 <Grid item md={4} xs={4}>
@@ -46,6 +47,8 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
+                    onClick=""
+                    checked={true}
                   />
                 </Grid>
                 <Grid item md={4} xs={4}>
@@ -53,6 +56,8 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
+                    onClick=""
+                    checked={true}
                   />
                 </Grid>
               </Grid>

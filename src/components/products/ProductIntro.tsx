@@ -3,22 +3,19 @@ import { FC, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import Box from "@component/Box";
 import Image from "@component/Image";
-import Rating from "@component/rating";
 import Avatar from "@component/avatar";
 import ColorCircle from "@component/color";
 import Grid from "@component/grid/Grid";
 import Icon from "@component/icon/Icon";
 import FlexBox from "@component/FlexBox";
 import { Button } from "@component/buttons";
-import { H1, H2, H3, H6, SemiSpan, Small, Span } from "@component/Typography";
+import { H1, H3, H6, SemiSpan, Small, Span } from "@component/Typography";
 import { useAppContext } from "@context/AppContext";
 import { currency } from "@utils/utils";
 import { ShowStock } from "@component/products/ShowStock";
-import Coupon from "@component/products/Coupon";
 import SectionVoucher from "@component/SectionVoucher";
 import { CarouselVoucher } from "@component/carousel";
 import { ProductCard20 } from "@component/product-cards";
-import Card from "@component/Card";
 import ModalCoupon from "@component/products/ModalCoupon";
 import ChoiceDetails from "@component/products/ChoiceDetails";
 import Divider from "@component/Divider";
@@ -26,7 +23,6 @@ import { IconButton } from "@component/buttons";
 import Typography from "@component/Typography";
 import { DetailsWrapper, StyledWrapper } from "./styles";
 import FlashSaleBar from "@component/flashsale/FlashSaleBar";
-import { ToastContainer, toast } from "react-toastify";
 import { notify } from "@component/toast";
 import "react-toastify/dist/ReactToastify.css";
 import CompareNotification from "@component/compare/CompareNotification";
@@ -286,7 +282,7 @@ const ProductIntro: FC<ProductIntroProps> = ({
               <H6 mb="0.8rem">Color : </H6>
               <Grid container>
                 <FlexBox mb="1rem">
-                  {colorList.map((item, ind) => (
+                  {colorList.map((item) => (
                     <ColorCircle
                       key={item.id}
                       name={item.id}

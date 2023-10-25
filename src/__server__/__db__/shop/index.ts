@@ -8,7 +8,10 @@ import Shop from "@models/shop.model";
 import { uniqueProudcts } from "../products/data";
 import Product from "@models/product.model";
 
-const getProducts = (slug: string) => uniqueProudcts.filter((item) => item?.shop?.slug === slug);
+const getProducts = (slug: string) =>
+  (uniqueProudcts as Array<{ shop: { slug: string } }>).filter(
+    (item) => item?.shop?.slug === slug
+  );
 
 Mock.onGet("/api/shops").reply(async () => {
   try {

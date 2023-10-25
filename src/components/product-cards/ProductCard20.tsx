@@ -1,8 +1,4 @@
 import { FC } from "react";
-import NextImage from "next/image";
-import Card from "@component/Card";
-import { Chip } from "@component/Chip";
-import HoverBox from "@component/HoverBox";
 import Coupon from "@component/products/Coupon";
 
 // ===========================================================================

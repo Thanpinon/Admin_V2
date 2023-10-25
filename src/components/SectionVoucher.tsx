@@ -1,11 +1,9 @@
 import { FC, ReactNode } from "react";
 import Box from "./Box";
 import Container from "./Container";
-import CategorySectionHeader from "./CategorySectionHeader";
 import FlexBox from "./FlexBox";
 import Icon from "./icon/Icon";
 import { H4, SemiSpan } from "./Typography";
-import Link from "next/link";
 
 // =======================================================
 export interface CategorySectionCreatorProps {
@@ -21,7 +19,6 @@ const SectionVoucher: FC<CategorySectionCreatorProps> = ({
   title,
   iconName,
   children,
-  seeMoreLink,
   onClickSeeMore,
 }) => {
   return (

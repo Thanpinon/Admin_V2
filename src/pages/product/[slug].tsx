@@ -6,11 +6,7 @@ import FlexBox from "@component/FlexBox";
 import { H5 } from "@component/Typography";
 import NavbarLayout from "@component/layout/NavbarLayout";
 import ProductIntro from "@component/products/ProductIntro";
-import ProductReview from "@component/products/ProductReview";
-import AvailableShops from "@component/products/AvailableShops";
-import RelatedProducts from "@component/products/RelatedProducts";
 import SameBrandProducts from "@component/products/SameBrandProducts";
-import FrequentlyBought from "@component/products/FrequentlyBought";
 import ProductDescription from "@component/products/ProductDescription";
 import TestResult from "@component/products/TestResult";
 import Overview from "@component/products/Overview";
@@ -22,7 +18,7 @@ import Products from "@models/products.model";
 
 // ===============================================================
 type Props = {
-  product: Product;
+  product: Products;
   shops: Shop[];
   sameBrandProducts: Products[];
   relatedProducts: Product[];
@@ -31,13 +27,7 @@ type Props = {
 // ===============================================================
 
 const ProductDetails = (props: Props) => {
-  const {
-    product,
-    shops,
-    relatedProducts,
-    frequentlyBought,
-    sameBrandProducts,
-  } = props;
+  const { product, sameBrandProducts } = props;
 
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("overview");
@@ -53,7 +43,7 @@ const ProductDetails = (props: Props) => {
     <Fragment>
       <ProductIntro
         id={product.product_code}
-        category_id={product.cat_id}
+        category_id={parseInt(product.cat_id)}
         price={parseFloat(product.market_price)}
         title={product.name_th}
         images={product.images}

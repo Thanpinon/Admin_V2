@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import Box from "@component/Box";
-import Grid from "@component/grid/Grid";
-import { H3 } from "@component/Typography";
-import { ProductCard21, ProductCard1 } from "@component/product-cards";
+import { ProductCard21 } from "@component/product-cards";
 import Products from "@models/products.model";
 import { CarouselProduct } from "@component/carousel";
 import CategorySectionCreator from "@component/CategorySectionCreator";
@@ -13,7 +11,6 @@ type Props = { products: Products[] };
 // ============================================================
 
 const SameBrandProducts: FC<Props> = ({ products }) => {
-  const limitedProducts = products.slice(0, 6);
   const width = useWindowSize();
   const [visibleSlides, setVisibleSlides] = useState(5);
 

@@ -6,23 +6,23 @@ import FlexBox from "@component/FlexBox";
 import CheckBox from "@component/CheckBox";
 import ButtonText from "@component/buttons/ButtonText";
 import TextField from "@component/text-field";
-import { H5, H6, Paragraph, SemiSpan, Small } from "@component/Typography";
+import { H5, H6, SemiSpan } from "@component/Typography";
 import { useState } from "react";
 import Box from "@component/Box";
 import { RangeSlider } from "next-range-slider";
 type ProductFilterCardProps = {
-  selectedBrands: string[];
-  onBrandCheckboxChange: (brand: string) => void;
-  selectedSocketType: string[];
-  onSocketTypeCheckboxChange: (brand: string) => void;
-  minPrice: string | null;
-  onMinPriceChange: (value: string) => void;
-  maxPrice: string | null;
-  onMaxPriceChange: (value: string) => void;
-  clearFilters: () => void;
-  handleItemRemove: (itemToRemove: string) => void;
-  clearBrands: () => void;
-  clearSocket: () => void;
+  selectedBrands?: string[];
+  onBrandCheckboxChange?: (brand: string) => void;
+  selectedSocketType?: string[];
+  onSocketTypeCheckboxChange?: (brand: string) => void;
+  minPrice?: string | null;
+  onMinPriceChange?: (value: string) => void;
+  maxPrice?: string | null;
+  onMaxPriceChange?: (value: string) => void;
+  clearFilters?: () => void;
+  handleItemRemove?: (itemToRemove: string) => void;
+  clearBrands?: () => void;
+  clearSocket?: () => void;
 };
 const ProductFilterCard: FC<ProductFilterCardProps> = ({
   selectedBrands,
@@ -38,20 +38,6 @@ const ProductFilterCard: FC<ProductFilterCardProps> = ({
   clearBrands,
   clearSocket,
 }) => {
-  const render = (items: string[]) =>
-    items.map((name) => (
-      <Paragraph
-        py="6px"
-        pl="22px"
-        key={name}
-        fontSize="14px"
-        color="text.muted"
-        className="cursor-pointer"
-      >
-        {name}
-      </Paragraph>
-    ));
-
   const [low, setLow] = useState(minPrice);
   const [high, setHigh] = useState(maxPrice);
   // get selected items names

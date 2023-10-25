@@ -1,6 +1,5 @@
 import { FC } from "react";
 import Box from "@component/Box";
-import Typography, { H3 } from "@component/Typography";
 import { FadeInUp } from "./styles";
 import TestResult from "./TestResult";
 import ProductDetail from "./ProductDetail";

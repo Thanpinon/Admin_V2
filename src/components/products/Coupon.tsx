@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import Grid from "@component/grid/Grid";
 import { ButtonCoupon } from "@component/buttons";
 import styles from "./Coupon.module.css"; // Import the CSS module

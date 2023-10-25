@@ -7,12 +7,7 @@ interface ImageCoverProps {
   height: string;
 }
 
-const ImageCover: React.FC<ImageCoverProps> = ({
-  imageUrl,
-  altText,
-  width,
-  height,
-}) => {
+const ImageCover: React.FC<ImageCoverProps> = ({ imageUrl, width, height }) => {
   const containerStyle = {
     width,
     height,

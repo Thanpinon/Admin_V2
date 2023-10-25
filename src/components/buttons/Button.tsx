@@ -32,7 +32,7 @@ const Button = styled.button<
     ButtonProps &
     LayoutProps
 >(
-  ({ color, fullwidth, width }) =>
+  ({ color, width }) =>
     systemCss({
       display: "flex",
       width: width ? "100%" : "unset",

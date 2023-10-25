@@ -37,7 +37,6 @@ const ShopDetails = ({ shop }: Props) => {
         <Hidden as={Grid} item md={3} xs={12} down={1024}>
           <ProductFilterCard />
         </Hidden>
-
         <Grid item md={9} xs={12}>
           {/* SHOW IN SMALL DEVICE */}
           {isTablet && (
@@ -53,7 +52,6 @@ const ShopDetails = ({ shop }: Props) => {
               <ProductFilterCard />
             </Sidenav>
           )}
-
           <ProductCardList products={shop.products.slice(0, 9)} />
         </Grid>
       </Grid>

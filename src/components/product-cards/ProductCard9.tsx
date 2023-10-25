@@ -98,10 +98,10 @@ type ProductCard9Props = {
   title: string;
   price: number;
   imgUrl: string;
-  rating: number;
+  rating?: number;
   images: string[];
   id: string | number;
-  categories: string[];
+  categories?: string[];
   [key: string]: unknown;
 };
 // ============================================================================
@@ -151,20 +151,39 @@ const ProductCard9: FC<ProductCard9Props> = ({
               </Chip>
             )}
 
-            <Icon color="secondary" variant="small" className="quick-view" onClick={toggleDialog}>
+            <Icon
+              color="secondary"
+              variant="small"
+              className="quick-view"
+              onClick={toggleDialog}
+            >
               eye-alt
             </Icon>
 
-            <Image src={imgUrl} alt={title} width="100%" borderRadius="0.5rem" />
+            <Image
+              src={imgUrl}
+              alt={title}
+              width="100%"
+              borderRadius="0.5rem"
+            />
           </Box>
         </Grid>
 
         <Grid item md={8} sm={8} xs={12}>
-          <FlexBox flexDirection="column" justifyContent="center" height="100%" p="1rem">
+          <FlexBox
+            flexDirection="column"
+            justifyContent="center"
+            height="100%"
+            p="1rem"
+          >
             {!!categories && (
               <div className="categories">
                 {categories.map((item) => (
-                  <NavLink className="link" href={`/product/search/${item}`} key={item}>
+                  <NavLink
+                    className="link"
+                    href={`/product/search/${item}`}
+                    key={item}
+                  >
                     {item}
                   </NavLink>
                 ))}

@@ -8,13 +8,10 @@ import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
 import TextArea from "@component/textarea";
 import { Button } from "@component/buttons";
-import TextField from "@component/text-field";
 import Typography from "@component/Typography";
 import { ProductCard7 } from "@component/product-cards";
 import CheckoutNavLayout from "@component/layout/CheckoutNavLayout";
 import { useAppContext } from "@context/AppContext";
-import countryList from "@data/countryList";
-import branchList from "@data/branchList";
 import { currency } from "@utils/utils";
 
 const Cart = () => {
@@ -125,10 +122,10 @@ const Cart = () => {
   );
 };
 
-const stateList = [
-  { value: "New York", label: "New York" },
-  { value: "Chicago", label: "Chicago" },
-];
+// const stateList = [
+//   { value: "New York", label: "New York" },
+//   { value: "Chicago", label: "Chicago" },
+// ];
 
 const optionList = [
   { value: "สั่งประกอบ", label: "สั่งประกอบ" },

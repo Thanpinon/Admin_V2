@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { TableStyle } from "./styles";
 
 const Table = () => {
-  const [data, setData] = useState([
+  const data = [
     {
       id: 1,
       column1: "Warranty",
@@ -33,7 +33,7 @@ const Table = () => {
       column1: "Boost Clock",
       column2: "2655 MHz",
     },
-  ]);
+  ];
 
   return (
     <TableStyle>

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { FC } from "react";
 import { SpaceProps } from "styled-system";
 import { colorOptions } from "../../interfaces";
 import StyledIcon from "./styles";
@@ -10,17 +10,22 @@ export interface IconProps {
   color?: colorOptions;
   variant?: "small" | "medium" | "large";
   defaultcolor?: "currentColor" | "auto";
+  className?: string;
+  onClick?: () => void;
 }
 
-type ComponentProps = IconProps & SpaceProps & ButtonHTMLAttributes<IconProps>;
+type ComponentProps = IconProps & SpaceProps;
 
-const Icon: FC<ComponentProps> = ({ children, ...props }) => {
+const Icon: FC<ComponentProps> = ({ children, onClick, ...props }) => {
   return (
     <StyledIcon
       src={`/assets/images/icons/${children}.svg`}
       fallback={() => <span>{children?.trim()}</span>}
       {...props}
-    />
+      onClick={onClick}
+    >
+      {children?.trim()}
+    </StyledIcon>
   );
 };
 

@@ -1,11 +1,9 @@
 import React from "react";
 import { FC, useEffect, useState } from "react";
 import Box from "@component/Box";
-import Card from "@component/Card";
-import Modal from "@component/Modal";
 import Icon from "@component/icon/Icon";
 import Grid from "@component/grid/Grid";
-import { H1, H4, H5, H6, SemiSpan } from "@component/Typography";
+import { H4, SemiSpan } from "@component/Typography";
 import styles from "./ModalCoupon.module.css";
 import FlexBox from "@component/FlexBox";
 import StyledSearchBox from "@component/search-box/styled";
@@ -20,7 +18,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import useWindowSize from "@hook/useWindowSize";
 import styled from "styled-components";
 
 // Define the Props type
@@ -281,7 +278,6 @@ const ModalContainer = styled.div`
 const ModalCouponPurchase: FC<Props> = (props) => {
   const { open, onClose } = props;
   const [myCoupon, setMyCoupon] = useState({ data: { items: [] } });
-  const width = useWindowSize();
   // Function to handle the form submission
   const handleFormSubmit = async (values) => {
     console.log(values);

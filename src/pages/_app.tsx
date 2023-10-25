@@ -7,13 +7,11 @@ import NProgress from "nprogress";
 import { ThemeProvider } from "styled-components";
 import GoogleAnalytics from "@component/GoogleAnalytics";
 import { AppProvider } from "@context/AppContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../__server__";
 import theme from "../theme";
 import GlobalStyles from "theme/globalStyles";
-import { useState, useEffect } from "react";
-import CompareNotification from "@component/compare/CompareNotification";
 import clearExpirationCompare from "./clearExpirationCompare";
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -30,17 +28,13 @@ interface MyAppProps extends AppProps {
 
 const App = ({ Component, pageProps }: MyAppProps) => {
   let Layout = Component.layout || Fragment;
-  const [compareList, setCompareList] = useState([]);
+  // const [compareList, setCompareList] = useState([]);
   clearExpirationCompare();
-
-  useEffect(() => {
-    // Retrieve the comparison list from local storage
-    const storedCompareList =
-      JSON.parse(localStorage.getItem("compareList")) || [];
-
-    // Set the comparison list in the component state
-    setCompareList(storedCompareList);
-  }, []);
+  // useEffect(() => {
+  //   const storedCompareList =
+  //     JSON.parse(localStorage.getItem("compareList")) || [];
+  //   setCompareList(storedCompareList);
+  // }, []);
 
   return (
     <Fragment>

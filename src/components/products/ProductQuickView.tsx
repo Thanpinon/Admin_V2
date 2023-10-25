@@ -30,10 +30,16 @@ const ProductQuickView: FC<Props> = (props) => {
           title={product.title}
           price={product.price}
           images={product.images}
+          category_id={42}
         />
 
         <Box position="absolute" top="0.75rem" right="0.75rem" cursor="pointer">
-          <Icon className="close" color="primary" variant="small" onClick={onClose}>
+          <Icon
+            className="close"
+            color="primary"
+            variant="small"
+            onClick={onClose}
+          >
             close
           </Icon>
         </Box>

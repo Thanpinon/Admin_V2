@@ -4,15 +4,15 @@ import Grid from "@component/grid/Grid";
 import Pagination from "@component/pagination";
 import { ProductCard1 } from "@component/product-cards";
 import { SemiSpan } from "@component/Typography";
-import Product from "@models/product.model";
+import Products from "@models/products.model";
 
 // ==========================================================
 type Props = {
-  products: Product[];
-  selectedBrands: string[];
-  selectedSocketType: string[];
-  minPrice: string;
-  maxPrice: string;
+  products?: Products[];
+  selectedBrands?: string[];
+  selectedSocketType?: string[];
+  minPrice?: string;
+  maxPrice?: string;
 };
 // ==========================================================
 

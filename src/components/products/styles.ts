@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Card from "@component/Card";
 import { getTheme } from "@utils/utils";
 import FlexBox from "@component/FlexBox";
-import NavLink from "@component/nav-link";
 
 export const DetailsWrapper = styled(Card)`
   @media only screen and (max-width: 768px) {

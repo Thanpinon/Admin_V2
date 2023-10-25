@@ -1,17 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FC, Fragment, useCallback, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import styled from "styled-components";
-import { useAppContext } from "@context/AppContext";
 import Box from "@component/Box";
-import Rating from "@component/rating";
 import { Chip } from "@component/Chip";
 import Icon from "@component/icon/Icon";
 import FlexBox from "@component/FlexBox";
-import { Button } from "@component/buttons";
 import Card, { CardProps } from "@component/Card";
-import { H3, SemiSpan, H6, Span } from "@component/Typography";
-import { calculateDiscount, currency, getTheme } from "@utils/utils";
+import { H3, SemiSpan, H6 } from "@component/Typography";
+import { currency, getTheme } from "@utils/utils";
 import { deviceSize } from "@utils/constants";
 import ProductQuickView from "@component/products/ProductQuickView";
 
@@ -125,17 +122,8 @@ const ProductCard21: FC<ProductCard21Props> = ({
   ...props
 }) => {
   const [open, setOpen] = useState(false);
-  const { state, dispatch } = useAppContext();
-  const cartItem = state.cart.find((item) => item.id === id);
 
   const toggleDialog = useCallback(() => setOpen((open) => !open), []);
-
-  const handleCartAmountChange = (amount: number) => () => {
-    dispatch({
-      type: "CHANGE_CART_AMOUNT",
-      payload: { id, slug, price, imgUrl, name: title, qty: amount },
-    });
-  };
 
   return (
     <>

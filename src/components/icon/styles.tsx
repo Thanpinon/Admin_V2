@@ -1,10 +1,10 @@
 import { ReactSVG } from "react-svg";
 import styled from "styled-components";
 import systemCss from "@styled-system/css";
-import { color, compose, space, variant } from "styled-system";
+import { color, compose, space, variant, SpaceProps } from "styled-system";
 import { IconProps } from "./Icon";
 
-const StyledIcon = styled(ReactSVG)<IconProps>(
+const StyledIcon = styled(ReactSVG)<IconProps & SpaceProps>(
   ({ color, size, transform, defaultcolor }) =>
     systemCss({
       svg: {

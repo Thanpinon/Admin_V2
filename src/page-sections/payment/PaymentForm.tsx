@@ -35,6 +35,8 @@ const PaymentForm: FC = () => {
       <Card1 mb="2rem">
         <Radio
           mb="1.5rem"
+          width={15}
+          height={15}
           color="secondary"
           name="credit-card"
           onChange={handlePaymentMethodChange}
@@ -54,7 +56,14 @@ const PaymentForm: FC = () => {
             initialValues={initialValues}
             validationSchema={checkoutSchema}
           >
-            {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+            }) => (
               <form onSubmit={handleSubmit}>
                 <Box mb="1.5rem">
                   <Grid container horizontal_spacing={6} vertical_spacing={4}>
@@ -121,6 +130,8 @@ const PaymentForm: FC = () => {
 
         <Radio
           mb="1.5rem"
+          width={15}
+          height={15}
           name="paypal"
           color="secondary"
           onChange={handlePaymentMethodChange}
@@ -154,6 +165,8 @@ const PaymentForm: FC = () => {
 
         <Radio
           name="cod"
+          width={15}
+          height={15}
           color="secondary"
           checked={paymentMethod === "cod"}
           onChange={handlePaymentMethodChange}

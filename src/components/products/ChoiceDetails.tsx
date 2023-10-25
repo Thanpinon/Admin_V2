@@ -7,8 +7,9 @@ type Props = {
   title: string;
   product_id: string;
   choice: string;
-  selected: boolean; // New prop to determine if the button is selected
-  onClick: () => void; // Callback for button click event
+  selected: boolean;
+  bg?: string;
+  onClick: () => void;
 };
 
 const ChoiceDetail: FC<Props> = (props) => {

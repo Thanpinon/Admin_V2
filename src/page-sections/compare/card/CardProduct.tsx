@@ -1,25 +1,14 @@
 import { FC } from "react";
-import Link from "next/link";
 import NextImage from "next/image";
 import Box from "@component/Box";
 import Card from "@component/Card";
-import Typography, {
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  Small,
-  Span,
-} from "@component/Typography";
+import { H4, H6, Small } from "@component/Typography";
 import { Chip } from "@component/Chip";
 import Grid from "@component/grid/Grid";
 import styles from "./styles.module.css";
 import { IconButton, Button } from "@component/buttons";
 import Icon from "@component/icon/Icon";
 import FlexBox from "@component/FlexBox";
-import { style } from "styled-system";
 
 export interface CardProductProps {
   title?: string;
@@ -44,7 +33,7 @@ export interface CardProductProps {
 const CardProduct: FC<CardProductProps> = ({
   imgUrl,
   title,
-  brand,
+
   priceBefore,
   priceSale,
   discount,

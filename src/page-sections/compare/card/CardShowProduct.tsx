@@ -1,11 +1,9 @@
 import React, { FC } from "react";
 import Box from "@component/Box";
 import ImageCover from "./ImageCover";
-import Typography, { H6, H5, H4, Small } from "@component/Typography";
-import { Chip } from "@component/Chip";
+import { H6, Small } from "@component/Typography";
 import styles from "./styles.module.css";
 import FlexBox from "@component/FlexBox";
-import { IconButton } from "@component/buttons";
 import Icon from "@component/icon/Icon";
 import PriceFormat from "@component/PriceFormat";
 
@@ -28,7 +26,6 @@ const CardShowProduct: FC<CardShowProductProps> = ({
   image,
   price_sale,
   price_before,
-  discount,
   product_id,
   category_id,
   onAddProductFromCompare,

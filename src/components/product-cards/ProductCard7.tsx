@@ -11,7 +11,7 @@ import { Button } from "@component/buttons";
 import Typography from "@component/Typography";
 import { IconButton } from "@component/buttons";
 import PriceFormat from "@component/PriceFormat";
-import { currency, getTheme } from "@utils/utils";
+import { getTheme } from "@utils/utils";
 
 // styled component
 const Wrapper = styled.div`

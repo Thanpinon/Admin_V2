@@ -1,6 +1,5 @@
 import Grid from "@component/grid/Grid";
 import CheckoutForm from "@sections/checkout/CheckoutForm";
-import CheckoutSummary from "@sections/checkout/CheckoutSummary";
 import CheckoutNavLayout from "@component/layout/CheckoutNavLayout";
 
 const Checkout = () => {

@@ -3,12 +3,10 @@ import { Card1 } from "@component/Card1";
 import Divider from "@component/Divider";
 import FlexBox from "@component/FlexBox";
 import { Button } from "@component/buttons";
-import TextField from "@component/text-field";
-import Typography, { H4, H5, H6 } from "@component/Typography";
+import Typography, { H6 } from "@component/Typography";
 import Radio from "@component/radio";
 import Grid from "@component/grid/Grid";
 import Icon from "@component/icon/Icon";
-import PriceFormat from "@component/PriceFormat";
 import ModalCouponPurchase from "@component/products/ModalCouponPurchase";
 
 const CheckoutSummary: FC = () => {

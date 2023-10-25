@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
+import React from "react";
 import Box from "@component/Box";
 import styles from "./CouponPurchase.module.css"; // Import the CSS module
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const CouponComponent = () => {
+const CouponComponent = ({ topic, description, dateExpired }) => {
   return (
     <Box>
       <div className={styles["coupon-container"]}>
@@ -22,7 +20,7 @@ const CouponComponent = () => {
                     <div className={styles["coupon__wrap"]}>
                       <div className={styles["coupon__title"]}>
                         <div className={styles["couple__category"]}>
-                          Home Electric
+                          {topic}
                         </div>
                         <div className={styles["coupon__max"]}>Maximum $5</div>
                       </div>
@@ -31,8 +29,8 @@ const CouponComponent = () => {
                           10% Discount
                         </div>
                         <div className={styles["coupon__info"]}>
-                          <span>Orders from 160,000 VND</span>
-                          <span>October 25 - 26, 2023</span>
+                          <span>{description}</span>
+                          <span>{dateExpired}</span>
                         </div>
                         <div className={styles["coupon__footer"]}>
                           <div className={styles["coupon__condition"]}>

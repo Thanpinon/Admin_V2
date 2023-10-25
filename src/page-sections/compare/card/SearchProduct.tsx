@@ -2,10 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import Box from "@component/Box";
 import Icon from "@component/icon/Icon";
 import TextField from "@component/text-field";
-import Card from "@component/Card";
-import { debounce } from "lodash";
 import SearchBoxStyle from "./styled";
-import CardShowProduct from "./CardShowProduct";
 
 export interface SearchProductProps {
   productDetail: any[];
@@ -47,6 +44,7 @@ const SearchProduct: FC<SearchProductProps> = ({
           placeholder="ค้นหาสินค้า"
           value={searchTerm}
         />
+        {resultList}
       </SearchBoxStyle>
     </Box>
   );
