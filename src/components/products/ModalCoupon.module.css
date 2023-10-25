@@ -28,13 +28,15 @@
 .modal-open {
   opacity: 1;
   pointer-events: auto;
+  z-index: 1000;
 }
 
 .modal-open .modal-content {
   transform: scale(1);
 }
-.myswiper {
-  width: 33.33%;
+.swiper {
+  max-width: 100%;
+  max-height: 300px;
 }
 
 /* Ensure only 3 slides are visible at a time */
@@ -53,17 +55,17 @@
   padding: 2rem;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .modal-container {
     width: 100%;
     height: 100%;
-    background-color: #f40;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
   }
 
-  /* Style for the open modal on mobile screens */
+  
   .modal-container.modal-open {
-    align-items: center; /* Adjust as needed */
+    align-items: center; 
   }
   .modal-container {
     border-radius: 0px;
@@ -73,4 +75,4 @@
     max-width: 100%;
     position: relative;
   }
-}
+} */
