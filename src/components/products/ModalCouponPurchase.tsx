@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import Box from "@component/Box";
 import Icon from "@component/icon/Icon";
 import Grid from "@component/grid/Grid";
-import { H4, SemiSpan } from "@component/Typography";
+import { H4, H5, SemiSpan } from "@component/Typography";
 import styles from "./ModalCoupon.module.css";
 import FlexBox from "@component/FlexBox";
 import StyledSearchBox from "@component/search-box/styled";
@@ -11,7 +11,7 @@ import TextField from "@component/text-field";
 import { Button } from "@component/buttons";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import CouponPurchase from "./CouponPurchase";
+import Coupon from "./Coupon";
 import { notify } from "@component/toast";
 import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
@@ -42,16 +42,64 @@ const ModalContainer = styled.div`
     padding: 0px;
   }
   .modal-container {
-    max-height: 600px;
+    max-height: 100%;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
     border-radius: 16px;
+    justify-content: space-between;
+    height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.25);
+  }
+  @media (min-width: 1002px) and (max-width: 1120px) {
+    .modal-container {
+      width: 960px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1002px) {
+    .modal-container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 700px) and (max-width: 800px) {
+    .modal-container {
+      width: 750px;
+      height: 750px;
+    }
+  }
+  @media (min-width: 600px) and (max-width: 700px) {
+    .modal-container {
+      width: 600px;
+      height: 700px;
+    }
+  }
+  @media (min-width: 500px) and (max-width: 600px) {
+    .modal-container {
+      width: 500px;
+      height: 650px;
+    }
+  }
+  @media (min-width: 400px) and (max-width: 500px) {
+    .modal-container {
+      width: 400px;
+      height: 650px;
+    }
+  }
+  @media (min-width: 300px) and (max-width: 400px) {
+    .modal-container {
+      width: 300px;
+      height: 650px;
+    }
+  }
+  @media (min-width: 0px) and (max-width: 300px) {
+    .modal-container {
+      width: 280px;
+      height: 650px;
+    }
   }
 
   .modal-container-header {
@@ -60,6 +108,7 @@ const ModalContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex: 0 0 auto;
   }
 
   .modal-container-title {
@@ -81,6 +130,7 @@ const ModalContainer = styled.div`
   .modal-container-body {
     padding: 24px 32px 51px;
     overflow-y: auto;
+    flex: 1 1 auto;
   }
   .modal-container-search {
     padding: 20px 10px 5px;
@@ -97,6 +147,9 @@ const ModalContainer = styled.div`
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #555;
+  }
+  .head-title {
+    font-weight: 800;
   }
 
   .rtf h1,
@@ -153,10 +206,11 @@ const ModalContainer = styled.div`
     padding: 20px 32px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     border-top: 1px solid #ddd;
     gap: 12px;
     position: relative;
+    flex: 0 0 auto;
   }
 
   .modal-container-footer:after {
@@ -174,6 +228,9 @@ const ModalContainer = styled.div`
       transparent
     );
     pointer-events: none;
+  }
+  .footer-title {
+    font-weight: 800;
   }
 
   .button {
@@ -226,38 +283,17 @@ const ModalContainer = styled.div`
     background-color: #dfdad7;
   }
 
-  /* iPhone X - Portrait */
-  @media screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
-    .swiper {
-      max-width: 100%;
-    }
-    .modal-container {
-      max-height: 750px;
-      max-width: 350px;
-    }
-  }
-
-  /* iPhone X - Landscape */
-  @media only screen and (min-width: 812px) and (orientation: landscape) {
-    .swiper {
-      max-width: 100%;
-    }
-    .modal-container {
-      max-height: 350px;
-      max-width: 750px;
-    }
-  }
   /* iPhone XS - Portrait */
   @media screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
     .swiper {
       max-width: 100%;
     }
     .modal-container {
-      max-height: 750px;
+      max-height: 600px;
       max-width: 350px;
     }
   }
-
+  /* iPhone XS - Landscape */
   @media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (orientation: landscape) {
     .swiper {
       max-width: 100%;
@@ -267,17 +303,70 @@ const ModalContainer = styled.div`
       max-width: 100%;
     }
     .modal-container-search {
-      padding: 10px 25px 0px;
+      padding: 5px 20px 0px;
     }
     .modal-container-header {
-      padding: 10px 32px 5px;
+      padding: 3px 32px 0px;
+    }
+    .head-title {
+      font-size: 12px;
+    }
+    .head-description {
+      font-size: 11px;
+    }
+    .footer-title {
+      font-size: 12px;
+    }
+    .modal-container-footer {
+      padding: 5px 32px 0px;
     }
   }
 `;
 
+// const mockCouponData = [
+//   {
+//     title: "Coupon 1",
+//     description: "Description 1",
+//     endDate: "2023-07-29 18:46:56",
+//   },
+//   {
+//     title: "Coupon 2",
+//     description: "Description 2",
+//     endDate: "2023-08-29 18:46:56",
+//   },
+//   {
+//     title: "Coupon 3",
+//     description: "Description 3",
+//     endDate: "2023-09-29 18:46:56",
+//   },
+//   {
+//     title: "Coupon 4",
+//     description: "Description 4",
+//     endDate: "2023-10-29 18:46:56",
+//   },
+// ];
+
 const ModalCouponPurchase: FC<Props> = (props) => {
   const { open, onClose } = props;
   const [myCoupon, setMyCoupon] = useState({ data: { items: [] } });
+  const [swiperSlidesPerView, setSwiperSlidesPerView] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        setSwiperSlidesPerView(3);
+      } else {
+        setSwiperSlidesPerView(1);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize the value on component load
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   // Function to handle the form submission
   const handleFormSubmit = async (values) => {
     console.log(values);
@@ -289,7 +378,7 @@ const ModalCouponPurchase: FC<Props> = (props) => {
   });
   const fetchMyCouponAvailable = () => {
     const requestBody = {
-      product_id: ["PD_123", "A1", "sd", "sd"],
+      product_id: ["A4", "A1", "A2", "A3"],
     };
 
     fetch("http://localhost:8000/api/myCouponAvaliable", {
@@ -531,12 +620,17 @@ const ModalCouponPurchase: FC<Props> = (props) => {
             <header className="modal-container-header">
               <span className="modal-container-title">
                 <FlexBox alignItems="center">
-                  <Icon size="32px" mr="0.5rem">
+                  <Icon className="head-icon" size="32px" mr="0.5rem">
                     coupon
                   </Icon>
-                  <H4 fontWeight={800}>คูปองส่วนลด</H4>
+                  <H4 className="head-title">คูปองส่วนลด</H4>
                 </FlexBox>
-                <SemiSpan fontSize="13px" fontWeight={300} ml="0.5rem">
+                <SemiSpan
+                  fontSize="13px"
+                  fontWeight={300}
+                  ml="0.5rem"
+                  className="head-description"
+                >
                   ใช้คูปองส่วนลด หรือ โค้ดส่วนลด
                 </SemiSpan>
               </span>
@@ -546,16 +640,14 @@ const ModalCouponPurchase: FC<Props> = (props) => {
                   width="24"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* SVG path */}
-                </svg>
+                ></svg>
               </button>
             </header>
             <section className="modal-container-search">
               <Grid container justifyContent="center" spacing={16}>
-                <Grid item lg={6} md={6} xs={12} alignItems="center">
+                <Grid item lg={12} md={12} xs={12} alignItems="center">
                   <Grid container justifyContent="center">
-                    <Grid item xs={12}>
+                    <Box>
                       <form onSubmit={formik.handleSubmit}>
                         <StyledSearchBox>
                           <Icon className="search-icon" size="18px">
@@ -587,13 +679,38 @@ const ModalCouponPurchase: FC<Props> = (props) => {
                             {formik.errors.code_coupon}
                           </SemiSpan>
                         )}
-                    </Grid>
+                    </Box>
                   </Grid>
                 </Grid>
               </Grid>
             </section>
             <section className="modal-container-body rtf scrollbar">
-              <Swiper className="swiper">
+              <Swiper
+                className="swiper"
+                slidesPerView={swiperSlidesPerView}
+                spaceBetween={10}
+              >
+                {Array.isArray(myCoupon.data.items) &&
+                  myCoupon.data.items.map((coupon, index) => (
+                    <SwiperSlide key={index}>
+                      <Grid container spacing={3}>
+                        <Grid item md={12} sm={12} xs={12}>
+                          <Coupon
+                            topic={coupon.id}
+                            description={coupon.description}
+                            color="white"
+                            dateExpired={coupon.endDate}
+                            onClick={() => {
+                              // Your click handler logic here
+                            }}
+                            checked={true}
+                          />
+                        </Grid>
+                      </Grid>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+              {/* <Swiper className="swiper">
                 {Array.isArray(myCoupon.data.items) &&
                   myCoupon.data.items
                     .reduce((chunks, item, i) => {
@@ -619,15 +736,50 @@ const ModalCouponPurchase: FC<Props> = (props) => {
                         </Grid>
                       </SwiperSlide>
                     ))}
-              </Swiper>
-
-              <span>
-                Ut proverbia non nulla veriora sint quam vestra dogmata.
-              </span>
+              </Swiper> */}
             </section>
-            <footer className="modal-container-footer">
-              <button className="button is-ghost">Decline</button>
-              <button className="button is-primary">Accept</button>
+            <footer
+              className="modal-container-footer"
+              style={{ backgroundColor: "#f9f9f9" }}
+            >
+              <Grid item xs={12}>
+                <Box>
+                  <span className="modal-container-title">
+                    <FlexBox alignItems="center">
+                      <H5 className="footer-title">เก็บโค้ดส่วนลด</H5>
+                    </FlexBox>
+                    <Box mt="1rem">
+                      <Swiper
+                        className="swiper"
+                        slidesPerView={swiperSlidesPerView}
+                        spaceBetween={10}
+                        scrollbar={{ draggable: true }}
+                        pagination={{ clickable: true }}
+                      >
+                        {Array.isArray(myCoupon.data.items) &&
+                          myCoupon.data.items.map((coupon, index) => (
+                            <SwiperSlide key={index}>
+                              <Grid container spacing={3}>
+                                <Grid item md={12} sm={12} xs={12}>
+                                  <Coupon
+                                    topic={coupon.id}
+                                    description={coupon.description}
+                                    color="#f9f9f9"
+                                    dateExpired={coupon.endDate}
+                                    onClick={() => {
+                                      // Your click handler logic here
+                                    }}
+                                    checked={true}
+                                  />
+                                </Grid>
+                              </Grid>
+                            </SwiperSlide>
+                          ))}
+                      </Swiper>
+                    </Box>
+                  </span>
+                </Box>
+              </Grid>
             </footer>
           </article>
         </div>

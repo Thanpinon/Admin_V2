@@ -38,7 +38,6 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
-                    onClick=""
                     checked={true}
                   />
                 </Grid>
@@ -47,7 +46,6 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
-                    onClick=""
                     checked={true}
                   />
                 </Grid>
@@ -56,7 +54,6 @@ const ModalCoupon: FC<Props> = (props) => {
                     topic="TEST"
                     description="TEST"
                     dateExpired="2023-07-29 18:46:56"
-                    onClick=""
                     checked={true}
                   />
                 </Grid>
